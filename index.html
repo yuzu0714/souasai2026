@@ -1,46 +1,12 @@
 <DOCTYPE html>
 <html>
     <head>
-        <title>
-            
-        </title>
+          <meta charset="UTF-8">
+        <title>蒼阿祭2026_トップページ</title>
+        <link rel="stylesheet" href="style.css">
     </head>
-    <body>
-        <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import {
-            getFirestore, doc, getDoc, setDoc, updateDoc
-        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-        import {
-            getAuth, signInAnonymously, onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    <body class="dots">
 
-        // 手順4でコピーした設定をここに貼り付ける
-        const firebaseConfig = {
-            apiKey: "AIza...",
-            authDomain: "souasai-dev.firebaseapp.com",
-            projectId: "souasai-dev",
-            storageBucket: "souasai-dev.appspot.com",
-            messagingSenderId: "...",
-            appId: "..."
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        // ページを開いたら自動的に匿名ログインする
-        signInAnonymously(auth).catch((error) => {
-            console.error("匿名ログイン失敗:", error);
-        });
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-            console.log("あなたのID:", user.uid);
-            // ここから先、この uid を使ってFirestoreの読み書きができる
-            }
-        });
-        </script>
 
     </body>
 </html>
