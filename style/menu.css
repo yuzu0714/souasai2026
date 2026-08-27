@@ -23,7 +23,7 @@
     z-index: 200;
     box-shadow: none;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    pointer-events: none; /* ボタン以外は下の内容へのクリックを邪魔しない */
+    pointer-events: none; 
   }
 
   .site-header.is-open {
@@ -59,7 +59,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     padding: 0;
     flex-shrink: 0;
-    pointer-events: auto; /* ボタン自体は常にクリック可能 */
+    pointer-events: auto; 
   }
 
   .hamburger-icon {
@@ -127,29 +127,48 @@
 
   /* ===== お問い合わせカード(チケット風の左端) ===== */
   .contact-card {
+    --corner: 20px; /* 角のくり抜き半径 */
     margin-top: 28px;
     background: var(--cream);
-    border-radius: 16px;
-    padding: 20px 20px 20px 46px;
+    padding: 20px 55px; /* 点線(両サイドから33px)+間隔22px = 55px */
     position: relative;
     color: #333;
     flex-shrink: 0;
 
-    -webkit-mask-image: radial-gradient(circle 11px at 0 12px, transparent 99%, #000 100%);
-    -webkit-mask-repeat: repeat-y;
-    -webkit-mask-size: 100% 24px;
-    mask-image: radial-gradient(circle 11px at 0 12px, transparent 99%, #000 100%);
-    mask-repeat: repeat-y;
-    mask-size: 100% 24px;
+    -webkit-mask-image:
+      radial-gradient(circle var(--corner) at 0 0, transparent 99%, #000 100%),
+      radial-gradient(circle var(--corner) at 100% 0, transparent 99%, #000 100%),
+      radial-gradient(circle var(--corner) at 0 100%, transparent 99%, #000 100%),
+      radial-gradient(circle var(--corner) at 100% 100%, transparent 99%, #000 100%);
+    -webkit-mask-size: 50% 50%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: top left, top right, bottom left, bottom right;
+    mask-image:
+      radial-gradient(circle var(--corner) at 0 0, transparent 99%, #000 100%),
+      radial-gradient(circle var(--corner) at 100% 0, transparent 99%, #000 100%),
+      radial-gradient(circle var(--corner) at 0 100%, transparent 99%, #000 100%),
+      radial-gradient(circle var(--corner) at 100% 100%, transparent 99%, #000 100%);
+    mask-size: 50% 50%;
+    mask-repeat: no-repeat;
+    mask-position: top left, top right, bottom left, bottom right;
+  }
+
+  /* 左右それぞれ、端から33pxの位置に縦の点線 */
+  .contact-card::before,
+  .contact-card::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    border-left: 2px dotted #999;
   }
 
   .contact-card::before {
-    content: "";
-    position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 24px;
-    border-left: 2px dotted #FFF5C4;
+    left: 33px;
+  }
+
+  .contact-card::after {
+    right: 33px;
   }
 
   .contact-title {
@@ -165,7 +184,6 @@
   .contact-value {
     margin: 0;
   }
-
   /* ===== デモ用の本文(オーバーレイの下にあるという体) ===== */
   .page-content {
     padding: 110px 24px 40px;
