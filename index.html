@@ -10,9 +10,65 @@
         <meta name="keywords" content="蒼阿祭, 蒼阿祭2026, そうあさい, そうあさい２０２６, Souasai,souasai2026,阿南高専文化祭,阿南高専高専祭">
         <meta name="description" content="蒼阿祭2026の公式ウェブサイト。イベントスケジュール、展示、模擬店の情報はこちら。">
         <link rel="stylesheet" href="style/main.css">
-    </head>
+        <link rel="stylesheet" href="style/menu.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    </head>
+
     <body class="dots">
 
+        <header class="site-header" id="siteHeader">
+            <div class="logo">Menu</div>
+            <button class="hamburger-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+            <span class="hamburger-icon">
+                <span></span><span></span><span></span>
+            </span>
+            </button>
+        </header>
 
+        <div class="menu-overlay" id="menuOverlay">
+            <nav class="menu-list">
+            <ul>
+                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.html">蒼阿祭について</a></li>
+                <li><a href="food.html">売店</a></li>
+                <li><a href="exhibitions.html">展示</a></li>
+                <li><a href="timeschedule.html">タイムスケジュール</a></li>
+                <li><a href="stamprally.html">スタンプラリー</a></li>
+                <li><a href="#">交通アクセス</a></li>
+            </ul>
+            </nav>
+
+            <div class="contact-card">
+            <p class="contact-title">contact</p>
+            <p class="contact-label">Eメール:</p>
+            <p class="contact-value">souasaiinquiry@gmail.com</p>
+            <p class="contact-label">住所：〒774-0017</p>
+            <p class="contact-value">徳島県阿南市見能林町青木265</p>
+            </div>
+        </div>
+
+        <script>
+            const menuBtn = document.getElementById('menuBtn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const siteHeader = document.getElementById('siteHeader');
+
+            function toggleMenu() {
+                const isOpen = menuOverlay.classList.toggle('is-open');
+                siteHeader.classList.toggle('is-open', isOpen);
+                menuBtn.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+
+            // メニュー項目をクリックしたら閉じる
+            document.querySelectorAll('.menu-list a').forEach((link) => {
+                link.addEventListener('click', () => {
+                if (menuOverlay.classList.contains('is-open')) toggleMenu();
+                });
+            });
+        </script>
     </body>
 </html>
