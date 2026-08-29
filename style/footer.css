@@ -1,6 +1,7 @@
 /* ===== フッター(画面下に固定) ===== */
 .site-footer {
   background: linear-gradient(to bottom, #00b6c0, #ffffff 85%);
+  margin-top: 60px;
   padding: 28px 0px 20px;
 }
 
