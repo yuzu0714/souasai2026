@@ -15,7 +15,30 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    </head>
+        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    
+    
+            <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    
+
+        <style>
+            h1 {
+                font-family: "Caprasimo", serif;
+                font-size: 80px;
+                color: #fff;
+                -webkit-text-stroke: 1px #000;
+                text-stroke: 1px #151515;
+                text-shadow: 0 6px 0 #00E668;
+                margin-top: 110px;   /* 追加:固定ヘッダー(84px)の下に余白を作る */
+                text-align: center;  /* 追加:文字を中央揃えに */
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 50px; /* スマホ用にフォントサイズを調整 */
+                }
+            }
+        </style>
+
+    </head>
 
     <body class="dots">
 
@@ -50,6 +73,8 @@
             </div>
         </div>
 
+        <h1>Access</h1>
+
         <footer class="site-footer">
             <nav class="footer-links">
             <ul class="footer-links-col">
@@ -59,8 +84,9 @@
             </ul>
             <ul class="footer-links-col">
                 <li><a href="timeschedule.html">Time schedule</a></li>
-                <li><a href="map.html">Map</a></li>
                 <li><a href="stamprally.html">Stamp rally</a></li>
+                <li><a href="access.html">Access</a></li>
+
             </ul>
             </nav>
 
