@@ -25,3 +25,20 @@
   font-size: 18px;
   line-height: 1.8;
 }
+
+@media (max-width: 768px) {
+  .info-card {
+    width: 90%;
+    padding: 19px 20px;
+  }
+
+  .info-card-badge {
+    font-size: 20px;
+    padding: 15px 24px;
+  }
+
+  .info-card-text {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+}
