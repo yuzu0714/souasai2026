@@ -56,7 +56,7 @@
             <button class="stamp-get-btn" id="stampBtn">スタンプカードのページへ</button>
         </div>
     </main>
-    
+
     <footer class="site-footer">
         <nav class="footer-links">
             <ul class="footer-links-col">
@@ -137,7 +137,7 @@
                 messageEl.textContent = 'つかみ取りが終わったら、ボタンを押してね。';
                 btnEl.addEventListener('click', () => {
                     saveStamp('snack');
-                    window.location.href = 'stamp-card.html';
+                    window.location.href = 'stamprally.html';
                 });
             }
         } else {
@@ -147,7 +147,7 @@
             iconEl.alt = station.name;
             btnEl.addEventListener('click', () => {
                 saveStamp(stationId);
-                window.location.href = 'stamp-card.html';
+                window.location.href = 'stamprally.html';
             });
         }
     </script>
