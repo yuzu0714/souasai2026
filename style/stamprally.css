@@ -26,6 +26,118 @@
   line-height: 1.8;
 }
 
+/* ----- 地点ページ(stamp.html) ----- */
+.stamp-welcome-page {
+  min-height: 100vh;
+  padding: 110px 24px 60px; /* 固定ヘッダー(84px)の下に余白 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stamp-station-title {
+  margin: 0 0 24px;
+}
+
+.stamp-welcome-text {
+  color: #333;
+  font-size: 18px;
+  margin: 0 0 32px;
+}
+
+.stamp-get-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 64px;
+  border: none;
+  border-radius: 32px;
+  background-color: #4fabb0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.stamp-message {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ----- スタンプカードページ(stamp-card.html) ----- */
+.stamp-card-page {
+  padding: 110px 24px 60px;
+}
+
+.stamp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 360px;
+  margin: 24px auto 0;
+}
+
+.stamp-slot {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: #f1f5f9;
+  border: 2px solid #4fabb0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stamp-slot-number {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.stamp-icon {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  display: none;
+}
+
+.stamp-slot.is-collected .stamp-icon {
+  display: block;
+}
+
+.stamp-progress-text {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 17px;
+  margin: 20px 0 0;
+}
+
+.stamp-slot--snack {
+  grid-column: span 3;
+  aspect-ratio: auto;
+  height: 110px;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.stamp-slot--snack[hidden] {
+  display: none;
+}
+
+.stamp-slot-label {
+  font-size: 13px;
+  color: #555;
+}
+
+
+
 @media (max-width: 768px) {
   .info-card {
     width: 90%;

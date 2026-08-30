@@ -84,6 +84,49 @@
             </p>
         </div>
 
+
+        <main class="stamp-card-page">
+
+            <div class="stamp-grid">
+                <div class="stamp-slot" data-station="1">
+                    <img class="stamp-icon" alt="機械コース">
+                    <span class="stamp-slot-number">1</span>
+                </div>
+                <div class="stamp-slot" data-station="2">
+                    <img class="stamp-icon" alt="電気コース">
+                    <span class="stamp-slot-number">2</span>
+                </div>
+                <div class="stamp-slot" data-station="3">
+                    <img class="stamp-icon" alt="情報コース">
+                    <span class="stamp-slot-number">3</span>
+                </div>
+                <div class="stamp-slot" data-station="4">
+                    <img class="stamp-icon" alt="建設コース">
+                    <span class="stamp-slot-number">4</span>
+                </div>
+                <div class="stamp-slot" data-station="5">
+                    <img class="stamp-icon" alt="化学コース">
+                    <span class="stamp-slot-number">5</span>
+                </div>
+                <div class="stamp-slot" data-station="6">
+                    <img class="stamp-icon" alt="図書館">
+                    <span class="stamp-slot-number">6</span>
+                </div>
+                <div class="stamp-slot" data-station="7">
+                    <img class="stamp-icon" alt="体育館">
+                    <span class="stamp-slot-number">7</span>
+                </div>
+            </div>
+
+            <p id="stampProgressText" class="stamp-progress-text"></p>
+
+            <div class="stamp-slot stamp-slot--snack" data-station="snack" hidden>
+                <img class="stamp-icon" alt="お菓子つかみ取り">
+                <span class="stamp-slot-label">お菓子つかみ取り</span>
+            </div>
+        </main>
+
+
         <footer class="site-footer">
             <nav class="footer-links">
             <ul class="footer-links-col">
@@ -131,5 +174,37 @@
                 });
             });
         </script>
+                                                    
+
+        <script src="scripts/stamp.js"></script>
+        <script>
+            // ===== カード表示処理 =====
+            const stamps = loadStamps();
+
+            for (let i = 1; i <= TOTAL_STATIONS; i++) {
+                const slot = document.querySelector(`.stamp-slot[data-station="${i}"]`);
+                if (!slot || !stamps[i]) continue;
+                const img = slot.querySelector('.stamp-icon');
+                img.src = `images/stamps/${STATIONS[i].icon}`;
+                slot.classList.add('is-collected');
+            }
+
+            const collected = countCollected(stamps);
+            const progressText = document.getElementById('stampProgressText');
+            const snackSlot = document.querySelector('.stamp-slot--snack');
+
+            if (collected >= TOTAL_STATIONS) {
+                progressText.textContent = '全部揃いました！体育館付近の受付へ行こう！';
+                snackSlot.hidden = false;
+                if (stamps['snack']) {
+                    const img = snackSlot.querySelector('.stamp-icon');
+                    img.src = 'images/stamps/sumi.svg';
+                    snackSlot.classList.add('is-collected');
+                }
+            } else {
+                progressText.textContent = `スタンプ ${collected} / ${TOTAL_STATIONS} 個`;
+            }
+        </script>
+
     </body>
 </html>
