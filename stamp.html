@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/menu.css">
     <link rel="stylesheet" href="style/footer.css">
-    <link rel="stylesheet" href="style/stamp.css">
+    <link rel="stylesheet" href="style/stamprally.css">
 </head>
 <body class="dots">
 
@@ -49,11 +49,14 @@
     </div>
 
     <main class="stamp-welcome-page">
-        <h1 id="stationTitle" class="stamp-station-title">読み込み中...</h1>
-        <p id="stationMessage" class="stamp-welcome-text">ボタンを押して、スタンプをゲットしよう</p>
-        <button class="stamp-get-btn" id="stampBtn">スタンプカードのページへ</button>
+        <div class="stamp-welcome-card">
+            <h1 id="stationTitle" class="stamp-station-title">読み込み中...</h1>
+            <img id="stationIcon" class="stamp-station-icon" alt="">
+            <p id="stationMessage" class="stamp-welcome-text">ボタンを押して、スタンプをゲットしよう</p>
+            <button class="stamp-get-btn" id="stampBtn">スタンプカードのページへ</button>
+        </div>
     </main>
-
+    
     <footer class="site-footer">
         <nav class="footer-links">
             <ul class="footer-links-col">
@@ -109,35 +112,42 @@
         const station = isSnack ? null : STATIONS[stationId];
 
         const titleEl = document.getElementById('stationTitle');
+        const iconEl = document.getElementById('stationIcon');
         const messageEl = document.getElementById('stationMessage');
         const btnEl = document.getElementById('stampBtn');
 
         if (!isSnack && !station) {
             // 存在しない地点番号 → 案内文を表示してボタンは隠す
             titleEl.textContent = 'このページは見つかりません';
+            iconEl.style.display = 'none';
             messageEl.textContent = '正しいQRコードから読み込んでください。';
             btnEl.style.display = 'none';
         } else if (isSnack) {
             const stamps = loadStamps();
             if (countCollected(stamps) < TOTAL_STATIONS) {
                 titleEl.textContent = 'まだ早いです！';
+                iconEl.style.display = 'none';
                 messageEl.textContent = '7つのスタンプを全部集めてから、また来てね。';
                 btnEl.style.display = 'none';
             } else {
                 titleEl.textContent = 'お菓子つかみ取り';
                 titleEl.style.color = '#e08a00';
+                iconEl.src = `images/stamps/${SNACK_ICON}`;
+                iconEl.alt = 'お菓子つかみ取り';
                 messageEl.textContent = 'つかみ取りが終わったら、ボタンを押してね。';
                 btnEl.addEventListener('click', () => {
                     saveStamp('snack');
-                    window.location.href = 'stamprally.html';
+                    window.location.href = 'stamp-card.html';
                 });
             }
         } else {
             titleEl.textContent = `${station.name}へようこそ！`;
             titleEl.style.color = station.color;
+            iconEl.src = `images/stamps/${station.icon}`;
+            iconEl.alt = station.name;
             btnEl.addEventListener('click', () => {
                 saveStamp(stationId);
-                window.location.href = 'stamprally.html';
+                window.location.href = 'stamp-card.html';
             });
         }
     </script>
