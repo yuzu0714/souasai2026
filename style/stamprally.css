@@ -90,14 +90,14 @@
 
 /* ----- スタンプカードページ(stamp-card.html) ----- */
 .stamp-card-page {
-  padding: 110px 24px 60px;
+  padding: 0px 24px 60px;
 }
 
 /* 外側の黒枠+水色+ドット枠 */
 .stamp-grid-frame {
   position: relative;
   max-width: 480px;
-  margin: 24px auto 0;
+  margin: 20px auto 0;
   padding: 28px 20px;
   background: #00B6C0;
   border-radius: 32px;
