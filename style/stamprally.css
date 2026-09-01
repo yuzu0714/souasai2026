@@ -1,0 +1,44 @@
+.info-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  border: 3px solid #00B6C0;
+  border-radius: 24px;
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.info-card-badge {
+  display: inline-block;
+  background: #00B6C0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  padding: 12px 32px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.info-card-text {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .info-card {
+    width: 90%;
+    padding: 19px 20px;
+  }
+
+  .info-card-badge {
+    font-size: 20px;
+    padding: 15px 24px;
+  }
+
+  .info-card-text {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+}
