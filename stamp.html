@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>スタンプラリー | 蒼阿祭2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/stamprally.css">
+</head>
+<body class="dots">
+
+    <header class="site-header" id="siteHeader">
+        <div class="logo">Menu</div>
+        <button class="hamburger-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+            <span class="hamburger-icon">
+                <span></span><span></span><span></span>
+            </span>
+        </button>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-list">
+            <ul>
+                <li><a href="index.html">トップ</a></li>
+                <li><a href="#">蒼阿祭について</a></li>
+                <li><a href="#">売店</a></li>
+                <li><a href="#">展示</a></li>
+                <li><a href="#">タイムスケジュール</a></li>
+                <li><a href="stamprally.html">スタンプラリー</a></li>
+                <li><a href="#">交通アクセス</a></li>
+            </ul>
+        </nav>
+
+        <div class="contact-card">
+            <p class="contact-title">contact</p>
+            <p class="contact-label">Eメール:</p>
+            <p class="contact-value">souasaiinquiry@gmail.com</p>
+            <p class="contact-label">住所：〒774-0017</p>
+            <p class="contact-value">徳島県阿南市見能林町青木265</p>
+        </div>
+    </div>
+
+    <main class="stamp-welcome-page">
+        <div class="stamp-welcome-card">
+            <h1 id="stationTitle" class="stamp-station-title">読み込み中...</h1>
+            <img id="stationIcon" class="stamp-station-icon" alt="">
+            <p id="stationMessage" class="stamp-welcome-text">ボタンを押して、スタンプをゲットしよう</p>
+            <button class="stamp-get-btn" id="stampBtn">スタンプカードのページへ</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <nav class="footer-links">
+            <ul class="footer-links-col">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Food</a></li>
+                <li><a href="#">Exhibition</a></li>
+            </ul>
+            <ul class="footer-links-col">
+                <li><a href="#">Time schedule</a></li>
+                <li><a href="#">Map</a></li>
+                <li><a href="stamprally.html">Stamp rally</a></li>
+            </ul>
+        </nav>
+        <hr class="footer-divider">
+        <div class="footer-logo">
+            <div class="logo-box">
+                <img src="images/logo.png" alt="蒼阿祭ロゴ">
+            </div>
+        </div>
+        <p class="footer-copyright">@2026 蒼阿祭実行委員会</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const siteHeader = document.getElementById('siteHeader');
+
+        function toggleMenu() {
+            const isOpen = menuOverlay.classList.toggle('is-open');
+            siteHeader.classList.toggle('is-open', isOpen);
+            menuBtn.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.menu-list a').forEach((link) => {
+            link.addEventListener('click', () => {
+                if (menuOverlay.classList.contains('is-open')) toggleMenu();
+            });
+        });
+    </script>
+
+    <script src="scripts/stamp.js"></script>
+    <script>
+        // ===== このページ固有の処理 =====
+        // QRコードには "stamp.html?token=Kx7mP2nQrW" のようにトークンを入れる
+        // トークンと地点の対応は scripts/stamp.js の STATION_TOKENS を参照
+        const stationId = resolveToken(); // null=不正 / 1〜7=通常地点 / 'snack'=お菓子
+        const isSnack = stationId === 'snack';
+        const station = (!isSnack && stationId !== null) ? STATIONS[stationId] : null;
+
+        const titleEl = document.getElementById('stationTitle');
+        const iconEl = document.getElementById('stationIcon');
+        const messageEl = document.getElementById('stationMessage');
+        const btnEl = document.getElementById('stampBtn');
+
+        if (stationId === null) {
+            // 不正なトークン(またはトークンなし) → 案内文を表示してボタンは隠す
+            titleEl.textContent = 'このページは見つかりません';
+            iconEl.style.display = 'none';
+            messageEl.textContent = '正しいQRコードから読み込んでください。';
+            btnEl.style.display = 'none';
+        } else if (isSnack) {
+            const stamps = loadStamps();
+            if (countCollected(stamps) < TOTAL_STATIONS) {
+                titleEl.textContent = 'まだ早いです！';
+                iconEl.style.display = 'none';
+                messageEl.textContent = '7つのスタンプを全部集めてから、また来てね。';
+                btnEl.style.display = 'none';
+            } else {
+                titleEl.textContent = 'お菓子つかみ取り';
+                titleEl.style.color = '#e08a00';
+                iconEl.src = `images/stamps/${SNACK_ICON}`;
+                iconEl.alt = 'お菓子つかみ取り';
+                messageEl.textContent = 'つかみ取りが終わったら、ボタンを押してね。';
+                btnEl.addEventListener('click', () => {
+                    saveStamp('snack');
+                    window.location.href = 'stamprally.html';
+                });
+            }
+        } else {
+            titleEl.textContent = `${station.name}へようこそ！`;
+            titleEl.style.color = station.color;
+            iconEl.src = `images/stamps/${station.icon}`;
+            iconEl.alt = station.name;
+            btnEl.addEventListener('click', () => {
+                saveStamp(stationId);
+                window.location.href = 'stamprally.html';
+            });
+        }
+    </script>
+</body>
+</html>

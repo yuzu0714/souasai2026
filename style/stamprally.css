@@ -26,6 +26,152 @@
   line-height: 1.8;
 }
 
+/* ----- 地点ページ(stamp.html) ----- */
+.stamp-welcome-page {
+  min-height: 100vh;
+  padding: 110px 24px 60px; /* 固定ヘッダー(84px)の下に余白 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stamp-welcome-card {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+.stamp-station-title {
+  margin: 0 0 24px;
+}
+
+.stamp-station-icon {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin: 0 0 24px;
+}
+
+
+.stamp-welcome-text {
+  color: #333;
+  font-size: 18px;
+  margin: 0 0 32px;
+}
+
+.stamp-get-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 64px;
+  border: none;
+  border-radius: 32px;
+  background-color: #00B6C0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.stamp-message {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ----- スタンプカードページ(stamp-card.html) ----- */
+.stamp-card-page {
+  padding: 0px 24px 60px;
+}
+
+/* 外側の黒枠+水色+ドット枠 */
+.stamp-grid-frame {
+  position: relative;
+  max-width: 480px;
+  margin: 20px auto 0;
+  padding: 28px 20px;
+  background: #00B6C0;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+
+.stamp-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.stamp-slot {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px 8px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 上側のグレー丸(スタンプを押す前のプレースホルダー) */
+.stamp-slot-circle {
+  position: relative;
+  width: 72%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #e8e8e8;
+}
+
+/* スタンプ画像。グレー丸の上に重ねて表示する */
+.stamp-icon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8%;
+  opacity: 0; /* 押すまでは非表示 */
+}
+
+.stamp-slot.is-collected .stamp-icon {
+  opacity: 1; /* 押したらグレー丸の上に表示 */
+}
+
+.stamp-slot-label {
+  font-weight: 700;
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.stamp-progress-text {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 17px;
+  margin: 20px 0 0;
+}
+
+.stamp-slot--snack {
+  grid-column: span 2;
+}
+
+.stamp-slot--snack[hidden] {
+  display: none;
+}
+
+
 @media (max-width: 768px) {
   .info-card {
     width: 90%;
@@ -40,5 +186,13 @@
   .info-card-text {
     font-size: 20px;
     line-height: 1.3;
+  }
+
+  .stamp-station-title {
+    font-size: 25px;
+  }
+
+  .stamp-welcome-text {
+    font-size: 16px;
   }
 }
