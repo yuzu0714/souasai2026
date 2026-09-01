@@ -103,21 +103,19 @@
     <script src="scripts/stamp.js"></script>
     <script>
         // ===== このページ固有の処理 =====
-        // QRコードには "stamp.html?id=1" のように地点番号だけを入れる
-        // お菓子つかみ取りは "stamp.html?id=snack"
-        const params = new URLSearchParams(window.location.search);
-        const rawId = params.get('id');
-        const isSnack = rawId === 'snack';
-        const stationId = isSnack ? null : Number(rawId);
-        const station = isSnack ? null : STATIONS[stationId];
+        // QRコードには "stamp.html?token=Kx7mP2nQrW" のようにトークンを入れる
+        // トークンと地点の対応は scripts/stamp.js の STATION_TOKENS を参照
+        const stationId = resolveToken(); // null=不正 / 1〜7=通常地点 / 'snack'=お菓子
+        const isSnack = stationId === 'snack';
+        const station = (!isSnack && stationId !== null) ? STATIONS[stationId] : null;
 
         const titleEl = document.getElementById('stationTitle');
         const iconEl = document.getElementById('stationIcon');
         const messageEl = document.getElementById('stationMessage');
         const btnEl = document.getElementById('stampBtn');
 
-        if (!isSnack && !station) {
-            // 存在しない地点番号 → 案内文を表示してボタンは隠す
+        if (stationId === null) {
+            // 不正なトークン(またはトークンなし) → 案内文を表示してボタンは隠す
             titleEl.textContent = 'このページは見つかりません';
             iconEl.style.display = 'none';
             messageEl.textContent = '正しいQRコードから読み込んでください。';
