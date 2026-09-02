@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,26 +12,27 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/menu.css">
         <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/timeschedule.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    
-    
+        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+
         <style>
-                h1 {
+            h1 {
                 font-family: "Caprasimo", serif;
                 font-size: 80px;
                 color: #fff;
                 -webkit-text-stroke: 1px #000;
                 text-stroke: 1px #151515;
                 text-shadow: 0 6px 0 #0083D6;
-                margin-top: 110px;   /* 追加:固定ヘッダー(84px)の下に余白を作る */
-                text-align: center;  /* 追加:文字を中央揃えに */
+                margin-top: 110px;
+                text-align: center;
             }
 
             @media (max-width: 768px) {
                 h1 {
-                    font-size: 45px; /* スマホ用にフォントサイズを調整 */
+                    font-size: 45px;
                 }
             }
         </style>
@@ -73,6 +74,97 @@
 
         <h1>Time Schedule</h1>
 
+        <section class="schedule-section">
+            <div class="schedule-outer">
+
+                <div class="schedule-tabs">
+                    <button class="tab-btn active" data-tab="gym">体育館</button>
+                    <button class="tab-btn"         data-tab="hall">大講義室</button>
+                </div>
+
+                <!-- 体育館 -->
+                <div class="schedule-list active" id="tab-gym">
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">開会式</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                </div>
+
+                <!-- 大講義室 -->
+                <div class="schedule-list" id="tab-hall">
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                    <div class="schedule-card">
+                        <span class="card-title">カラオケ</span>
+                        <span class="card-time">9:00〜9:30</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <footer class="site-footer">
             <nav class="footer-links">
             <ul class="footer-links-col">
@@ -100,6 +192,7 @@
 
 
         <script>
+            // ---- ハンバーガーメニュー ----
             const menuBtn = document.getElementById('menuBtn');
             const menuOverlay = document.getElementById('menuOverlay');
             const siteHeader = document.getElementById('siteHeader');
@@ -113,10 +206,25 @@
 
             menuBtn.addEventListener('click', toggleMenu);
 
-            // メニュー項目をクリックしたら閉じる
             document.querySelectorAll('.menu-list a').forEach((link) => {
                 link.addEventListener('click', () => {
                 if (menuOverlay.classList.contains('is-open')) toggleMenu();
+                });
+            });
+
+            // ---- タブ切り替え ----
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabLists = document.querySelectorAll('.schedule-list');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const target = btn.dataset.tab;
+
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabLists.forEach(l => l.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    document.getElementById('tab-' + target).classList.add('active');
                 });
             });
         </script>
