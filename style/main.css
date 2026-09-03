@@ -42,7 +42,8 @@
 /* タイトル */
 .event-title {
   text-align: center;
-  padding: 20px 0;
+  padding-top: 100px;  
+  padding-bottom: 20px;
 }
 
 .event-subtitle {
