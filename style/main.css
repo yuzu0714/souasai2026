@@ -28,6 +28,7 @@
     object-fit: contain; /* 画像が切れるのを防ぐ */
 }
 
+/* 背景のドット柄 */
 .dots {
     background-color: #fff;
     background-image: radial-gradient(circle, #06b6d4 3px, transparent 3px);
@@ -35,7 +36,55 @@
     background-size: 20px 20px;
 }
 
-/* 4. メディアクエリ (スマートフォン/タブレット向け) */
+/* タイトル */
+.event-title {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.event-subtitle {
+  font-size: 16px;
+  letter-spacing: 0.5em;   
+  color: #444;
+  margin: 0 0 4px;
+}
+
+.event-name {
+  font-size: 64px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: #344699;          
+  margin: 0;
+}
+
+/*流れる文字*/
+.ticker-wrap {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  background-color: #00B6C0;   
+  display: flex;
+  align-items: center;
+}
+
+.ticker {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-scroll 35s linear infinite;
+}
+
+.ticker span {
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
 @media (max-width: 768px) {
     /* wrapperの配置を上書きし、上端に寄せる */
     .wrapper {
