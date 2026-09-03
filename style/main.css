@@ -1,8 +1,9 @@
+/* 全体フォント（index.htmlより） */
 body {
     font-family: "Noto Sans JP", sans-serif;
 }
 
-/* 1. ラッパー (.wrapper) */
+/* ラッパー */
 .wrapper {
     display: flex;
     justify-content: center;
@@ -13,26 +14,21 @@ body {
     width: 100vw;
 }
 
-/* 2. イメージコンテナ (.image-container) */
+/* イメージコンテナ */
 .image-container {
     position: relative;
     width: 100vw;
-    /* 820x1180の比率を固定 (143.90%) */
     height: 0;
     padding-bottom: 143.90%;
 }
 
-.hero-image {
-  width: 100%;
-  text-align: center;
-}
-
-.hero-image img {
-  width: 100%;
-  max-width: 430px;   /* 横幅の固定値に合わせる */
-  height: auto;
-  display: block;
-  margin: 0 auto;
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /* 背景のドット柄 */
@@ -43,108 +39,199 @@ body {
     background-size: 20px 20px;
 }
 
-/* タイトル */
-.event-title {
-  text-align: center;
-  padding-top: 100px;  
-  padding-bottom: 20px;
+/* ===== ヒーローセクション（main2.cssより） ===== */
+.hero {
+    width: 100%;
+    padding: 0;
 }
 
-.event-subtitle {
-  font-size: 16px;
-  letter-spacing: 0.5em;   
-  color: #444;
-  margin: 0 0 4px;
+.hero-card {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #fff;
+    padding-top: 84px; /* 固定ヘッダー分の余白 */
 }
 
-.event-name {
-  font-size: 64px;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  color: #344699;          
-  margin: 0;
+.hero-eyebrow {
+    margin: 0;
+    padding: 22px 16px 4px;
+    color: #292936;
+    font-size: clamp(0.8rem, 2.4vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-align: center;
 }
 
-/*流れる文字*/
-.ticker-wrap {
-  width: 100%;
-  height: 50px;
-  overflow: hidden;
-  background-color: #00B6C0;   
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;   
+.hero h1 {
+    margin: 0;
+    padding: 0 16px 18px;
+    color: #263d82;
+    font-size: clamp(2.5rem, 10vw, 5.5rem);
+    letter-spacing: 0.18em;
+    line-height: 1.1;
+    text-align: center;
 }
 
+.hero h1 span {
+    display: block;
+    margin-top: 4px;
+    font-family: "Caprasimo", serif;
+    font-size: 0.32em;
+    letter-spacing: 0.16em;
+}
+
+.hero-image {
+    background: #f7f7f7;
+    line-height: 0;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* ===== 流れる文字（main2.cssより） ===== */
 .ticker {
-  display: flex;
-  white-space: nowrap;
-  animation: ticker-scroll 35s linear infinite;
+    overflow: hidden;
+    color: #fff;
+    background: #00b6c0;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
-.ticker span {
-  font-size: 15px;
-  font-weight: bold;
-  color: #fff;
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 24s linear infinite;
 }
 
-/*黄色いスペース*/
-.about-heading {    /* 「蒼阿祭について」 */
-  font-size: 40px;
-  font-weight: ExtraBold;
-  color: #1B3BCD;
-  margin: 0 0 20px;
+.ticker-track span {
+    display: block;
+    padding: 12px 3rem;
+}
+
+/* ===== 黄色いスペース（index.htmlより） ===== */
+.about-section {
+    width: 480px;
+    max-width: 100%;
+    margin: 28px auto 0;
+    background-color: #F5C800;
+    border-radius: 50% 50% 0 0 / 200px 200px 0 0;
+    padding: 100px 24px 40px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.about-heading {
+    font-size: 40px;
+    font-weight: 800;   /* ExtraBold */
+    color: #1B3BCD;
+    margin: 0 0 20px;
 }
 
 .about-sub {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1.8;
-  margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.8;
+    margin: 0 0 20px;
 }
 
 .about-body {
-  font-size: 14px;
-  line-height: 1.9;
-  text-align: center;
-  margin: 0 0 24px;
-}
-
-.about-section {
-  width: 480px;
-  max-width: 100%;      /* スマホで画面幅を超えないように */
-  margin: 0 auto;       /* 左右中央に */
-  background-color: #F5C800;
-  border-radius: 50% 50% 0 0 / 200px 200px 0 0;
-  padding: 100px 24px 40px;
-  text-align: center;
-  box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.9;
+    text-align: center;
+    margin: 0 0 24px;
 }
 
 .about-img img {
-  width: 100%;
-  max-width: 400px;   
-  border-radius: 8px;
-  margin-bottom: 24px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 24px;
 }
 
 .download-link {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  color: #1B2A6B;
-  text-decoration: underline;
-  padding: 12px 0;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1B2A6B;
+    text-decoration: underline;
+    padding: 12px 0;
 }
 
+/* ===== ページカード（main2.cssより） ===== */
+.page-cards {
+    display: grid;
+    gap: 18px;
+    width: 480px;
+    max-width: 92%;
+    margin: 30px auto 10px;
+}
+
+.page-card {
+    position: relative;
+    display: flex;
+    min-height: 132px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 18px;
+    color: #fff;
+    background: linear-gradient(rgba(17, 31, 42, 0.62), rgba(17, 31, 42, 0.62)), url("../images/people.PNG") center 42% / cover;
+    border: 2px solid #00b6c0;
+    border-radius: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.page-card:hover,
+.page-card:focus-visible {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+}
+
+.page-card:focus-visible {
+    outline: 3px solid #ffd400;
+    outline-offset: 3px;
+}
+
+.page-card-title {
+    font-family: "Caprasimo", Georgia, serif;
+    font-size: clamp(1.55rem, 6vw, 2.4rem);
+    font-weight: 400;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+}
+
+.page-card-line {
+    width: min(90%, 420px);
+    margin: 8px 0 7px;
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.page-card-subtitle {
+    font-size: 0.95rem;
+}
+
+/* ===== アニメーション ===== */
 @keyframes ticker-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; }
+}
 
+/* ===== メディアクエリ ===== */
 @media (max-width: 768px) {
-    /* wrapperの配置を上書きし、上端に寄せる */
     .wrapper {
         align-items: flex-start;
         min-height: auto;
@@ -164,5 +251,9 @@ body {
         width: 90%;
         border-radius: 50% 50% 0 0 / 175px 175px 0 0;
         padding: 100px 24px 40px;
+    }
+
+    .about-img img {
+        max-width: 85%;
     }
 }

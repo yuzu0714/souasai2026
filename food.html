@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/menu.css">
         <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/food.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +72,27 @@
             </div>
         </div>
 
-        <h1>Food</h1>
+        <main class="food-page">
+            <h1 class="food-title">Food</h1>
+
+            <section class="food-finder" aria-label="売店を探す">
+                <label class="search-box">
+                    <span class="sr-only">料理名や部活動名で検索</span>
+                    <input id="foodSearch" type="search" placeholder="料理名・部活動名で検索">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                </label>
+
+                <div class="food-tabs" role="tablist" aria-label="売店の種類">
+                    <button class="food-tab" type="button" data-tab="food" role="tab" aria-selected="false">屋台</button>
+                    <button class="food-tab is-active" type="button" data-tab="club" role="tab" aria-selected="true">部活</button>
+                </div>
+
+                <div class="food-filters" id="foodFilters"></div>
+            </section>
+
+            <p class="food-count" id="foodCount"></p>
+            <section class="food-list" id="foodList" aria-live="polite"></section>
+        </main>
 
         <footer class="site-footer">
             <nav class="footer-links">
@@ -120,5 +141,6 @@
                 });
             });
         </script>
+        <script src="scripts/food.js"></script>
     </body>
 </html>

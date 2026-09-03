@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -15,8 +15,8 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    </head>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Noto+Sans+JP:wght@400;700;800&display=swap" rel="stylesheet">
+    </head>
 
     <body class="dots">
 
@@ -51,48 +51,78 @@
             </div>
         </div>
 
-        <!-- タイトル -->
-        <div class="event-title">
-            <p class="event-subtitle">令和８年度　阿南高専高専祭</p>
-            <p class="event-name">蒼阿祭</p>
-        </div>
+        <main class="hero">
 
-        <!-- 画像 -->
-        <div class="hero-image">
-            <img src="images/people.PNG" alt="蒼阿祭メインビジュアル">
-        </div>
+            <!-- ヒーローカード（index2.htmlより） -->
+            <section class="hero-card" aria-labelledby="hero-title">
+                <p class="hero-eyebrow">令和8年度 阿南高専高専祭</p>
+                <h1 id="hero-title">蒼阿祭 <span>2026</span></h1>
+                <div class="hero-image">
+                    <img src="images/people.PNG" alt="蒼阿祭のイラスト">
+                </div>
+                <div class="ticker" aria-label="蒼阿祭からのお知らせ">
+                    <div class="ticker-track">
+                        <span>蒼阿祭へようこそ！！実行委員長の○○です！ぼくたちはこの日のために頑張ってきた&emsp;&emsp;&emsp;</span>
+                        <span aria-hidden="true">蒼阿祭へようこそ！！実行委員長の○○です！ぼくたちはこの日のために頑張ってきた&emsp;&emsp;&emsp;</span>
+                    </div>
+                </div>
+            </section>
 
-        <!-- 流れる文字 -->
-        <div class="ticker-wrap">
-            <div class="ticker">
-                <span>「蒼阿祭」へようこそ！今年も、みんなでつくり上げた楽しい企画が盛りだくさんです。高専ならではの専門展示や体験コーナー、心弾むステージや模擬店など、見て・触れて・味わって楽しめる出し物をご用意しました。気になる場所を自由に巡りながら、笑顔いっぱいの一日を過ごしてください。&emsp;&emsp;&emsp;</span>
-                <span>「蒼阿祭」へようこそ！今年も、みんなでつくり上げた楽しい企画が盛りだくさんです。高専ならではの専門展示や体験コーナー、心弾むステージや模擬店など、見て・触れて・味わって楽しめる出し物をご用意しました。気になる場所を自由に巡りながら、笑顔いっぱいの一日を過ごしてください。&emsp;&emsp;&emsp;</span>
-            </div>
-        </div>
+            <!-- 黄色いスペース（index.htmlより） -->
+            <section class="about-section">
+                <h2 class="about-heading">蒼阿祭について</h2>
 
-        <section class="about-section">
-            <h2 class="about-heading">蒼阿祭について</h2>
+                <p class="about-sub">
+                    第〇回　阿南高専蒼阿祭<br>
+                    開催時期：11月7日（日）<br>
+                    7:00～18:00
+                </p>
 
-            <p class="about-sub">
-                第〇回　阿南高専蒼阿祭<br>
-                開催時期：11月7日（日）<br>
-                7:00～18:00
-            </p>
+                <p class="about-body">
+                    蒼阿祭とは、徳島県の阿南工業高等専門学校で開催される年に一度の文化祭です。
+                    学生によるダンスや売店、専門展示など魅力的な出し物たくさんあります。
+                    今年のテーマ「蒼春（アオハル）」の通り、学生の皆さんはめいいっぱい蒼阿祭で蒼春を楽しんでください。
+                </p>
 
-            <p class="about-body">
-                蒼阿祭とは、徳島県の阿南工業高等専門学校で開催される年に一度の文化祭です。
-                学生によるダンスや売店、専門展示など魅力的な出し物たくさんあります。
-                今年のテーマ「蒼春（アオハル）」の通り、学生の皆さんはめいいっぱい蒼阿祭で蒼春を楽しんでください。
-            </p>
+                <div class="about-img">
+                    <img src="images/people.PNG" alt="蒼阿祭チラシ">
+                </div>
 
-            <div class="about-img">
-                <img src="images/people.PNG" alt="蒼阿祭チラシ">
-            </div>
+                <a href="files/pamphlet.pdf" class="download-link" download>
+                    ↓ パンフレットをダウンロードする
+                </a>
+            </section>
 
-            <a href="files/pamphlet.pdf" class="download-link" download>
-                ↓ パンフレットをダウンロードする
-            </a>    
-        </section>
+            <!-- ページカード一覧（index2.htmlより） -->
+            <nav class="page-cards" aria-label="ページ一覧">
+                <a class="page-card" href="food.html">
+                    <span class="page-card-title">Food</span>
+                    <span class="page-card-line"></span>
+                    <span class="page-card-subtitle">売店</span>
+                </a>
+                <a class="page-card" href="exhibitions.html">
+                    <span class="page-card-title">Exhibition</span>
+                    <span class="page-card-line"></span>
+                    <span class="page-card-subtitle">展示</span>
+                </a>
+                <a class="page-card" href="timeschedule.html">
+                    <span class="page-card-title">Time Schedule</span>
+                    <span class="page-card-line"></span>
+                    <span class="page-card-subtitle">タイムスケジュール</span>
+                </a>
+                <a class="page-card" href="stamprally.html">
+                    <span class="page-card-title">Stamp Rally</span>
+                    <span class="page-card-line"></span>
+                    <span class="page-card-subtitle">スタンプラリー</span>
+                </a>
+                <a class="page-card" href="access.html">
+                    <span class="page-card-title">Access</span>
+                    <span class="page-card-line"></span>
+                    <span class="page-card-subtitle">交通アクセス</span>
+                </a>
+            </nav>
+
+        </main>
 
         <footer class="site-footer">
             <nav class="footer-links">
@@ -119,7 +149,6 @@
             <p class="footer-copyright">@2026 蒼阿祭実行委員会</p>
         </footer>
 
-
         <script>
             const menuBtn = document.getElementById('menuBtn');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -134,7 +163,6 @@
 
             menuBtn.addEventListener('click', toggleMenu);
 
-            // メニュー項目をクリックしたら閉じる
             document.querySelectorAll('.menu-list a').forEach((link) => {
                 link.addEventListener('click', () => {
                 if (menuOverlay.classList.contains('is-open')) toggleMenu();
