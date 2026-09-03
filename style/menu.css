@@ -7,7 +7,7 @@
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
   }
 
   /* ===== ヘッダー(通常時は透明、メニューを開いたときだけ白帯+ロゴが出る) ===== */

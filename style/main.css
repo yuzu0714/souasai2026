@@ -1,3 +1,7 @@
+body {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
 /* 1. ラッパー (.wrapper) */
 .wrapper {
     display: flex;
@@ -69,6 +73,7 @@
   background-color: #00B6C0;   
   display: flex;
   align-items: center;
+  margin-bottom: 40px;   
 }
 
 .ticker {
@@ -81,6 +86,55 @@
   font-size: 15px;
   font-weight: bold;
   color: #fff;
+}
+
+/*黄色いスペース*/
+.about-heading {    /* 「蒼阿祭について」 */
+  font-size: 40px;
+  font-weight: ExtraBold;
+  color: #1B3BCD;
+  margin: 0 0 20px;
+}
+
+.about-sub {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.8;
+  margin: 0 0 20px;
+}
+
+.about-body {
+  font-size: 14px;
+  line-height: 1.9;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.about-section {
+  width: 480px;
+  max-width: 100%;      /* スマホで画面幅を超えないように */
+  margin: 0 auto;       /* 左右中央に */
+  background-color: #F5C800;
+  border-radius: 50% 50% 0 0 / 200px 200px 0 0;
+  padding: 100px 24px 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.about-img img {
+  width: 100%;
+  max-width: 400px;   
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.download-link {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1B2A6B;
+  text-decoration: underline;
+  padding: 12px 0;
 }
 
 @keyframes ticker-scroll {
@@ -104,5 +158,11 @@
     .dots {
         background-image: radial-gradient(circle, #06b6d4 3px, transparent 3px);
         background-size: 30px 30px;
+    }
+
+    .about-section {
+        width: 90%;
+        border-radius: 50% 50% 0 0 / 175px 175px 0 0;
+        padding: 100px 24px 40px;
     }
 }
