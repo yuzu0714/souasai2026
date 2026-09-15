@@ -74,3 +74,17 @@ document.querySelectorAll(".food-tab").forEach((tab) => tab.addEventListener("cl
 search.addEventListener("input", renderItems);
 renderFilters();
 renderItems();
+
+search.addEventListener("focus", () => {
+    document.querySelector(".food-tabs").classList.add("is-open");
+    filters.classList.add("is-open");
+});
+
+document.addEventListener("click", (event) => {
+    const finder = document.querySelector(".food-finder");
+
+    if (!finder.contains(event.target)) {
+        document.querySelector(".food-tabs").classList.remove("is-open");
+        filters.classList.remove("is-open");
+    }
+});
