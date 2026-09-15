@@ -146,16 +146,6 @@
     margin-top: 18px;
 }
 
-.food-map {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border: 2px solid #00b6c0;
-    border-radius: 12px;
-    background: #fff;
-}
-
 .map-title {
     margin: 0 0 12px;
     font-size: 1.1rem;
@@ -164,20 +154,160 @@
     text-align: center;
 }
 
-.map-container {
+.food-map {
+    position: relative;
     width: 100%;
-    /* アスペクト比や高さを確保（画像やマップに合わせて必要に応じて調整してください） */
-    aspect-ratio: 16 / 9;
-    background: #f4f4f4;
-    border-radius: 6px;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
+    border: 2px solid #00b6c0;
+    border-radius: 12px;
+    background: #fff;
+    touch-action: none;
+}
+
+.food-map-content {
+    position: absolute;
+    inset: 0;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.food-map-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.food-pins {
+    position: absolute;
+    inset: 0;
+}
+
+@keyframes food-pin-blink {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(240, 93, 157, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(42, 111, 184, 0.7);
+    }
+}
+
+.food-pin.is-blinking .pin-shape {
+    animation: food-pin-blink 0.8s ease-in-out infinite;
+}
+
+/* ピン */
+.food-pin {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 10;
+
+    transform: translate(-50%, -100%);
+}
+
+/* しずく型 */
+.pin-shape {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+
+    background: #2A6FB8;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+}
+
+/* 白い円＋数字 */
+.pin-inner {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+
+    width: 15px;
+    height: 15px;
+
+    background: #fff;
+    border-radius: 50%;
+
+    transform: rotate(45deg);
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.map-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 画像全体が枠内に収まるように指定 */
+/* 数字 */
+.pin-number {
+    color: #151515;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+
+.food-map-info {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.food-map-info[hidden] {
+    display: none !important;
+}
+
+.food-map-info-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    color: #555;
+    font-size: 24px;
+    line-height: 28px;
+
+    cursor: pointer;
+}
+
+.food-map-info img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.food-map-info-text {
+    flex: 1;
+}
+
+.food-map-info-text h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.food-map-info-text p {
+    margin: 0;
+    font-size: 13px;
 }

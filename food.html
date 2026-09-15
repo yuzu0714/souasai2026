@@ -95,11 +95,24 @@
                     <div class="food-map">
                         <div class="food-map-content">
                             <img
-                                src="images/map.png"
+                                src="images/maps/gym-map.svg"
                                 alt="売店配置マップ"
                                 class="food-map-image"
                             >
                             <div class="food-pins"></div>
+                        </div>  
+                    </div>
+                    <div class="food-map-info" id="foodMapInfo" hidden>
+                        <button 
+                            type="button" class="food-map-info-close"
+                            id="foodMapInfoClose" aria-label="情報を閉じる"
+                        >
+                            ×
+                        </button>
+                        <img id="foodMapInfoImage" src="" alt="">
+                        <div class="food-map-info-text">
+                            <h3 id="foodMapInfoName"></h3>
+                            <p id="foodMapInfoClub"></p>
                         </div>
                     </div>
                 </section>
