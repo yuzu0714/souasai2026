@@ -3,13 +3,13 @@
  * image は images/ フォルダ内のファイル名を指定してください。
  */
 const foodItems = [
-    { club: "弓道部", name: "唐揚げ", category: "club", image: "images/food-baby-castella.png" },
-    { club: "3I", name: "フランクフルト", category: "club", image: "images/food-baby-castella.png" },
+    { club: "弓道", name: "唐揚げ", category: "club", image: "images/food-baby-castella.png" },
+    { club: "5I", name: "フランクフルト", category: "club", image: "images/food-baby-castella.png" },
     { club: "5Z", name: "ベビーカステラ", category: "club", image: "images/food-baby-castella.png" },
-    { club: "蒼阿祭執行委員", name: "かき氷", category: "club", image: "images/food-baby-castella.png" },
+    { club: "去年度執行委員", name: "かき氷", category: "club", image: "images/food-baby-castella.png" },
     { club: "書道", name: "たい焼き", category: "club", image: "images/food-baby-castella.png" },
     { club: "柔道", name: "パン", category: "club", image: "images/food-baby-castella.png" },
-    { club: "棋道", name: "アメリカンドック", category: "club", image: "images/food-baby-castella.png" },
+    { club: "棋道", name: "アメリカンドッグ", category: "club", image: "images/food-baby-castella.png" },
     { club: "野球", name: "餃子", category: "club", image: "images/food-baby-castella.png" },
     { club: "バドミントン", name: "わたあめ", category: "club", image: "images/food-baby-castella.png" },
     { club: "陸上", name: "アイス", category: "club", image: "images/food-baby-castella.png" },
@@ -17,7 +17,7 @@ const foodItems = [
     { club: "ロボ研", name: "ジュース", category: "club", image: "images/food-baby-castella.png" },
     { club: "サッカー", name: "駄菓子", category: "club", image: "images/food-baby-castella.png" },
     { club: "バスケ", name: "たこ焼き", category: "club", image: "images/food-baby-castella.png" },
-    { club: "？", name: "焼き鳥", category: "club", image: "images/food-baby-castella.png" },
+    { club: "3I", name: "焼き鳥", category: "club", image: "images/food-baby-castella.png" },
     { club: "卓球", name: "チュロス", category: "club", image: "images/food-baby-castella.png" },
     { club: "テニス", name: "クレープ", category: "club", image: "images/food-baby-castella.png" },
     { club: "ソフトテニス", name: "焼きそば", category: "club", image: "images/food-baby-castella.png" }

@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,10 +12,10 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/menu.css">
         <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/exhibitions.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    
         <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">    
 
         <style>
@@ -73,7 +73,57 @@
             </div>
         </div>
 
-        <h1>Exhibitions</h1>
+        <main class="exhibitions-page">
+            <h1 class="exhibition-title">Exhibitions</h1>
+
+            <section class="exhibition-finder" aria-label="専門展示を探す">
+                <label class="search-box">
+                    <span class="sr-only">展示名やコース/部活名で検索</span>
+                    <input id="exhibitionSearch" type="search" placeholder="展示名・コース/部活名で検索">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                </label>
+
+                <div class="exhibition-tabs" role="tablist" aria-label="展示の種類">
+                    <button class="exhibition-tab is-active" type="button" data-tab="exhibition" role="tab" aria-selected="true">展示</button>
+                    <button class="exhibition-tab" type="button" data-tab="course" role="tab" aria-selected="false">コース/部活</button>
+                </div>
+
+                <div class="exhibition-filters" id="exhibitionFilters"></div>
+            </section>
+
+            <!-- 専門展示マップ -->
+            <section class="exhibition-content">
+                <section class="exhibition-map-section">
+
+                    <div class="exhibition-map">
+                        <div class="exhibition-map-content" id="exhibitionMapContent">
+
+                            <img src="images/exhibition-map.svg" class="exhibition-map-image" id="exhibitionMapImage" alt="専門展示マップ">
+                            <div class="exhibition-pins" id="exhibitionPins"></div>
+                        </div>
+                    </div>
+
+                    <!-- ピンを押したときの情報 -->
+                    <div class="exhibition-map-info" id="exhibitionMapInfo" hidden>
+                        <button type="button" class="exhibition-map-info-close" id="exhibitionMapInfoClose" aria-label="閉じる">
+                            ×
+                        </button>
+
+                        <img src="" id="exhibitionMapInfoImage" class="exhibition-map-info-image" alt="">
+                        
+                        <div class="exhibition-map-info-text">
+                            <h3 id="exhibitionMapInfoName"></h3>
+                            <p id="exhibitionMapInfoCourse"></p>
+                            <p id="exhibitionMapInfoPlace"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <p class="exhibition-count" id="exhibitionCount"></p>
+                <section class="exhibition-list" id="exhibitionList" aria-live="polite"></section>
+            </section>
+        </main>
+        
 
         <footer class="site-footer">
             <nav class="footer-links">
@@ -122,5 +172,6 @@
                 });
             });
         </script>
+        <script src="scripts/exhibitions.js"></script>
     </body>
 </html>

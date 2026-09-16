@@ -1,0 +1,246 @@
+.exhibitions-page {
+    width: min(100% - 32px, 520px);
+    margin: 0 auto;
+    padding: 80px 0 42px;
+}
+
+.exhibition-title {
+    margin: 0 0 22px;
+    color: #fff;
+    font-family: "Caprasimo", serif;
+    font-size: clamp(3.1rem, 15vw, 5rem);
+    font-weight: 400;
+    text-align: center;
+    text-shadow: 2px 3px 0 #ffd400;
+    -webkit-text-stroke: 1px #151515;
+}
+
+.exhibition-finder {
+    overflow: hidden;
+    border: 2px solid #00b6c0;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .18);
+}
+
+.search-box {
+    position: relative;
+    display: block;
+    padding: 8px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 42px;
+    padding: 0 48px 0 12px;
+    border: 1px solid #c7c7c7;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .12);
+    font: inherit;
+}
+
+.search-icon {
+    position: absolute;
+    top: 12px;
+    right: 13px;
+    width: 34px;
+    height: 34px;
+    color: #fff;
+    background: #00b6c0;
+    border-radius: 4px;
+    font-size: 28px;
+    line-height: 29px;
+    text-align: center;
+}
+
+.exhibition-tabs {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.exhibition-tabs.is-open {
+    display: grid;
+}
+
+.exhibition-tab {
+    padding: 9px;
+    color: #888;
+    background: #f4f4f4;
+    border: 0;
+    border-right: 1px solid #d2d2d2;
+    font: inherit;
+    cursor: pointer;
+}
+
+.exhibition-tab:last-child { border-right: 0; }
+.exhibition-tab.is-active { color: #00aab5; background: #e9e9e9; font-weight: 700; }
+
+.exhibition-filters {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 16px;
+    padding: 11px 13px 14px;
+}
+
+.exhibition-filters.is-open {
+    display: grid;
+}
+
+.filter-option {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    font-size: .84rem;
+}
+
+.filter-option input { accent-color: #00b6c0; }
+
+.exhibition-count {
+    margin: 18px 4px 8px;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.exhibition-list {
+    display: grid;
+    gap: 8px;
+}
+
+.exhibition-card {
+    display: grid;
+    grid-template-columns: 1fr 72px;
+    align-items: center;
+    min-height: 76px;
+    padding: 8px 10px 8px 14px;
+    border-radius: 13px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
+}
+
+.exhibition-content {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    background: #00B6C0;
+    border-radius: 32px;
+    box-sizing: border-box;
+}
+
+/* 専門展示マップ */
+.exhibition-map-section {
+    margin-top: 18px;
+}
+
+.exhibition-map {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 2px solid #00b6c0;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.exhibition-map-content {
+    position: absolute;
+    inset: 0;
+    transform-origin: center center;
+}
+
+.exhibition-map-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.exhibition-pins {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.exhibition-pin {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -100%);
+    border: 0;
+    border-radius: 50% 50% 50% 0;
+    background: #151515;
+    cursor: pointer;
+    pointer-events: auto;
+    rotate: -45deg;
+}
+
+.exhibition-pin::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+/* 地図を押したときの情報 */
+.exhibition-map-info {
+    position: relative;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
+}
+
+.exhibition-map-info[hidden] {
+    display: none;
+}
+
+.exhibition-map-info-close {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    border: 0;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.exhibition-map-info-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.exhibition-map-info-text h3 {
+    margin: 0 0 5px;
+    font-size: .95rem;
+}
+
+.exhibition-map-info-text p {
+    margin: 3px 0;
+    color: #444;
+    font-size: .72rem;
+}
+
+
+.exhibition-name { margin: 0 0 5px; color: #252525; font-size: .94rem; font-weight: 700; }
+.exhibition-club { margin: 0; color: #444; font-size: .72rem; }
+.exhibition-badge { display: inline-block; margin-left: 5px; padding: 1px 7px; color: #fff; background: #f05d9d; border-radius: 10px; font-size: .64rem; font-weight: 700; }
+.exhibition-image { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; background: #fff7f1; }
+.exhibition-empty { padding: 24px; color: #fff; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (min-width: 700px) {
+    .exhibitions-page { padding-top: 100px; }
+    .exhibition-list { grid-template-columns: 1fr 1fr; }
+}
