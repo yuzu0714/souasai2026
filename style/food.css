@@ -54,10 +54,14 @@
 }
 
 .food-tabs {
-    display: grid;
+    display: none;
     grid-template-columns: 1fr 1fr;
     border-top: 1px solid #c7c7c7;
     border-bottom: 1px solid #c7c7c7;
+}
+
+.food-tabs.is-open {
+    display: grid;
 }
 
 .food-tab {
@@ -74,10 +78,14 @@
 .food-tab.is-active { color: #00aab5; background: #e9e9e9; font-weight: 700; }
 
 .food-filters {
-    display: grid;
+    display: none;
     grid-template-columns: 1fr 1fr;
     gap: 9px 16px;
     padding: 11px 13px 14px;
+}
+
+.food-filters.is-open {
+    display: grid;
 }
 
 .filter-option {

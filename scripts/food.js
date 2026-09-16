@@ -27,7 +27,20 @@ const list = document.getElementById("foodList");
 const count = document.getElementById("foodCount");
 const search = document.getElementById("foodSearch");
 const filters = document.getElementById("foodFilters");
+const tabs = document.querySelector(".food-tabs");
 let activeTab = "club";
+
+search.addEventListener("focus", () => {
+    tabs.classList.add("is-open");
+    filters.classList.add("is-open");
+});
+
+document.addEventListener("click", (event) => {
+    if (!event.target.closest(".food-finder")) {
+        tabs.classList.remove("is-open");
+        filters.classList.remove("is-open");
+    }
+});
 
 function renderFilters() {
     const filterKey = activeTab === "food" ? "name" : "club";
