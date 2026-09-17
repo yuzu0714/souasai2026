@@ -15,7 +15,7 @@
             /* タブ */
             .schedule-tabs {
                 display: flex;
-                border-bottom: 3px solid #00b6c0; 
+                border-bottom: 3px solid #00b6c0;
             }
 
             .tab-btn {
@@ -83,8 +83,120 @@
                 white-space: nowrap;
             }
 
+            /* ---- イベントカードスライダー ---- */
+            .event-slider-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 16px 10px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .event-slider-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .event-slider-card {
+                flex: 1;
+                background: #fff;
+                border: 2.5px solid #00b6c0;
+                border-radius: 18px;
+                padding: 20px 22px 16px;
+                box-shadow: 0 2px 8px rgba(77, 166, 232, 0.12);
+            }
+
+            .event-card-title {
+                font-size: 22px;
+                font-weight: 700;
+                color: #00b6c0;
+                margin: 0 0 10px;
+            }
+
+            .event-card-location,
+            .event-card-time {
+                font-size: 15px;
+                color: #333;
+                margin: 5px 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .icon-pin {
+                color: #e05a7a;
+                font-size: 16px;
+            }
+
+            .icon-clock {
+                color: #00b6c0;
+                font-size: 16px;
+            }
+
+            .event-card-tags {
+                display: flex;
+                gap: 8px;
+                margin-top: 14px;
+                flex-wrap: wrap;
+            }
+
+            .event-tag {
+                background: #F5C842;
+                border-radius: 999px;
+                padding: 6px 18px;
+                font-size: 13px;
+                font-weight: 500;
+                color: #333;
+            }
+
+            .slider-arrow {
+                background: #fff;
+                border: 2px solid #00b6c0;
+                color: #00b6c0;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                font-size: 22px;
+                cursor: pointer;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s, color 0.2s;
+            }
+
+            .slider-arrow:hover {
+                background: #00b6c0;
+                color: #fff;
+            }
+
+            .slider-dots {
+                display: flex;
+                gap: 6px;
+                margin-top: 12px;
+                background: rgb(227, 227, 227);
+                padding: 6px 12px;
+                border-radius: 999px;
+            }
+
+            .slider-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #c5dff5;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+
+            .slider-dot.active {
+                background: #00b6c0;
+            }
+
             @media (max-width: 480px) {
                 .schedule-section {
                     max-width: 90%;
-                }                
+                }
             }
