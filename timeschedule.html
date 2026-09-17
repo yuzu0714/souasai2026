@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-        <title>蒼阿祭2026</title>
 
-        <meta property="og:title" content="蒼阿祭2026">
-        <meta name="keywords" content="蒼阿祭, 蒼阿祭2026, そうあさい, そうあさい２０２６, Souasai,souasai2026,阿南高専文化祭,阿南高専高専祭">
-        <meta name="description" content="蒼阿祭2026の公式ウェブサイト。イベントスケジュール、展示、模擬店の情報はこちら。">
-        <link rel="stylesheet" href="style/main.css">
-        <link rel="stylesheet" href="style/menu.css">
-        <link rel="stylesheet" href="style/footer.css">
-        <link rel="stylesheet" href="style/timeschedule.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>蒼阿祭2026</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+    <meta property="og:title" content="蒼阿祭2026">
+    <meta name="keywords" content="蒼阿祭, 蒼阿祭2026, そうあさい, そうあさい２０２６, Souasai,souasai2026,阿南高専文化祭,阿南高専高専祭">
+    <meta name="description" content="蒼阿祭2026の公式ウェブサイト。イベントスケジュール、展示、模擬店の情報はこちら。">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/timeschedule.css">
 
-        <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
+
+    <style>
+        h1 {
+            font-family: "Caprasimo", serif;
+            font-size: 80px;
+            color: #fff;
+            -webkit-text-stroke: 1px #000;
+            text-stroke: 1px #151515;
+            text-shadow: 0 6px 0 #0083D6;
+            margin-top: 110px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
             h1 {
-                font-family: "Caprasimo", serif;
-                font-size: 80px;
-                color: #fff;
-                -webkit-text-stroke: 1px #000;
-                text-stroke: 1px #151515;
-                text-shadow: 0 6px 0 #0083D6;
-                margin-top: 110px;
-                text-align: center;
+                font-size: 45px;
             }
+        }
+    </style>
 
-            @media (max-width: 768px) {
-                h1 {
-                    font-size: 45px;
-                }
-            }
-        </style>
+</head>
 
-    </head>
+<body class="dots">
 
-    <body class="dots">
-
-        <header class="site-header" id="siteHeader">
-            <div class="logo">Menu</div>
-            <button class="hamburger-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+    <header class="site-header" id="siteHeader">
+        <div class="logo">Menu</div>
+        <button class="hamburger-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
             <span class="hamburger-icon">
                 <span></span><span></span><span></span>
             </span>
-            </button>
-        </header>
+        </button>
+    </header>
 
-        <div class="menu-overlay" id="menuOverlay">
-            <nav class="menu-list">
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-list">
             <ul>
                 <li><a href="index.html">トップ</a></li>
                 <li><a href="index.html">蒼阿祭について</a></li>
@@ -61,112 +62,88 @@
                 <li><a href="stamprally.html">スタンプラリー</a></li>
                 <li><a href="#">交通アクセス</a></li>
             </ul>
-            </nav>
+        </nav>
 
-            <div class="contact-card">
+        <div class="contact-card">
             <p class="contact-title">contact</p>
             <p class="contact-label">Eメール:</p>
             <p class="contact-value">souasaiinquiry@gmail.com</p>
             <p class="contact-label">住所：〒774-0017</p>
             <p class="contact-value">徳島県阿南市見能林町青木265</p>
-            </div>
         </div>
+    </div>
 
-        <h1>Time Schedule</h1>
+    <h1>Time Schedule</h1>
 
-        <section class="schedule-section">
-            <div class="schedule-outer">
+    <section class="schedule-section">
+        <div class="schedule-outer">
 
-                <div class="schedule-tabs">
-                    <button class="tab-btn active" data-tab="gym">体育館</button>
-                    <button class="tab-btn"         data-tab="hall">大講義室</button>
-                </div>
-
-                <!-- 体育館 -->
-                <div class="schedule-list active" id="tab-gym">
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">開会式</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                </div>
-
-                <!-- 大講義室 -->
-                <div class="schedule-list" id="tab-hall">
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                    <div class="schedule-card">
-                        <span class="card-title">カラオケ</span>
-                        <span class="card-time">9:00〜9:30</span>
-                    </div>
-                </div>
-
+            <div class="schedule-tabs">
+                <button class="tab-btn active" data-tab="gym">体育館</button>
+                <button class="tab-btn" data-tab="hall">大講義室</button>
             </div>
-        </section>
 
-        <footer class="site-footer">
-            <nav class="footer-links">
+            <!-- 体育館 -->
+            <div class="schedule-list active" id="tab-gym">
+                <div class="schedule-card">
+                    <span class="card-title">開会式</span>
+                    <span class="card-time">9:00〜9:10</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">ダンス</span>
+                    <span class="card-time">9:10〜10:10</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">有志イベント</span>
+                    <span class="card-time">10:30〜11:30</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">お菓子投げ（悠久会）</span>
+                    <span class="card-time">11:30〜12:00</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">お昼休憩</span>
+                    <span class="card-time">12:00〜13:00</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">ダンス</span>
+                    <span class="card-time">13:00〜14:00</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">フィジーク</span>
+                    <span class="card-time">14:15〜14:45</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">吹奏楽</span>
+                    <span class="card-time">15:00〜16:00</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">抽選会</span>
+                    <span class="card-time">16:30〜17:00</span>
+                </div>
+            </div>
+
+            <!-- 大講義室 -->
+            <div class="schedule-list" id="tab-hall">
+                <div class="schedule-card">
+                    <span class="card-title">カラオケ大会</span>
+                    <span class="card-time">10:00〜10:30</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">軽音ライブ</span>
+                    <span class="card-time">11:00〜12:00</span>
+                </div>
+                <div class="schedule-card">
+                    <span class="card-title">カラオケ大会</span>
+                    <span class="card-time">15:00〜16:00</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <nav class="footer-links">
             <ul class="footer-links-col">
                 <li><a href="index.html">About</a></li>
                 <li><a href="food.html">Food</a></li>
@@ -177,56 +154,57 @@
                 <li><a href="stamprally.html">Stamp rally</a></li>
                 <li><a href="access.html">Access</a></li>
             </ul>
-            </nav>
+        </nav>
 
-            <hr class="footer-divider">
+        <hr class="footer-divider">
 
-            <div class="footer-logo">
+        <div class="footer-logo">
             <div class="logo-box">
                 <img src="images/favicon.ico" alt="蒼阿祭ロゴ">
             </div>
-            </div>
+        </div>
 
-            <p class="footer-copyright">@2026 蒼阿祭実行委員会</p>
-        </footer>
+        <p class="footer-copyright">@2026 蒼阿祭実行委員会</p>
+    </footer>
 
 
-        <script>
-            // ---- ハンバーガーメニュー ----
-            const menuBtn = document.getElementById('menuBtn');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const siteHeader = document.getElementById('siteHeader');
+    <script>
+        // ---- ハンバーガーメニュー ----
+        const menuBtn = document.getElementById('menuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const siteHeader = document.getElementById('siteHeader');
 
-            function toggleMenu() {
-                const isOpen = menuOverlay.classList.toggle('is-open');
-                siteHeader.classList.toggle('is-open', isOpen);
-                menuBtn.setAttribute('aria-expanded', isOpen);
-                document.body.style.overflow = isOpen ? 'hidden' : '';
-            }
+        function toggleMenu() {
+            const isOpen = menuOverlay.classList.toggle('is-open');
+            siteHeader.classList.toggle('is-open', isOpen);
+            menuBtn.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
 
-            menuBtn.addEventListener('click', toggleMenu);
+        menuBtn.addEventListener('click', toggleMenu);
 
-            document.querySelectorAll('.menu-list a').forEach((link) => {
-                link.addEventListener('click', () => {
+        document.querySelectorAll('.menu-list a').forEach((link) => {
+            link.addEventListener('click', () => {
                 if (menuOverlay.classList.contains('is-open')) toggleMenu();
-                });
             });
+        });
 
-            // ---- タブ切り替え ----
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabLists = document.querySelectorAll('.schedule-list');
+        // ---- タブ切り替え ----
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabLists = document.querySelectorAll('.schedule-list');
 
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const target = btn.dataset.tab;
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.tab;
 
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabLists.forEach(l => l.classList.remove('active'));
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabLists.forEach(l => l.classList.remove('active'));
 
-                    btn.classList.add('active');
-                    document.getElementById('tab-' + target).classList.add('active');
-                });
+                btn.classList.add('active');
+                document.getElementById('tab-' + target).classList.add('active');
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
+
 </html>
