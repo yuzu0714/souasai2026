@@ -36,6 +36,130 @@
                 font-size: 45px;
             }
         }
+
+        /* ---- イベントカードスライダー ---- */
+        .event-slider-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .event-slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .event-slider-card {
+            flex: 1;
+            background: #fff;
+            border: 2.5px solid #00b6c0;
+            border-radius: 18px;
+            padding: 20px 22px 16px;
+            box-shadow: 0 2px 8px rgba(77, 166, 232, 0.12);
+        }
+
+        .event-card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #00b6c0;
+            margin: 0 0 10px;
+        }
+
+        .event-card-location,
+        .event-card-time {
+            font-size: 15px;
+            color: #333;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-pin {
+            color: #e05a7a;
+            font-size: 16px;
+        }
+
+        .icon-clock {
+            color: #00b6c0;
+            font-size: 16px;
+        }
+
+        .event-card-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .event-tag {
+            background: #F5C842;
+            border-radius: 999px;
+            padding: 6px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .slider-arrow {
+            background: #fff;
+            border: 2px solid #00b6c0;
+            color: #00b6c0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 22px;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .slider-arrow:hover {
+            background: #00b6c0;
+            color: #fff;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+            background: rgb(227, 227, 227);
+            padding: 6px 12px;
+            border-radius: 999px;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #c5dff5;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .slider-dot.active {
+            background: #00b6c0;
+        }
+
+        @media (max-width: 480px) {
+            .event-card-title {
+                font-size: 18px;
+            }
+
+            .slider-arrow {
+                width: 34px;
+                height: 34px;
+                font-size: 18px;
+            }
+        }
     </style>
 
 </head>
@@ -74,6 +198,32 @@
     </div>
 
     <h1>Time Schedule</h1>
+
+    <!-- イベントカードスライダー -->
+    <section class="event-slider-section">
+        <div class="event-slider-wrapper">
+            <button class="slider-arrow" id="sliderPrev" aria-label="前のイベント">&#8249;</button>
+            <div class="event-slider-card">
+                <h2 class="event-card-title" id="eventTitle"></h2>
+                <p class="event-card-location">
+                    <span class="icon-pin">&#128205;</span>
+                    <span id="eventLocation"></span>
+                </p>
+                <p class="event-card-time">
+                    <span class="icon-clock">&#128336;</span>
+                    <span id="eventTime"></span>
+                </p>
+                <div class="event-card-tags">
+                    <span class="event-tag">キーワード</span>
+                    <span class="event-tag">キーワード</span>
+                    <span class="event-tag">キーワード</span>
+                </div>
+            </div>
+            <button class="slider-arrow" id="sliderNext" aria-label="次のイベント">&#8250;</button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+    </section>
+
 
     <section class="schedule-section">
         <div class="schedule-outer">
@@ -204,6 +354,53 @@
                 document.getElementById('tab-' + target).classList.add('active');
             });
         });
+
+        // ---- イベントカードスライダー ----
+        const events = [
+            { title: '開会式', venue: '体育館', time: '9:00〜9:10', keywords: ['蒼阿祭'] },
+            { title: 'ダンス', venue: '体育館', time: '9:10〜10:10', keywords: ['ストリートダンス同好会', '学生'] },
+            { title: 'カラオケ大会', venue: '大講義室', time: '10:00〜10:30', keywords: ['カラオケ', '学生'] },
+            { title: '有志イベント', venue: '体育館', time: '10:30〜11:30', keywords: ['有志', '学生'] },
+            { title: '軽音ライブ', venue: '大講義室', time: '11:00〜12:00', keywords: ['軽音楽部', '学生'] },
+            { title: 'お菓子投げ（悠久会）', venue: '体育館', time: '11:30〜12:00', keywords: ['お菓子投げ', '悠久会', '無料'] },
+            { title: 'お昼休憩', venue: '体育館', time: '12:00〜13:00', keywords: ['休憩'] },
+            { title: 'ダンス', venue: '体育館', time: '13:00〜14:00', keywords: ['ストリートダンス同好会', '学生'] },
+            { title: 'フィジーク', venue: '体育館', time: '14:15〜14:45', keywords: ['フィジーク', '筋肉'] },
+            { title: '吹奏楽', venue: '体育館', time: '15:00〜16:00', keywords: ['吹奏楽部', '学生'] },
+            { title: 'カラオケ大会', venue: '大講義室', time: '15:00〜16:00', keywords: ['カラオケ', '学生'] },
+            { title: '抽選会', venue: '体育館', time: '16:30〜17:00', keywords: ['抽選会', 'お楽しみ', '無料'] },
+        ];
+
+        let currentEvent = 0;
+
+        const dotsContainer = document.getElementById('sliderDots');
+        events.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => showEvent(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function showEvent(idx) {
+            currentEvent = (idx + events.length) % events.length;
+            const ev = events[currentEvent];
+            document.getElementById('eventTitle').textContent = ev.title;
+            document.getElementById('eventLocation').textContent = ev.venue;
+            document.getElementById('eventTime').textContent = ev.time;
+            const tagsEl = document.querySelector('.event-card-tags');
+            tagsEl.innerHTML = ev.keywords
+                .map(k => `<span class="event-tag">${k}</span>`)
+                .join('');
+            document.querySelectorAll('.slider-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentEvent);
+            });
+        }
+
+        document.getElementById('sliderPrev').addEventListener('click', () => showEvent(currentEvent - 1));
+        document.getElementById('sliderNext').addEventListener('click', () => showEvent(currentEvent + 1));
+
+        showEvent(0);
+
     </script>
 </body>
 
