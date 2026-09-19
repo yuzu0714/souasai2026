@@ -49,6 +49,17 @@
             }
         }
 
+        /* カード内の時間を右揃え */
+        .schedule-card {
+            display: flex !important;
+            align-items: center !important;
+        }
+        .card-time {
+            margin-left: auto !important;
+            text-align: right !important;
+            flex-shrink: 0;
+        }
+
         /* ④ スライダーフェードアニメーション */
         .event-slider-card {
             transition: opacity 0.25s ease;
@@ -103,11 +114,11 @@
             <div class="event-slider-card">
                 <h2 class="event-card-title" id="eventTitle"></h2>
                 <p class="event-card-location">
-                    <span class="icon-pin">&#128205;</span>
+                    <img src="images/icons/location.png" class="icon-pin" alt="場所">
                     <span id="eventLocation"></span>
                 </p>
                 <p class="event-card-time">
-                    <span class="icon-clock">&#128336;</span>
+                    <img src="images/icons/time.png" class="icon-clock" alt="時間">
                     <span id="eventTime"></span>
                 </p>
                 <div class="event-card-tags">
@@ -145,7 +156,7 @@
                     <span class="card-time">10:30〜11:30</span>
                 </div>
                 <div class="schedule-card">
-                    <span class="card-title">お菓子投げ（悠久会）</span>
+                    <span class="card-title">お菓子投げ</span>
                     <span class="card-time">11:30〜12:00</span>
                 </div>
                 <div class="schedule-card">
@@ -264,7 +275,7 @@
             { title: 'カラオケ大会', venue: '大講義室', time: '10:00〜10:30', keywords: ['カラオケ', '学生'] },
             { title: '有志イベント', venue: '体育館', time: '10:30〜11:30', keywords: ['有志', '学生'] },
             { title: '軽音ライブ', venue: '大講義室', time: '11:00〜12:00', keywords: ['軽音楽部', '学生'] },
-            { title: 'お菓子投げ（校友会）', venue: '体育館', time: '11:30〜12:00', keywords: ['お菓子投げ', '校友会', '無料'] },
+            { title: 'お菓子投げ', venue: '体育館', time: '11:30〜12:00', keywords: ['お菓子投げ', '校友会', '無料'] },
             { title: 'お昼休憩', venue: '体育館', time: '12:00〜13:00', keywords: ['休憩'] },
             { title: 'ダンス', venue: '体育館', time: '13:00〜14:00', keywords: ['ストリートダンス同好会', '学生'] },
             { title: 'フィジーク', venue: '体育館', time: '14:15〜14:45', keywords: ['フィジーク', '筋肉'] },
