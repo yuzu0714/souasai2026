@@ -50,7 +50,8 @@ body {
     margin: 0;
     overflow: hidden;
     background: #fff;
-    padding-top: 84px; /* 固定ヘッダー分の余白 */
+    padding-top: 84px;
+    /* 固定ヘッダー分の余白 */
 }
 
 .hero-eyebrow {
@@ -129,7 +130,8 @@ body {
 
 .about-heading {
     font-size: 40px;
-    font-weight: 800;   /* ExtraBold */
+    font-weight: 800;
+    /* ExtraBold */
     color: #1B3BCD;
     margin: 0 0 20px;
 }
@@ -222,12 +224,19 @@ body {
 
 /* ===== アニメーション ===== */
 @keyframes ticker-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .ticker-track { animation: none; }
+    .ticker-track {
+        animation: none;
+    }
 }
 
 /* ===== メディアクエリ ===== */
@@ -256,4 +265,23 @@ body {
     .about-img img {
         max-width: 85%;
     }
+}
+
+/* ===== ページ読み込みアニメーション ===== */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(120px) scale(0.82);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.anim-fade-up {
+    opacity: 0;
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--anim-delay, 0s);
 }
