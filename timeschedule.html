@@ -286,11 +286,7 @@
                 document.getElementById('eventTitle').textContent = ev.title;
                 document.getElementById('eventLocation').textContent = ev.venue;
                 document.getElementById('eventTime').textContent = ev.time;
-                // 会場ごとに枠線・タイトル色を変更
-                const isGym = ev.venue === '体育館';
-                const accentColor = isGym ? '#e05a7a' : '#F5C800';
-                card.style.borderColor = accentColor;
-                document.getElementById('eventTitle').style.color = accentColor;
+
                 // キーワードタグ
                 const tagsEl = document.querySelector('.event-card-tags');
                 tagsEl.innerHTML = ev.keywords
