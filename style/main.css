@@ -265,6 +265,11 @@ body {
     .about-img img {
         max-width: 85%;
     }
+
+    .ticker-track span {
+        font-size: 0.5rem;
+        padding: 10px 2rem;
+    }
 }
 
 /* ===== ページ読み込みアニメーション ===== */
