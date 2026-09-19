@@ -37,18 +37,6 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .event-card-title {
-                font-size: 18px;
-            }
-
-            .slider-arrow {
-                width: 34px;
-                height: 34px;
-                font-size: 18px;
-            }
-        }
-
         /* カード内の時間を右揃え */
         .schedule-card {
             display: flex !important;
@@ -60,13 +48,158 @@
             flex-shrink: 0;
         }
 
-        /* ④ スライダーフェードアニメーション */
-        .event-slider-card {
-            transition: opacity 0.25s ease;
+        /* ---- 水平カルーセル ---- */
+        .event-slider-section {
+            padding-top: 8px;
+            padding-bottom: 4px;
         }
 
-        .event-slider-card.fading {
+        .carousel-outer {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 210px;
+            touch-action: pan-y;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .stack-item {
+            position: absolute;
+            width: 74%;
+            max-width: 300px;
+            height: 185px;
+            top: 50%;
+            left: 50%;
+            background: #fff;
+            border: 2.5px solid #00b6c0;
+            border-radius: 18px;
+            padding: 20px 22px 16px;
+            box-shadow: 0 2px 12px rgba(0,182,192,0.15);
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+            will-change: opacity, transform;
+        }
+
+        .stack-item.pos-center {
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 1;
+            z-index: 3;
+        }
+
+        .stack-item.pos-prev {
+            transform: translateX(calc(-50% - 103%)) translateY(-50%);
+            opacity: 0.52;
+            z-index: 2;
+        }
+
+        .stack-item.pos-next {
+            transform: translateX(calc(-50% + 103%)) translateY(-50%);
+            opacity: 0.52;
+            z-index: 2;
+        }
+
+        .stack-item.pos-hidden-left {
+            transform: translateX(calc(-50% - 200%)) translateY(-50%);
             opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .stack-item.pos-hidden-right {
+            transform: translateX(calc(-50% + 200%)) translateY(-50%);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* オーバーレイ矢印 */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.92);
+            border: 2px solid #00b6c0;
+            border-radius: 50%;
+            font-size: 22px;
+            color: #00b6c0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .carousel-arrow:hover {
+            background: #00b6c0;
+            color: #fff;
+        }
+
+        .carousel-prev { left: 8px; }
+        .carousel-next { right: 8px; }
+
+        .event-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00b6c0;
+            margin: 0 0 10px;
+        }
+
+        .event-card-location,
+        .event-card-time {
+            font-size: 14px;
+            color: #333;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-card-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .event-tag {
+            background: #F5C842;
+            border-radius: 999px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        @media (max-width: 480px) {
+            .carousel-outer {
+                height: 200px;
+            }
+
+            .stack-item {
+                width: 70%;
+                height: 178px;
+            }
+
+            .event-card-title {
+                font-size: 17px;
+            }
+
+            .carousel-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+            }
         }
     </style>
 
@@ -107,27 +240,12 @@
 
     <h1>Time Schedule</h1>
 
-    <!-- イベントカードスライダー -->
+    <!-- イベントカードカルーセル -->
     <section class="event-slider-section">
-        <div class="event-slider-wrapper">
-            <button class="slider-arrow" id="sliderPrev" aria-label="前のイベント">&#8249;</button>
-            <div class="event-slider-card">
-                <h2 class="event-card-title" id="eventTitle"></h2>
-                <p class="event-card-location">
-                    <img src="images/icons/location.png" class="icon-pin" alt="場所">
-                    <span id="eventLocation"></span>
-                </p>
-                <p class="event-card-time">
-                    <img src="images/icons/time.png" class="icon-clock" alt="時間">
-                    <span id="eventTime"></span>
-                </p>
-                <div class="event-card-tags">
-                    <span class="event-tag">キーワード</span>
-                    <span class="event-tag">キーワード</span>
-                    <span class="event-tag">キーワード</span>
-                </div>
-            </div>
-            <button class="slider-arrow" id="sliderNext" aria-label="次のイベント">&#8250;</button>
+        <div class="carousel-outer" id="carouselOuter">
+            <div class="card-stack" id="cardStack"></div>
+            <button class="carousel-arrow carousel-prev" id="sliderPrev" aria-label="前のイベント">&#8249;</button>
+            <button class="carousel-arrow carousel-next" id="sliderNext" aria-label="次のイベント">&#8250;</button>
         </div>
         <div class="slider-dots" id="sliderDots"></div>
     </section>
@@ -268,7 +386,7 @@
             });
         });
 
-        // ---- イベントカードスライダー ----
+        // ---- 水平カルーセル ----
         const events = [
             { title: '開会式', venue: '体育館', time: '9:00〜9:10', keywords: ['蒼阿祭'] },
             { title: 'ダンス', venue: '体育館', time: '9:10〜10:10', keywords: ['ストリートダンス同好会', '学生'] },
@@ -284,42 +402,162 @@
             { title: '抽選会', venue: '体育館', time: '16:30〜17:00', keywords: ['抽選会', 'お楽しみ', '無料'] },
         ];
 
-        let currentEvent = 0;
+        let current = 0;
+        let isAnimating = false;
+        let carouselCards = [null, null, null]; // [prev, center, next]
 
+        const stack = document.getElementById('cardStack');
         const dotsContainer = document.getElementById('sliderDots');
+
+        function makeCardEl(ev) {
+            const el = document.createElement('div');
+            el.className = 'stack-item';
+            el.innerHTML = `
+                <h2 class="event-card-title">${ev.title}</h2>
+                <p class="event-card-location">
+                    <img src="images/icons/location.png" class="icon-pin" alt="場所">
+                    <span>${ev.venue}</span>
+                </p>
+                <p class="event-card-time">
+                    <img src="images/icons/time.png" class="icon-clock" alt="時間">
+                    <span>${ev.time}</span>
+                </p>
+                <div class="event-card-tags">
+                    ${ev.keywords.map(k => `<span class="event-tag">${k}</span>`).join('')}
+                </div>`;
+            return el;
+        }
+
+        function spawnCard(ev) {
+            const el = makeCardEl(ev);
+            stack.appendChild(el);
+            return el;
+        }
+
+        // ドット生成
         events.forEach((_, i) => {
             const dot = document.createElement('span');
             dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => showEvent(i));
+            dot.addEventListener('click', () => goTo(i));
             dotsContainer.appendChild(dot);
         });
 
-        function showEvent(idx) {
-            const card = document.querySelector('.event-slider-card');
-            card.classList.add('fading');
-            setTimeout(() => {
-                currentEvent = (idx + events.length) % events.length;
-                const ev = events[currentEvent];
-                document.getElementById('eventTitle').textContent = ev.title;
-                document.getElementById('eventLocation').textContent = ev.venue;
-                document.getElementById('eventTime').textContent = ev.time;
-
-                // キーワードタグ
-                const tagsEl = document.querySelector('.event-card-tags');
-                tagsEl.innerHTML = ev.keywords
-                    .map(k => `<span class="event-tag">${k}</span>`)
-                    .join('');
-                document.querySelectorAll('.slider-dot').forEach((d, i) => {
-                    d.classList.toggle('active', i === currentEvent);
-                });
-                card.classList.remove('fading');
-            }, 250);
+        function updateDots() {
+            document.querySelectorAll('.slider-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === current);
+            });
         }
 
-        document.getElementById('sliderPrev').addEventListener('click', () => showEvent(currentEvent - 1));
-        document.getElementById('sliderNext').addEventListener('click', () => showEvent(currentEvent + 1));
+        // カルーセル初期化（アニメーションなし）
+        function initCarousel() {
+            stack.innerHTML = '';
+            const prevIdx = (current - 1 + events.length) % events.length;
+            const nextIdx = (current + 1) % events.length;
 
-        showEvent(0);
+            const prevCard = spawnCard(events[prevIdx]);
+            const currCard = spawnCard(events[current]);
+            const nextCard = spawnCard(events[nextIdx]);
+
+            // トランジションを一時的に無効化して初期位置に配置
+            [prevCard, currCard, nextCard].forEach(c => { c.style.transition = 'none'; });
+            prevCard.classList.add('pos-prev');
+            currCard.classList.add('pos-center');
+            nextCard.classList.add('pos-next');
+
+            requestAnimationFrame(() => {
+                [prevCard, currCard, nextCard].forEach(c => { c.style.transition = ''; });
+            });
+
+            carouselCards = [prevCard, currCard, nextCard];
+            updateDots();
+        }
+
+        // 次へ
+        function goNext() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const newNextIdx = (current + 2) % events.length;
+            const [prevCard, currCard, nextCard] = carouselCards;
+
+            prevCard.classList.replace('pos-prev', 'pos-hidden-left');
+            currCard.classList.replace('pos-center', 'pos-prev');
+            nextCard.classList.replace('pos-next', 'pos-center');
+
+            const newNext = spawnCard(events[newNextIdx]);
+            newNext.classList.add('pos-hidden-right');
+            void newNext.offsetHeight; // reflow でトランジション発火
+            newNext.classList.replace('pos-hidden-right', 'pos-next');
+
+            carouselCards = [currCard, nextCard, newNext];
+
+            setTimeout(() => {
+                prevCard.remove();
+                current = (current + 1) % events.length;
+                updateDots();
+                isAnimating = false;
+            }, 450);
+        }
+
+        // 前へ
+        function goPrev() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const newPrevIdx = (current - 2 + events.length) % events.length;
+            const [prevCard, currCard, nextCard] = carouselCards;
+
+            nextCard.classList.replace('pos-next', 'pos-hidden-right');
+            currCard.classList.replace('pos-center', 'pos-next');
+            prevCard.classList.replace('pos-prev', 'pos-center');
+
+            const newPrev = spawnCard(events[newPrevIdx]);
+            newPrev.classList.add('pos-hidden-left');
+            void newPrev.offsetHeight; // reflow でトランジション発火
+            newPrev.classList.replace('pos-hidden-left', 'pos-prev');
+
+            carouselCards = [newPrev, prevCard, currCard];
+
+            setTimeout(() => {
+                nextCard.remove();
+                current = (current - 1 + events.length) % events.length;
+                updateDots();
+                isAnimating = false;
+            }, 450);
+        }
+
+        // ドットで直接移動
+        function goTo(idx) {
+            if (isAnimating || idx === current) return;
+            current = (idx + events.length) % events.length;
+            initCarousel();
+        }
+
+        document.getElementById('sliderPrev').addEventListener('click', goPrev);
+        document.getElementById('sliderNext').addEventListener('click', goNext);
+
+        // タッチスワイプ
+        let touchStartX = 0;
+        const carouselEl = document.getElementById('carouselOuter');
+        carouselEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        carouselEl.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) diff > 0 ? goNext() : goPrev();
+        }, { passive: true });
+
+        // マウスドラッグ
+        let mouseStartX = 0;
+        let isDragging = false;
+        carouselEl.addEventListener('mousedown', e => { mouseStartX = e.clientX; isDragging = true; });
+        carouselEl.addEventListener('mouseup', e => {
+            if (!isDragging) return;
+            isDragging = false;
+            const diff = mouseStartX - e.clientX;
+            if (Math.abs(diff) > 40) diff > 0 ? goNext() : goPrev();
+        });
+        carouselEl.addEventListener('mouseleave', () => { isDragging = false; });
+
+        initCarousel();
 
     </script>
 </body>
