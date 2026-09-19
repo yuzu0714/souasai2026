@@ -75,9 +75,26 @@
     border-radius: 2px;
     background: #fff;
   }
+  .hamburger-icon span {
+    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+  }
   .hamburger-icon span:nth-child(1) { top: 0; }
   .hamburger-icon span:nth-child(2) { top: 7.5px; }
   .hamburger-icon span:nth-child(3) { top: 15px; }
+
+  /* メニューオープン時に × へ変形 */
+  .site-header.is-open .hamburger-icon span:nth-child(1) {
+    top: 7.5px;
+    transform: rotate(45deg);
+  }
+  .site-header.is-open .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .site-header.is-open .hamburger-icon span:nth-child(3) {
+    top: 7.5px;
+    transform: rotate(-45deg);
+  }
 
   /* ===== 全画面オーバーレイメニュー ===== */
   .menu-overlay {
