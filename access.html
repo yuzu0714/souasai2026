@@ -41,6 +41,63 @@
                     /* スマホ用にフォントサイズを調整 */
                 }
             }
+
+            /* ===== アクセスセクション ===== */
+            .access-section {
+                max-width: 480px;
+                margin: 0 auto 60px;
+                padding: 0 16px;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            /* info-cardの独自max-widthを上書き */
+            .access-section .info-card {
+                max-width: 100%;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .access-map-wrap {
+                width: 100%;
+                height: 300px;
+                border-radius: 20px;
+                overflow: hidden;
+                border: 3px solid #00B6C0;
+                box-sizing: border-box;
+            }
+
+            .access-map-wrap iframe {
+                display: block;
+            }
+
+            .access-map-btn {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                background: #00B6C0;
+                color: #fff;
+                font-weight: 700;
+                font-size: 16px;
+                padding: 14px 28px;
+                border-radius: 999px;
+                text-decoration: none;
+                letter-spacing: 0.05em;
+                text-align: center;
+                transition: background 0.2s;
+            }
+
+            .access-map-btn:hover {
+                background: #009aa3;
+            }
+
+            @media (max-width: 768px) {
+                .access-map-wrap {
+                    height: 240px;
+                }
+            }
         </style>
 
     </head>
@@ -80,14 +137,38 @@
 
         <h1>Access</h1>
 
-        <div class="info-card">
-            <div class="info-card-badge">阿南工業高等専門学校</div>
-            <p class="info-card-text">
-                〒774-0017<br>
-                徳島県阿南市見能林町青木265<br>
-                牟岐線「見能林駅」から徒歩約10分<br>
-            </p>
-        </div>
+        <section class="access-section">
+
+            <div class="info-card">
+                <div class="info-card-badge">阿南工業高等専門学校</div>
+                <p class="info-card-text">
+                    〒774-0017<br>
+                    徳島県阿南市見能林町青木265<br>
+                    牟岐線「見能林駅」から徒歩約10分
+                </p>
+            </div>
+
+            <div class="access-map-wrap">
+                <iframe
+                    src="https://maps.google.com/maps?q=%E9%98%BF%E5%8D%97%E5%B7%A5%E6%A5%AD%E9%AB%98%E7%AD%89%E5%B0%82%E9%96%80%E5%AD%A6%E6%A0%A1&hl=ja&z=15&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="阿南工業高等専門学校 地図">
+                </iframe>
+            </div>
+
+            <a href="https://maps.google.com/maps?q=阿南工業高等専門学校"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="access-map-btn">
+                Google マップで開く →
+            </a>
+
+        </section>
 
 
         <footer class="site-footer">
