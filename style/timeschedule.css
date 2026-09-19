@@ -64,7 +64,7 @@
             .schedule-card {
                 background: #FFE0E0;
                 border-radius: 12px 40px 40px 12px;
-                border-left: 5px solid #00b6c0;
+                border-left: 5px solid #e05a7a;
                 padding: 14px 24px;
                 display: flex;
                 align-items: center;
@@ -74,7 +74,7 @@
             }
             .schedule-card:hover {
                 transform: translateY(-3px);
-                box-shadow: 0 8px 20px rgba(0, 182, 192, 0.2);
+                box-shadow: 0 8px 20px rgba(224, 90, 122, 0.25);
             }
             /* ③ 大講義室カードの色 */
             #tab-hall .schedule-card {

@@ -56,25 +56,6 @@
             opacity: 0;
         }
 
-        /* ⑤ 会場バッジ */
-        .venue-badge {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 999px;
-            margin-left: 4px;
-            vertical-align: middle;
-        }
-        .venue-badge.gym {
-            background: #00b6c0;
-            color: #fff;
-        }
-        .venue-badge.hall {
-            background: #F5C800;
-            color: #333;
-        }
-
     </style>
 
 </head>
@@ -123,7 +104,6 @@
                 <p class="event-card-location">
                     <span class="icon-pin">&#128205;</span>
                     <span id="eventLocation"></span>
-                    <span class="venue-badge" id="venueBadge"></span>
                 </p>
                 <p class="event-card-time">
                     <span class="icon-clock">&#128336;</span>
@@ -306,10 +286,11 @@
                 document.getElementById('eventTitle').textContent = ev.title;
                 document.getElementById('eventLocation').textContent = ev.venue;
                 document.getElementById('eventTime').textContent = ev.time;
-                // ⑤ 会場バッジ
-                const badge = document.getElementById('venueBadge');
-                badge.textContent = ev.venue === '体育館' ? '体育館' : '大講義室';
-                badge.className = 'venue-badge ' + (ev.venue === '体育館' ? 'gym' : 'hall');
+                // 会場ごとに枠線・タイトル色を変更
+                const isGym = ev.venue === '体育館';
+                const accentColor = isGym ? '#e05a7a' : '#F5C800';
+                card.style.borderColor = accentColor;
+                document.getElementById('eventTitle').style.color = accentColor;
                 // キーワードタグ
                 const tagsEl = document.querySelector('.event-card-tags');
                 tagsEl.innerHTML = ev.keywords
