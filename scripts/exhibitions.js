@@ -6,33 +6,33 @@
 const exhibitionItems = [
     //1F
     {name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "images/food-baby-castella.png", mapX: 54, mapY: 42},
-    {name: "機械専門展示", course: "機械コース", place: "3M", floor: "1F", number: "21", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 55},
-    {name: "機械専門展示", course: "機械コース", place: "4M", floor: "1F", number: "31", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 55},
-    {name: "機械専門展示", course: "機械コース", place: "5M", floor: "1F", number: "41", category: "course", image: "images/food-baby-castella.png", mapX: 19, mapY: 55},
+    {name: "機械専門展示", course: "機械コース", place: "3M教室", floor: "1F", number: "21", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 55},
+    {name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "31", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 55},
+    {name: "機械専門展示", course: "機械コース", place: "5M教室", floor: "1F", number: "41", category: "course", image: "images/food-baby-castella.png", mapX: 19, mapY: 55},
     {name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "51", category: "course", image: "images/food-baby-castella.png", mapX: 69, mapY: 20},
     {name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "61", category: "course", image: "images/food-baby-castella.png", mapX: 84, mapY: 82},
     //2F
-    {name: "軽音学部ライブ", course: "軽音学部", place: "1-1", floor: "2F", number: "12", category: "course", image: "images/food-baby-castella.png", mapX: 39, mapY: 25},
-    {name: "軽音学部ライブ", course: "軽音学部", place: "1-2", floor: "2F", number: "22", category: "course", image: "images/food-baby-castella.png", mapX: 29, mapY: 25},
-    {name: "電気専門展示", course: "電気コース", place: "2E", floor: "2F", number: "32", category: "course", image: "images/food-baby-castella.png", mapX: 63, mapY: 14},
-    {name: "電気専門展示", course: "電気コース", place: "3E", floor: "2F", number: "42", category: "course", image: "images/food-baby-castella.png", mapX: 71.5, mapY: 14},
-    {name: "電気専門展示", course: "電気コース", place: "4E", floor: "2F", number: "52", category: "course", image: "images/food-baby-castella.png", mapX: 80, mapY: 14},
+    {name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "12", category: "course", image: "images/food-baby-castella.png", mapX: 39, mapY: 25},
+    {name: "軽音学部ライブ", course: "軽音学部", place: "1-2教室", floor: "2F", number: "22", category: "course", image: "images/food-baby-castella.png", mapX: 29, mapY: 25},
+    {name: "電気専門展示", course: "電気コース", place: "2E教室", floor: "2F", number: "32", category: "course", image: "images/food-baby-castella.png", mapX: 63, mapY: 14},
+    {name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "42", category: "course", image: "images/food-baby-castella.png", mapX: 71.5, mapY: 14},
+    {name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "images/food-baby-castella.png", mapX: 80, mapY: 14},
     {name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "62", category: "course", image: "images/food-baby-castella.png", mapX: 54, mapY: 38},
-    {name: "フォトスポット", course: "美術部", place: "5E", floor: "2F", number: "72", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 49},
-    {name: "美術部展示", course: "美術部", place: "2I", floor: "2F", number: "82", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 49},
-    {name: "書道部展示", course: "書道部", place: "2M", floor: "2F", number: "92", category: "course", image: "images/food-baby-castella.png", mapX: 21.5, mapY: 46.5},
-    {name: "写真展示", course: "写真部", place: "2M", floor: "2F", number: "102", category: "course", image: "images/food-baby-castella.png", mapX: 17.5, mapY: 50.5},
-    {name: "TRPGサークル試遊会", course: "TRPGサークル", place: "5Z", floor: "2F", number: "112", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 68},
-    {name: "演劇部上映", course: "演劇部", place: "3Z", floor: "2F", number: "122", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 76},
-    {name: "落語研究部寄席", course: "落語研究部", place: "4Z", floor: "2F", number: "132", category: "course", image: "images/food-baby-castella.png", mapX: 25, mapY: 76},
+    {name: "フォトスポット", course: "美術部", place: "5E教室", floor: "2F", number: "72", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 49},
+    {name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 49},
+    {name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "images/food-baby-castella.png", mapX: 21.5, mapY: 46.5},
+    {name: "写真展示", course: "写真部", place: "2M教室", floor: "2F", number: "102", category: "course", image: "images/food-baby-castella.png", mapX: 17.5, mapY: 50.5},
+    {name: "TRPGサークル試遊会", course: "TRPGサークル", place: "5Z教室", floor: "2F", number: "112", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 68},
+    {name: "演劇部上映", course: "演劇部", place: "3Z教室", floor: "2F", number: "122", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 76},
+    {name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "132", category: "course", image: "images/food-baby-castella.png", mapX: 25, mapY: 76},
     {name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "142", category: "course", image: "images/food-baby-castella.png", mapX: 84, mapY: 76},
     //3F
-    {name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3", floor: "3F", number: "13", category: "course", image: "images/food-baby-castella.png", mapX: 38.5, mapY: 25},
-    {name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-4", floor: "3F", number: "23", category: "course", image: "images/food-baby-castella.png", mapX: 29, mapY: 25},
-    {name: "情報専門展示", course: "情報コース", place: "3I", floor: "3F", number: "33", category: "course", image: "images/food-baby-castella.png", mapX: 19, mapY: 48.5},
-    {name: "情報専門展示", course: "情報コース", place: "5I", floor: "3F", number: "43", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 48.5},
+    {name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "13", category: "course", image: "images/food-baby-castella.png", mapX: 38.5, mapY: 25},
+    {name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-4教室", floor: "3F", number: "23", category: "course", image: "images/food-baby-castella.png", mapX: 29, mapY: 25},
+    {name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "images/food-baby-castella.png", mapX: 19, mapY: 48.5},
+    {name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 48.5},
     {name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 48.5},
-    {name: "建設専門展示", course: "建設コース", place: "3C", floor: "3F", number: "63", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 68},
+    {name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "63", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 68},
     {name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "73", category: "course", image: "images/food-baby-castella.png", mapX: 65, mapY: 78}
 ];
 
@@ -41,6 +41,7 @@ const count = document.getElementById("exhibitionCount");
 const search = document.getElementById("exhibitionSearch");
 const filters = document.getElementById("exhibitionFilters");
 const tabs = document.querySelector(".exhibition-tabs");
+const searchIcon = document.querySelector(".search-icon");
 let activeTab = "exhibition";
 let activeFloor = "1F";
 
@@ -56,10 +57,29 @@ document.addEventListener("click", (event) => {
     }
 });
 
+searchIcon.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+});
+
+searchIcon.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    tabs.classList.remove("is-open");
+    filters.classList.remove("is-open");
+    search.blur();
+});
 
 function renderFilters() {
     const filterKey = activeTab === "exhibition" ? "name" : "course";
-    const values = [...new Set(exhibitionItems.map((item) => item[filterKey]))];
+    const keyword = search.value.trim().toLowerCase();
+    const values = [...new Set(
+        exhibitionItems
+            .map((item) => item[filterKey])
+            .filter((value) =>
+                value.toLowerCase().includes(keyword)
+            )
+    )];
     filters.innerHTML = values.map((value) => `
         <label class="filter-option">
             <input type="checkbox" value="${value}">
@@ -157,7 +177,7 @@ function renderItems() {
 
     list.innerHTML = visible.length
         ? visible.map((item) => `
-            <article class="exhibition-card">
+            <article class="exhibition-card" data-number="${item.number}">
                 <div>
                     <p class="exhibition-name">${item.name}</p>
                     <p class="exhibition-club">
@@ -174,7 +194,50 @@ function renderItems() {
             </article>
         `).join("")
         : '<p class="exhibition-empty">該当する展示がありません。</p>';
+
+    document.querySelectorAll(".exhibition-card").forEach((card, index) => {
+        card.addEventListener("click", () => {
+            openPoster(visible[index]);
+        });
+    });
+    
+    document.querySelectorAll(".exhibition-card").forEach((card) => {
+        card.addEventListener("click", () => {
+            const number = card.dataset.number;
+
+            const targetPin = document.querySelector(
+                `.exhibition-pin[data-number="${number}"]`
+            );
+
+            if (!targetPin) return;
+
+            targetPin.classList.add("is-blinking");
+
+            setTimeout(() => {
+                targetPin.classList.remove("is-blinking");
+            }, 2000);
+        });
+    });
 }
+
+const posterModal = document.getElementById("exhibitionPosterModal");
+const posterImage = document.getElementById("exhibitionPosterImage");
+const posterClose = document.getElementById("exhibitionPosterClose");
+const posterOverlay = document.getElementById("exhibitionPosterOverlay");
+
+function openPoster(item) {
+    posterImage.src = item.image;
+    posterImage.alt = `${item.name}のポスター`;
+    posterModal.hidden = false;
+}
+
+function closePoster() {
+    posterModal.hidden = true;
+    posterImage.src = "";
+}
+
+posterClose.addEventListener("click", closePoster);
+posterOverlay.addEventListener("click", closePoster);
 
 function renderPins() {
     const pins = document.getElementById("exhibitionPins");
@@ -216,6 +279,7 @@ function renderPins() {
             style="left: ${item.mapX}%; top: ${item.mapY}%;"
             aria-label="${item.name} ${item.place}"
             data-index="${index}"
+            data-number="${item.number}"
         >
             <span class="pin-shape">
                 <span class="pin-inner">
@@ -329,6 +393,7 @@ search.addEventListener("input", () => {
         }
     }
 
+    renderFilters();
     renderItems();
     renderPins();
 });

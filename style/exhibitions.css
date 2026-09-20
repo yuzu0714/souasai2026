@@ -51,6 +51,11 @@
     font-size: 28px;
     line-height: 29px;
     text-align: center;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .exhibition-tabs {
@@ -255,7 +260,7 @@
     }
 
     50% {
-        box-shadow: 0 0 0 6px rgba(42, 111, 184, 0.7);
+        box-shadow: 0 0 0 6px rgba(240, 93, 157, 0.7);
     }
 }
 
@@ -274,7 +279,8 @@
     cursor: pointer;
     pointer-events: auto;
     z-index: 10;
-
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
     transform: translate(-50%, -100%);
 }
 
@@ -286,7 +292,7 @@
     width: 25px;
     height: 25px;
 
-    background: #2A6FB8;
+    background: #f05d9d;
 
     border-radius: 50% 50% 50% 0;
 
@@ -320,9 +326,67 @@
     line-height: 1;
 }
 
+/* 専門展示ポスター表示 */
+.exhibition-poster-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.exhibition-poster-modal[hidden] {
+    display: none;
+}
+
+.exhibition-poster-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.exhibition-poster-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 500px);
+    max-height: 90vh;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    background: #fff;
+    overflow: auto;
+}
+
+.exhibition-poster-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.exhibition-poster-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #333;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
 .exhibition-name { margin: 0 0 5px; color: #252525; font-size: .94rem; font-weight: 700; }
-.exhibition-club { margin: 0; color: #444; font-size: .72rem; }
-.exhibition-badge { display: inline-block; margin-left: 5px; padding: 1px 7px; color: #fff; background: #f05d9d; border-radius: 10px; font-size: .64rem; font-weight: 700; }
+.exhibition-club { margin: 0; color: #444; font-size: .72rem;  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;}
+.exhibition-badge { display: inline-block;  padding: 1px 7px; color: #fff; background: #f05d9d; border-radius: 10px; font-size: .64rem; font-weight: 700; white-space: nowrap; margin: 0;}
 .exhibition-image { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; background: #fff7f1; }
 .exhibition-empty { padding: 24px; color: #fff; text-align: center; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
