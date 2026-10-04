@@ -314,11 +314,30 @@
     transform: rotate(45deg);
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0px;
 }
 
-/* 数字 */
+/* ローマ字（上段） */
+.pin-letter {
+    color: #151515;
+    font-size: 7px;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: -2px;
+}
+
+/* 数字（下段・新形式） */
+.pin-digits {
+    color: #151515;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* 数字のみ（旧形式との互換） */
 .pin-number {
     color: #151515;
     font-size: 8px;
