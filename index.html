@@ -18,10 +18,61 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Noto+Sans+JP:wght@400;700;800&display=swap"
         rel="stylesheet">
+
+    <style>
+        /* ===== 蒼阿祭 文字ポップインオープニング ===== */
+        #welcomeOverlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #00B6C0;
+        }
+        #welcomeOverlay.wlc-exit {
+            animation: wlcOut 0.9s ease-in-out both;
+        }
+        @keyframes wlcOut { to { opacity: 0; } }
+
+        .wlc-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .mainVisual__Title {
+            text-align: center;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.4rem, 5vw, 3.2rem);
+            color: #ffffff;
+            letter-spacing: 0.12em;
+            white-space: nowrap;
+        }
+
+        .mainVisual__Title span {
+            display: inline-block;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: popIn 0.5s ease forwards;
+        }
+
+        @keyframes popIn {
+            60% {
+                transform: scale(1.2);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 
 <body class="dots">
-
+    <div id="welcomeOverlay" aria-hidden="true">
+        <div class="wlc-wrapper">
+            <div class="mainVisual__Title">令和8年度 阿南高専 蒼阿祭</div>
+        </div>
+    </div>
     <header class="site-header" id="siteHeader">
         <div class="logo">Menu</div>
         <button class="hamburger-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
@@ -189,6 +240,41 @@
                 if (menuOverlay.classList.contains('is-open')) toggleMenu();
             });
         });
+    </script>
+
+    <script>
+        (function () {
+            var overlay = document.getElementById('welcomeOverlay');
+            if (!overlay) return;
+            if (sessionStorage.getItem('souasai_welcomed')) { overlay.remove(); return; }
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                overlay.remove();
+                sessionStorage.setItem('souasai_welcomed', '1');
+                return;
+            }
+            sessionStorage.setItem('souasai_welcomed', '1');
+
+            // 文字を1文字ずつ <span> に分割してポップインアニメーション
+            document.querySelectorAll('.mainVisual__Title').forEach(function (el) {
+                var text = el.textContent.trim();
+                el.textContent = '';
+                Array.from(text).forEach(function (char, i) {
+                    var span = document.createElement('span');
+                    span.textContent = char === ' ' ? ' ' : char;
+                    span.style.animationDelay = (i * 0.08) + 's';
+                    el.appendChild(span);
+                });
+            });
+
+            // 全文字のアニメーション終了後にフェードアウト
+            // 文字数 × 0.08s（ずらし） + 0.5s（popIn）+ 0.8s（余韻）
+            var title     = overlay.querySelector('.mainVisual__Title');
+            var charCount = title ? Array.from(title.textContent).length : 14;
+            var exitStart = (charCount * 0.08 + 0.5 + 0.8) * 1000;
+
+            setTimeout(function () { overlay.classList.add('wlc-exit'); }, exitStart);
+            setTimeout(function () { overlay.remove(); }, exitStart + 900);
+        })();
     </script>
 </body>
 
