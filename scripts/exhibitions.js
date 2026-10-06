@@ -32,12 +32,11 @@ const exhibitionItems = [
     { name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "", mapX: 80, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "62", category: "course", image: "", mapX: 54, mapY: 38 },
     { name: "フォトスポット", course: "美術部", place: "5E教室", floor: "2F", number: "72", category: "course", image: "", mapX: 36, mapY: 49 },
-    { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "", mapX: 27.5, mapY: 49 },
-    { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "", mapX: 21.5, mapY: 46.5 },
-    { name: "写真展示", course: "写真部", place: "2M教室", floor: "2F", number: "102", category: "course", image: "", mapX: 17.5, mapY: 50.5 },
-    { name: "TRPGサークル試遊会", course: "TRPGサークル", place: "5Z教室", floor: "2F", number: "112", category: "course", image: "", mapX: 34, mapY: 68 },
-    { name: "演劇部上映", course: "演劇部", place: "3Z教室", floor: "2F", number: "122", category: "course", image: "", mapX: 34, mapY: 76 },
-    { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "132", category: "course", image: "", mapX: 25, mapY: 76 },
+    { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "../images/exhibitions/bijutu.webp", mapX: 27.5, mapY: 49 },
+    { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "../images/exhibitions/shodo.webp", mapX: 21.5, mapY: 46.5 },
+    { name: "写真展示", course: "写真部", place: "2M教室", floor: "2F", number: "102", category: "course", image: "../images/exhibitions/syashin.webp", mapX: 17.5, mapY: 50.5 },
+    { name: "天文愛好会展示", course: "天文愛好会", place: "3Z教室", floor: "2F", number: "122", category: "course", image: "../images/exhibitions/tenmon.webp", mapX: 34, mapY: 76 },
+    { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "132", category: "course", image: "../images/exhibitions/rakugo.webp", mapX: 25, mapY: 76 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "142", category: "course", image: "", mapX: 84, mapY: 76 },
     //3F
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "13", category: "course", image: "", mapX: 38.5, mapY: 25 },
@@ -549,3 +548,32 @@ mapArea.addEventListener("touchend", (event) => {
     }
 
 });
+
+// ============================================================
+//  PC レイアウト：カードパネルの高さをマップセクションに合わせる
+// ============================================================
+const _mapSection = document.querySelector('.exhibition-map-section');
+const _cardsPanel = document.querySelector('.exhibition-cards-panel');
+
+function syncCardsPanelHeight() {
+    if (!_mapSection || !_cardsPanel) return;
+
+    if (window.innerWidth >= 960) {
+        // マップセクションの高さを取得してパネルに適用
+        _cardsPanel.style.maxHeight = _mapSection.offsetHeight + 'px';
+    } else {
+        // スマホ：制限を解除
+        _cardsPanel.style.maxHeight = '';
+    }
+}
+
+// 初回実行
+syncCardsPanelHeight();
+
+// ウィンドウリサイズ時に再計算
+window.addEventListener('resize', syncCardsPanelHeight);
+
+// マップセクションのサイズが変わったとき（フロア切り替え・情報パネル開閉など）も追従
+if (window.ResizeObserver && _mapSection) {
+    new ResizeObserver(syncCardsPanelHeight).observe(_mapSection);
+}

@@ -395,3 +395,58 @@
     .exhibitions-page { padding-top: 100px; }
     .exhibition-list { grid-template-columns: 1fr 1fr; }
 }
+
+/* ===== PC レイアウト：マップ左・カード右 ===== */
+@media (min-width: 960px) {
+    /* ページ全体を横幅広げる */
+    .exhibitions-page {
+        width: min(100% - 48px, 1160px);
+    }
+
+    /* コンテンツエリアを左右2列に */
+    .exhibition-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start; /* 各列が自分の高さで収まる */
+    }
+
+    /* カードパネル：JSがmax-heightを設定してスクロール制御 */
+    .exhibition-cards-panel {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 3px solid #00B6C0;
+        border-radius: 20px;
+        background: rgba(0, 182, 192, 0.18);
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    /* カードリストがパネルからはみ出たらスクロール */
+    .exhibition-list {
+        flex: 1;
+        overflow-y: auto;
+        min-height: 0;
+        grid-template-columns: 1fr; /* PC右列では1列に戻す */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 93, 157, 0.35) transparent;
+    }
+
+    .exhibition-list::-webkit-scrollbar {
+        width: 6px;
+    }
+    .exhibition-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .exhibition-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 93, 157, 0.35);
+        border-radius: 3px;
+    }
+
+    /* 件数テキスト */
+    .exhibition-count {
+        flex-shrink: 0;
+        margin: 0 4px 10px;
+    }
+}
