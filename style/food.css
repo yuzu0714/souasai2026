@@ -97,6 +97,22 @@
 
 .filter-option input { accent-color: #00b6c0; }
 
+.info-card {
+  margin: 20px auto 0;
+  background: #fff;
+  border: 3px solid #00B6C0;
+  border-radius: 24px;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.info-card-text {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
 .food-count {
     margin: 18px 4px 8px;
     color: #fff;
