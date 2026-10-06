@@ -203,7 +203,7 @@ function renderItems() {
         ? visible.map((item) => `
             <article class="exhibition-card" data-number="${item.number}">
                 <div>
-                    <p class="exhibition-name">${item.name}</p>
+                    <p class="exhibition-name"><span class="card-pin-number">${item.number}</span>${item.name}</p>
                     <p class="exhibition-club">
                         ${item.course}
                         <span class="exhibition-badge">${item.place}</span>
@@ -251,7 +251,9 @@ const posterOverlay = document.getElementById("exhibitionPosterOverlay");
 
 function openPoster(item) {
     posterImage.src = resolveImage(item.image);
-    posterImage.alt = `${item.name}のポスター`;
+    posterImage.alt = item.name + "のポスター";
+    document.getElementById("exhibitionPosterName").textContent = item.name;
+    document.getElementById("exhibitionPosterMeta").textContent = item.course + "  ·  " + item.place;
     posterModal.hidden = false;
 }
 

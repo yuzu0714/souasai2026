@@ -346,7 +346,7 @@
 .exhibition-card.is-dimmed { opacity: 0.35; filter: grayscale(40%); }
 .exhibition-name { margin: 0 0 5px; color: #252525; font-size: .94rem; font-weight: 700; }
 .exhibition-club { margin: 0; color: #444; font-size: .72rem;  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;}
-.exhibition-badge { display: inline-block;  padding: 1px 7px; color: #fff; background: #f05d9d; border-radius: 10px; font-size: .64rem; font-weight: 700; white-space: nowrap; margin: 0;}
+.exhibition-badge { display: inline-block;  padding: 1px 7px; color: #333; background: #FFD400; border-radius: 10px; font-size: .64rem; font-weight: 700; white-space: nowrap; margin: 0;}
 .exhibition-image { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; background: #fff7f1; }
 .exhibition-empty { padding: 24px; color: #fff; text-align: center; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -409,4 +409,38 @@
         flex-shrink: 0;
         margin: 0 4px 10px;
     }
+}
+
+.card-pin-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #f05d9d;
+    color: #fff;
+    font-size: .6rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.exhibition-poster-info {
+    margin-top: 12px;
+    padding: 0 4px 4px;
+}
+
+.exhibition-poster-name {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #151515;
+}
+
+.exhibition-poster-meta {
+    margin: 0;
+    font-size: .78rem;
+    color: #555;
 }
