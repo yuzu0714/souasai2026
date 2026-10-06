@@ -222,25 +222,24 @@ function renderItems() {
 
     document.querySelectorAll(".exhibition-card").forEach((card, index) => {
         card.addEventListener("click", () => {
+            // 他のカードをdim、自分だけ明るく
+            document.querySelectorAll(".exhibition-card").forEach((c, i) => {
+                c.classList.toggle("is-dimmed", i !== index);
+            });
+
             openPoster(visible[index]);
-        });
-    });
 
-    document.querySelectorAll(".exhibition-card").forEach((card) => {
-        card.addEventListener("click", () => {
+            // 対応ピンを点滅
             const number = card.dataset.number;
-
             const targetPin = document.querySelector(
                 `.exhibition-pin[data-number="${number}"]`
             );
-
-            if (!targetPin) return;
-
-            targetPin.classList.add("is-blinking");
-
-            setTimeout(() => {
-                targetPin.classList.remove("is-blinking");
-            }, 2000);
+            if (targetPin) {
+                targetPin.classList.add("is-blinking");
+                setTimeout(() => {
+                    targetPin.classList.remove("is-blinking");
+                }, 2000);
+            }
         });
     });
 }
@@ -259,6 +258,8 @@ function openPoster(item) {
 function closePoster() {
     posterModal.hidden = true;
     posterImage.src = "";
+    // dimを解除
+    document.querySelectorAll(".exhibition-card").forEach((c) => c.classList.remove("is-dimmed"));
 }
 
 posterClose.addEventListener("click", closePoster);
@@ -321,259 +322,83 @@ function renderPins() {
             const index = Number(pin.dataset.index);
             const item = visibleItems[index];
 
-            document.getElementById("exhibitionMapInfoImage").src = resolveImage(item.image);
-            document.getElementById("exhibitionMapInfoImage").alt = item.name;
-            document.getElementById("exhibitionMapInfoName").textContent = item.name;
-            document.getElementById("exhibitionMapInfoCourse").textContent = item.course;
-            document.getElementById("exhibitionMapInfoPlace").textContent = item.place;
-
-            document.getElementById("exhibitionMapInfo").hidden = false;
+            // 対応カードだけ明るく、他をdim
+            const allCards = document.querySelectorAll(".exhibition-card");
+            allCards.forEach((card) => {
+                card.classList.toggle("is-dimmed", card.dataset.number !== item.number);
+            });
         });
     });
 }
 
-// 情報表示を閉じる
-const mapInfoClose = document.getElementById("exhibitionMapInfoClose");
 
-if (mapInfoClose) {
-    mapInfoClose.addEventListener("click", () => {
-        document.getElementById("exhibitionMapInfo").hidden = true;
-    });
-}
-
-document.querySelectorAll(".exhibition-tab").forEach((tab) => tab.addEventListener("click", () => {
-    activeTab = tab.dataset.tab;
-    document.querySelectorAll(".exhibition-tab").forEach((button) => {
-        const selected = button === tab;
-        button.classList.toggle("is-active", selected);
-        button.setAttribute("aria-selected", selected);
-    });
-    renderFilters();
-    renderItems();
-}));
-
-// 階数マップの切り替え
-const floorTabs = document.querySelectorAll(".floor-tab");
+// ──────────────────────────────────────────────
+//  DOM 要素の参照・定数
+// ──────────────────────────────────────────────
 const exhibitionMapImage = document.getElementById("exhibitionMapImage");
+const floorTabs = document.querySelectorAll(".floor-tab");
 
 const floorMapImages = {
     "1F": "images/maps/floor1-map.svg",
     "2F": "images/maps/floor2-map.svg",
-    "3F": "images/maps/floor3-map.svg"
+    "3F": "images/maps/floor3-map.svg",
 };
 
-floorTabs.forEach(tab => {
+// 階数タブの切り替え
+floorTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-        const floor = tab.dataset.floor;
-        activeFloor = floor;
-        mapScale = 1;
-        mapX = 0;
-        mapY = 0;
-        exhibitionMapImage.src = floorMapImages[floor];
-        exhibitionMapImage.alt = `${floor}の専門展示マップ`;
-        floorTabs.forEach(t => {
-            t.classList.remove("is-active");
-        });
-
-        tab.classList.add("is-active");
+        activeFloor = tab.dataset.floor;
+        floorTabs.forEach((t) => t.classList.toggle("is-active", t === tab));
+        exhibitionMapImage.src = floorMapImages[activeFloor];
+        exhibitionMapImage.alt = tab.dataset.floor + "の専門展示マップ";
         renderItems();
         renderPins();
     });
 });
 
-search.addEventListener("input", () => {
-    const keyword = search.value.trim().toLowerCase();
-
-    const selected = [...filters.querySelectorAll("input:checked")]
-        .map((input) => input.value);
-
-    const filterKey = activeTab === "exhibition" ? "name" : "course";
-
-    const matchedItems = exhibitionItems
-        .filter((item) =>
-            !selected.length || selected.includes(item[filterKey])
-        )
-        .filter((item) =>
-            `${item.name}${item.course}${item.place}`
-                .toLowerCase()
-                .includes(keyword)
+// 展示タブ（展示 / コース/部活）の切り替え
+document.querySelectorAll(".exhibition-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+        activeTab = tab.dataset.tab;
+        document.querySelectorAll(".exhibition-tab").forEach((t) =>
+            t.classList.toggle("is-active", t === tab)
         );
+        renderFilters();
+        renderItems();
+    });
+});
 
-    // 検索結果がある場合、最初の該当階へ移動
-    if ((keyword || selected.length) && matchedItems.length > 0) {
-        const firstFloor = matchedItems[0].floor;
-
-        if (firstFloor !== activeFloor) {
-            activeFloor = firstFloor;
-
-            exhibitionMapImage.src = floorMapImages[firstFloor];
-            exhibitionMapImage.alt = `${firstFloor}の専門展示マップ`;
-
-            floorTabs.forEach((tab) => {
-                tab.classList.toggle(
-                    "is-active",
-                    tab.dataset.floor === firstFloor
-                );
-            });
-        }
-    }
-
+// 検索入力
+search.addEventListener("input", () => {
     renderFilters();
     renderItems();
     renderPins();
 });
-renderFilters();
-renderItems();
-renderPins();
-
-// 地図のズーム・パン
-const mapContent = document.getElementById("exhibitionMapContent");
-const mapArea = document.querySelector(".exhibition-map");
-
-let mapScale = 1;
-let mapX = 0;
-let mapY = 0;
-
-// 二本指ズーム開始時の情報
-let startDistance = 0;
-let startScale = 1;
-
-// 一本指パン開始時の情報
-let startPanX = 0;
-let startPanY = 0;
-let startMapX = 0;
-let startMapY = 0;
-
-function getTouchDistance(touch1, touch2) {
-    const dx = touch1.clientX - touch2.clientX;
-    const dy = touch1.clientY - touch2.clientY;
-
-    return Math.sqrt(dx * dx + dy * dy);
-}
-
-// 地図を反映
-function updateMapTransform() {
-    mapContent.style.transform =
-        `translate(${mapX}px, ${mapY}px) scale(${mapScale})`;
-}
-
-// タッチ開始
-mapArea.addEventListener("touchstart", (event) => {
-
-    // 二本指 → ズーム開始
-    if (event.touches.length === 2) {
-
-        startDistance = getTouchDistance(
-            event.touches[0],
-            event.touches[1]
-        );
-
-        startScale = mapScale;
-
-        return;
-    }
-
-    // 一本指 → パン開始
-    if (event.touches.length === 1 && mapScale > 1) {
-
-        startPanX = event.touches[0].clientX;
-        startPanY = event.touches[0].clientY;
-
-        startMapX = mapX;
-        startMapY = mapY;
-    }
-
-}, { passive: true });
 
 
-// タッチ移動
-mapArea.addEventListener("touchmove", (event) => {
-    // 二本指 → 拡大・縮小
-    if (event.touches.length === 2) {
 
-        event.preventDefault();
-
-        const currentDistance = getTouchDistance(
-            event.touches[0],
-            event.touches[1]
-        );
-
-        const scaleChange =
-            currentDistance / startDistance;
-
-        mapScale = startScale * scaleChange;
-
-        // 最小100%、最大300%
-        mapScale = Math.max(
-            1,
-            Math.min(mapScale, 3)
-        );
-
-        // 1倍まで縮小したら中央に戻す
-        if (mapScale === 1) {
-            mapX = 0;
-            mapY = 0;
-        }
-
-        updateMapTransform();
-
-        return;
-    }
-
-    // 一本指 → 地図を移動
-    if (event.touches.length === 1 && mapScale > 1) {
-
-        event.preventDefault();
-
-        const currentX = event.touches[0].clientX;
-        const currentY = event.touches[0].clientY;
-
-        mapX =
-            startMapX + (currentX - startPanX);
-
-        mapY =
-            startMapY + (currentY - startPanY);
-
-        updateMapTransform();
-    }
-
-}, { passive: false });
-
-
-// タッチ終了
-mapArea.addEventListener("touchend", (event) => {
-
-    if (event.touches.length < 2) {
-        startDistance = 0;
-    }
-
-});
-
-// ============================================================
-//  PC レイアウト：カードパネルの高さをマップセクションに合わせる
-// ============================================================
+// ──────────────────────────────────────────────
+//  PC：カードパネルの高さをマップに合わせる
+// ──────────────────────────────────────────────
 const _mapSection = document.querySelector('.exhibition-map-section');
 const _cardsPanel = document.querySelector('.exhibition-cards-panel');
 
 function syncCardsPanelHeight() {
     if (!_mapSection || !_cardsPanel) return;
-
     if (window.innerWidth >= 960) {
-        // マップセクションの高さを取得してパネルに適用
         _cardsPanel.style.maxHeight = _mapSection.offsetHeight + 'px';
     } else {
-        // スマホ：制限を解除
         _cardsPanel.style.maxHeight = '';
     }
 }
 
-// 初回実行
+// 初回レンダリング
+renderFilters();
+renderItems();
+renderPins();
+
 syncCardsPanelHeight();
-
-// ウィンドウリサイズ時に再計算
 window.addEventListener('resize', syncCardsPanelHeight);
-
-// マップセクションのサイズが変わったとき（フロア切り替え・情報パネル開閉など）も追従
 if (window.ResizeObserver && _mapSection) {
     new ResizeObserver(syncCardsPanelHeight).observe(_mapSection);
 }

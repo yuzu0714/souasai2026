@@ -170,50 +170,8 @@
     pointer-events: none;
 }
 
-/* 地図を押したときの情報 */
-.exhibition-map-info {
-    position: relative;
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 12px;
-    margin-top: 10px;
-    padding: 12px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
-}
 
-.exhibition-map-info[hidden] {
-    display: none;
-}
 
-.exhibition-map-info-close {
-    position: absolute;
-    top: 5px;
-    right: 8px;
-    border: 0;
-    background: transparent;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.exhibition-map-info-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.exhibition-map-info-text h3 {
-    margin: 0 0 5px;
-    font-size: .95rem;
-}
-
-.exhibition-map-info-text p {
-    margin: 3px 0;
-    color: #444;
-    font-size: .72rem;
-}
 
 /* 階数切り替え */
 .exhibition-floor-tabs {
@@ -384,6 +342,8 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
+.exhibition-card { transition: opacity 0.25s, filter 0.25s; }
+.exhibition-card.is-dimmed { opacity: 0.35; filter: grayscale(40%); }
 .exhibition-name { margin: 0 0 5px; color: #252525; font-size: .94rem; font-weight: 700; }
 .exhibition-club { margin: 0; color: #444; font-size: .72rem;  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;}
 .exhibition-badge { display: inline-block;  padding: 1px 7px; color: #fff; background: #f05d9d; border-radius: 10px; font-size: .64rem; font-weight: 700; white-space: nowrap; margin: 0;}
