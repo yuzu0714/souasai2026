@@ -1,40 +1,64 @@
 /*
- * 専門展示データはこの配列だけを編集すれば差し替えできます。
- * image は images/ フォルダ内のファイル名を指定してください。
- * nameは仮です。展示内容が決まったら変更してください。
+ * ============================================================
+ *  専門展示データ
+ * ============================================================
+ *  ▼ 画像の設定方法
+ *    1. images/exhibitions/ フォルダに画像ファイルを入れる
+ *       例: images/exhibitions/kagaku.webp
+ *    2. 対応する展示の image フィールドにパスを書く
+ *       例: image: "images/exhibitions/kagaku.webp"
+ *    3. image を "" (空文字) にすると、デフォルト画像が表示される
+ *
+ *  ▼ name・course・place・floor・number は展示内容に合わせて変更してください
+ * ============================================================
  */
+
+// 画像が未設定 or 読み込み失敗時に表示するデフォルト画像
+const DEFAULT_EXHIBITION_IMAGE = "images/food-baby-castella.png";
+
 const exhibitionItems = [
     //1F
-    {name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "images/food-baby-castella.png", mapX: 54, mapY: 42},
-    {name: "機械専門展示", course: "機械コース", place: "3M教室", floor: "1F", number: "21", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 55},
-    {name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "31", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 55},
-    {name: "機械専門展示", course: "機械コース", place: "5M教室", floor: "1F", number: "41", category: "course", image: "images/food-baby-castella.png", mapX: 19, mapY: 55},
-    {name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "51", category: "course", image: "images/food-baby-castella.png", mapX: 69, mapY: 20},
-    {name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "61", category: "course", image: "images/food-baby-castella.png", mapX: 84, mapY: 82},
+    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "", mapX: 54, mapY: 42 },
+    { name: "機械専門展示", course: "機械コース", place: "3M教室", floor: "1F", number: "21", category: "course", image: "", mapX: 36, mapY: 55 },
+    { name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "31", category: "course", image: "", mapX: 27.5, mapY: 55 },
+    { name: "機械専門展示", course: "機械コース", place: "5M教室", floor: "1F", number: "41", category: "course", image: "", mapX: 19, mapY: 55 },
+    { name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "51", category: "course", image: "../images/exhibitions/e.webp", mapX: 69, mapY: 20 },
+    { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "61", category: "course", image: "", mapX: 84, mapY: 82 },
     //2F
-    {name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "12", category: "course", image: "images/food-baby-castella.png", mapX: 39, mapY: 25},
-    {name: "軽音学部ライブ", course: "軽音学部", place: "1-2教室", floor: "2F", number: "22", category: "course", image: "images/food-baby-castella.png", mapX: 29, mapY: 25},
-    {name: "電気専門展示", course: "電気コース", place: "2E教室", floor: "2F", number: "32", category: "course", image: "images/food-baby-castella.png", mapX: 63, mapY: 14},
-    {name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "42", category: "course", image: "images/food-baby-castella.png", mapX: 71.5, mapY: 14},
-    {name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "images/food-baby-castella.png", mapX: 80, mapY: 14},
-    {name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "62", category: "course", image: "images/food-baby-castella.png", mapX: 54, mapY: 38},
-    {name: "フォトスポット", course: "美術部", place: "5E教室", floor: "2F", number: "72", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 49},
-    {name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 49},
-    {name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "images/food-baby-castella.png", mapX: 21.5, mapY: 46.5},
-    {name: "写真展示", course: "写真部", place: "2M教室", floor: "2F", number: "102", category: "course", image: "images/food-baby-castella.png", mapX: 17.5, mapY: 50.5},
-    {name: "TRPGサークル試遊会", course: "TRPGサークル", place: "5Z教室", floor: "2F", number: "112", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 68},
-    {name: "演劇部上映", course: "演劇部", place: "3Z教室", floor: "2F", number: "122", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 76},
-    {name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "132", category: "course", image: "images/food-baby-castella.png", mapX: 25, mapY: 76},
-    {name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "142", category: "course", image: "images/food-baby-castella.png", mapX: 84, mapY: 76},
+    { name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "12", category: "course", image: "", mapX: 39, mapY: 25 },
+    { name: "軽音学部ライブ", course: "軽音学部", place: "1-2教室", floor: "2F", number: "22", category: "course", image: "", mapX: 29, mapY: 25 },
+    { name: "電気専門展示", course: "電気コース", place: "2E教室", floor: "2F", number: "32", category: "course", image: "", mapX: 63, mapY: 14 },
+    { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "42", category: "course", image: "", mapX: 71.5, mapY: 14 },
+    { name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "", mapX: 80, mapY: 14 },
+    { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "62", category: "course", image: "", mapX: 54, mapY: 38 },
+    { name: "フォトスポット", course: "美術部", place: "5E教室", floor: "2F", number: "72", category: "course", image: "", mapX: 36, mapY: 49 },
+    { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "../images/exhibitions/bijutu.webp", mapX: 27.5, mapY: 49 },
+    { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "../images/exhibitions/shodo.webp", mapX: 21.5, mapY: 46.5 },
+    { name: "写真展示", course: "写真部", place: "2M教室", floor: "2F", number: "102", category: "course", image: "../images/exhibitions/syashin.webp", mapX: 17.5, mapY: 50.5 },
+    { name: "天文愛好会展示", course: "天文愛好会", place: "3Z教室", floor: "2F", number: "122", category: "course", image: "../images/exhibitions/tenmon.webp", mapX: 34, mapY: 76 },
+    { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "132", category: "course", image: "../images/exhibitions/rakugo.webp", mapX: 25, mapY: 76 },
+    { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "142", category: "course", image: "", mapX: 84, mapY: 76 },
     //3F
-    {name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "13", category: "course", image: "images/food-baby-castella.png", mapX: 38.5, mapY: 25},
-    {name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-4教室", floor: "3F", number: "23", category: "course", image: "images/food-baby-castella.png", mapX: 29, mapY: 25},
-    {name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "images/food-baby-castella.png", mapX: 19, mapY: 48.5},
-    {name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "images/food-baby-castella.png", mapX: 27.5, mapY: 48.5},
-    {name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "images/food-baby-castella.png", mapX: 36, mapY: 48.5},
-    {name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "63", category: "course", image: "images/food-baby-castella.png", mapX: 34, mapY: 68},
-    {name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "73", category: "course", image: "images/food-baby-castella.png", mapX: 65, mapY: 78}
+    { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "13", category: "course", image: "", mapX: 38.5, mapY: 25 },
+    { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-4教室", floor: "3F", number: "23", category: "course", image: "", mapX: 29, mapY: 25 },
+    { name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "", mapX: 19, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "", mapX: 27.5, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "", mapX: 36, mapY: 48.5 },
+    { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "63", category: "course", image: "", mapX: 34, mapY: 68 },
+    { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "73", category: "course", image: "", mapX: 65, mapY: 78 }
 ];
+
+// ============================================================
+//  以下はロジック（通常は編集不要）
+// ============================================================
+
+/** 画像パスを解決：未設定・読み込み失敗時はデフォルト画像を返す */
+function resolveImage(src) {
+    return src || DEFAULT_EXHIBITION_IMAGE;
+}
+
+/** img タグの onerror ハンドラ文字列 */
+const IMG_ONERROR = `this.onerror=null;this.src='${DEFAULT_EXHIBITION_IMAGE}'`;
 
 const list = document.getElementById("exhibitionList");
 const count = document.getElementById("exhibitionCount");
@@ -179,7 +203,7 @@ function renderItems() {
         ? visible.map((item) => `
             <article class="exhibition-card" data-number="${item.number}">
                 <div>
-                    <p class="exhibition-name">${item.name}</p>
+                    <p class="exhibition-name"><span class="card-pin-number">${item.number}</span>${item.name}</p>
                     <p class="exhibition-club">
                         ${item.course}
                         <span class="exhibition-badge">${item.place}</span>
@@ -187,9 +211,10 @@ function renderItems() {
                 </div>
 
                 <img
-                    src="${item.image}"
+                    src="${resolveImage(item.image)}"
                     class="exhibition-image"
                     alt="${item.name}"
+                    onerror="${IMG_ONERROR}"
                 >
             </article>
         `).join("")
@@ -197,25 +222,24 @@ function renderItems() {
 
     document.querySelectorAll(".exhibition-card").forEach((card, index) => {
         card.addEventListener("click", () => {
-            openPoster(visible[index]);
-        });
-    });
-    
-    document.querySelectorAll(".exhibition-card").forEach((card) => {
-        card.addEventListener("click", () => {
-            const number = card.dataset.number;
+            // 他のカードをdim、自分だけ明るく
+            document.querySelectorAll(".exhibition-card").forEach((c, i) => {
+                c.classList.toggle("is-dimmed", i !== index);
+            });
 
+            openPoster(visible[index]);
+
+            // 対応ピンを点滅
+            const number = card.dataset.number;
             const targetPin = document.querySelector(
                 `.exhibition-pin[data-number="${number}"]`
             );
-
-            if (!targetPin) return;
-
-            targetPin.classList.add("is-blinking");
-
-            setTimeout(() => {
-                targetPin.classList.remove("is-blinking");
-            }, 2000);
+            if (targetPin) {
+                targetPin.classList.add("is-blinking");
+                setTimeout(() => {
+                    targetPin.classList.remove("is-blinking");
+                }, 2000);
+            }
         });
     });
 }
@@ -226,14 +250,18 @@ const posterClose = document.getElementById("exhibitionPosterClose");
 const posterOverlay = document.getElementById("exhibitionPosterOverlay");
 
 function openPoster(item) {
-    posterImage.src = item.image;
-    posterImage.alt = `${item.name}のポスター`;
+    posterImage.src = resolveImage(item.image);
+    posterImage.alt = item.name + "のポスター";
+    document.getElementById("exhibitionPosterName").textContent = item.name;
+    document.getElementById("exhibitionPosterMeta").textContent = item.course + "  ·  " + item.place;
     posterModal.hidden = false;
 }
 
 function closePoster() {
     posterModal.hidden = true;
     posterImage.src = "";
+    // dimを解除
+    document.querySelectorAll(".exhibition-card").forEach((c) => c.classList.remove("is-dimmed"));
 }
 
 posterClose.addEventListener("click", closePoster);
@@ -288,7 +316,7 @@ function renderPins() {
             </span>
         </button>
     `;
-}).join("");
+    }).join("");
 
     // ピンを押したとき
     pins.querySelectorAll(".exhibition-pin").forEach((pin) => {
@@ -296,230 +324,83 @@ function renderPins() {
             const index = Number(pin.dataset.index);
             const item = visibleItems[index];
 
-            document.getElementById("exhibitionMapInfoImage").src = item.image;
-            document.getElementById("exhibitionMapInfoImage").alt = item.name;
-            document.getElementById("exhibitionMapInfoName").textContent = item.name;
-            document.getElementById("exhibitionMapInfoCourse").textContent = item.course;
-            document.getElementById("exhibitionMapInfoPlace").textContent = item.place;
-
-            document.getElementById("exhibitionMapInfo").hidden = false;
+            // 対応カードだけ明るく、他をdim
+            const allCards = document.querySelectorAll(".exhibition-card");
+            allCards.forEach((card) => {
+                card.classList.toggle("is-dimmed", card.dataset.number !== item.number);
+            });
         });
     });
 }
 
-// 情報表示を閉じる
-const mapInfoClose = document.getElementById("exhibitionMapInfoClose");
 
-if (mapInfoClose) {
-    mapInfoClose.addEventListener("click", () => {
-        document.getElementById("exhibitionMapInfo").hidden = true;
-    });
-}
-
-document.querySelectorAll(".exhibition-tab").forEach((tab) => tab.addEventListener("click", () => {
-    activeTab = tab.dataset.tab;
-    document.querySelectorAll(".exhibition-tab").forEach((button) => {
-        const selected = button === tab;
-        button.classList.toggle("is-active", selected);
-        button.setAttribute("aria-selected", selected);
-    });
-    renderFilters();
-    renderItems();
-}));
-
-// 階数マップの切り替え
-const floorTabs = document.querySelectorAll(".floor-tab");
+// ──────────────────────────────────────────────
+//  DOM 要素の参照・定数
+// ──────────────────────────────────────────────
 const exhibitionMapImage = document.getElementById("exhibitionMapImage");
+const floorTabs = document.querySelectorAll(".floor-tab");
 
 const floorMapImages = {
     "1F": "images/maps/floor1-map.svg",
     "2F": "images/maps/floor2-map.svg",
-    "3F": "images/maps/floor3-map.svg"
+    "3F": "images/maps/floor3-map.svg",
 };
 
-floorTabs.forEach(tab => {
+// 階数タブの切り替え
+floorTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-        const floor = tab.dataset.floor;
-        activeFloor = floor;
-        mapScale = 1;
-        mapX = 0;
-        mapY = 0;
-        exhibitionMapImage.src = floorMapImages[floor];
-        exhibitionMapImage.alt = `${floor}の専門展示マップ`;
-        floorTabs.forEach(t => {
-            t.classList.remove("is-active");
-        });
-
-        tab.classList.add("is-active");
+        activeFloor = tab.dataset.floor;
+        floorTabs.forEach((t) => t.classList.toggle("is-active", t === tab));
+        exhibitionMapImage.src = floorMapImages[activeFloor];
+        exhibitionMapImage.alt = tab.dataset.floor + "の専門展示マップ";
         renderItems();
         renderPins();
     });
 });
 
-search.addEventListener("input", () => {
-    const keyword = search.value.trim().toLowerCase();
-
-    const selected = [...filters.querySelectorAll("input:checked")]
-        .map((input) => input.value);
-
-    const filterKey = activeTab === "exhibition" ? "name" : "course";
-
-    const matchedItems = exhibitionItems
-        .filter((item) =>
-            !selected.length || selected.includes(item[filterKey])
-        )
-        .filter((item) =>
-            `${item.name}${item.course}${item.place}`
-                .toLowerCase()
-                .includes(keyword)
+// 展示タブ（展示 / コース/部活）の切り替え
+document.querySelectorAll(".exhibition-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+        activeTab = tab.dataset.tab;
+        document.querySelectorAll(".exhibition-tab").forEach((t) =>
+            t.classList.toggle("is-active", t === tab)
         );
+        renderFilters();
+        renderItems();
+    });
+});
 
-    // 検索結果がある場合、最初の該当階へ移動
-    if ((keyword || selected.length) && matchedItems.length > 0) {
-        const firstFloor = matchedItems[0].floor;
-
-        if (firstFloor !== activeFloor) {
-            activeFloor = firstFloor;
-
-            exhibitionMapImage.src = floorMapImages[firstFloor];
-            exhibitionMapImage.alt = `${firstFloor}の専門展示マップ`;
-
-            floorTabs.forEach((tab) => {
-                tab.classList.toggle(
-                    "is-active",
-                    tab.dataset.floor === firstFloor
-                );
-            });
-        }
-    }
-
+// 検索入力
+search.addEventListener("input", () => {
     renderFilters();
     renderItems();
     renderPins();
 });
+
+
+
+// ──────────────────────────────────────────────
+//  PC：カードパネルの高さをマップに合わせる
+// ──────────────────────────────────────────────
+const _mapSection = document.querySelector('.exhibition-map-section');
+const _cardsPanel = document.querySelector('.exhibition-cards-panel');
+
+function syncCardsPanelHeight() {
+    if (!_mapSection || !_cardsPanel) return;
+    if (window.innerWidth >= 960) {
+        _cardsPanel.style.maxHeight = _mapSection.offsetHeight + 'px';
+    } else {
+        _cardsPanel.style.maxHeight = '';
+    }
+}
+
+// 初回レンダリング
 renderFilters();
 renderItems();
 renderPins();
 
-// 地図のズーム・パン
-const mapContent = document.getElementById("exhibitionMapContent");
-const mapArea = document.querySelector(".exhibition-map");
-
-let mapScale = 1;
-let mapX = 0;
-let mapY = 0;
-
-// 二本指ズーム開始時の情報
-let startDistance = 0;
-let startScale = 1;
-
-// 一本指パン開始時の情報
-let startPanX = 0;
-let startPanY = 0;
-let startMapX = 0;
-let startMapY = 0;
-
-function getTouchDistance(touch1, touch2) {
-    const dx = touch1.clientX - touch2.clientX;
-    const dy = touch1.clientY - touch2.clientY;
-
-    return Math.sqrt(dx * dx + dy * dy);
+syncCardsPanelHeight();
+window.addEventListener('resize', syncCardsPanelHeight);
+if (window.ResizeObserver && _mapSection) {
+    new ResizeObserver(syncCardsPanelHeight).observe(_mapSection);
 }
-
-// 地図を反映
-function updateMapTransform() {
-    mapContent.style.transform =
-        `translate(${mapX}px, ${mapY}px) scale(${mapScale})`;
-}
-
-// タッチ開始
-mapArea.addEventListener("touchstart", (event) => {
-
-    // 二本指 → ズーム開始
-    if (event.touches.length === 2) {
-
-        startDistance = getTouchDistance(
-            event.touches[0],
-            event.touches[1]
-        );
-
-        startScale = mapScale;
-
-        return;
-    }
-
-    // 一本指 → パン開始
-    if (event.touches.length === 1 && mapScale > 1) {
-
-        startPanX = event.touches[0].clientX;
-        startPanY = event.touches[0].clientY;
-
-        startMapX = mapX;
-        startMapY = mapY;
-    }
-
-}, { passive: true });
-
-
-// タッチ移動
-mapArea.addEventListener("touchmove", (event) => {
-    // 二本指 → 拡大・縮小
-    if (event.touches.length === 2) {
-
-        event.preventDefault();
-
-        const currentDistance = getTouchDistance(
-            event.touches[0],
-            event.touches[1]
-        );
-
-        const scaleChange =
-            currentDistance / startDistance;
-
-        mapScale = startScale * scaleChange;
-
-        // 最小100%、最大300%
-        mapScale = Math.max(
-            1,
-            Math.min(mapScale, 3)
-        );
-
-        // 1倍まで縮小したら中央に戻す
-        if (mapScale === 1) {
-            mapX = 0;
-            mapY = 0;
-        }
-
-updateMapTransform();
-
-        return;
-    }
-
-    // 一本指 → 地図を移動
-    if (event.touches.length === 1 && mapScale > 1) {
-
-        event.preventDefault();
-
-        const currentX = event.touches[0].clientX;
-        const currentY = event.touches[0].clientY;
-
-        mapX =
-            startMapX + (currentX - startPanX);
-
-        mapY =
-            startMapY + (currentY - startPanY);
-
-        updateMapTransform();
-    }
-
-}, { passive: false });
-
-
-// タッチ終了
-mapArea.addEventListener("touchend", (event) => {
-
-    if (event.touches.length < 2) {
-        startDistance = 0;
-    }
-
-});

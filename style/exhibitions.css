@@ -170,50 +170,8 @@
     pointer-events: none;
 }
 
-/* 地図を押したときの情報 */
-.exhibition-map-info {
-    position: relative;
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 12px;
-    margin-top: 10px;
-    padding: 12px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
-}
 
-.exhibition-map-info[hidden] {
-    display: none;
-}
 
-.exhibition-map-info-close {
-    position: absolute;
-    top: 5px;
-    right: 8px;
-    border: 0;
-    background: transparent;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.exhibition-map-info-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.exhibition-map-info-text h3 {
-    margin: 0 0 5px;
-    font-size: .95rem;
-}
-
-.exhibition-map-info-text p {
-    margin: 3px 0;
-    color: #444;
-    font-size: .72rem;
-}
 
 /* 階数切り替え */
 .exhibition-floor-tabs {
@@ -384,9 +342,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
+.exhibition-card { transition: opacity 0.25s, filter 0.25s; }
+.exhibition-card.is-dimmed { opacity: 0.35; filter: grayscale(40%); }
 .exhibition-name { margin: 0 0 5px; color: #252525; font-size: .94rem; font-weight: 700; }
 .exhibition-club { margin: 0; color: #444; font-size: .72rem;  display: flex; align-items: center; flex-wrap: wrap; gap: 6px;}
-.exhibition-badge { display: inline-block;  padding: 1px 7px; color: #fff; background: #f05d9d; border-radius: 10px; font-size: .64rem; font-weight: 700; white-space: nowrap; margin: 0;}
+.exhibition-badge { display: inline-block;  padding: 1px 7px; color: #333; background: #FFD400; border-radius: 10px; font-size: .64rem; font-weight: 700; white-space: nowrap; margin: 0;}
 .exhibition-image { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; background: #fff7f1; }
 .exhibition-empty { padding: 24px; color: #fff; text-align: center; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -394,4 +354,93 @@
 @media (min-width: 700px) {
     .exhibitions-page { padding-top: 100px; }
     .exhibition-list { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== PC レイアウト：マップ左・カード右 ===== */
+@media (min-width: 960px) {
+    /* ページ全体を横幅広げる */
+    .exhibitions-page {
+        width: min(100% - 48px, 1160px);
+    }
+
+    /* コンテンツエリアを左右2列に */
+    .exhibition-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start; /* 各列が自分の高さで収まる */
+    }
+
+    /* カードパネル：JSがmax-heightを設定してスクロール制御 */
+    .exhibition-cards-panel {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 3px solid #00B6C0;
+        border-radius: 20px;
+        background: rgba(0, 182, 192, 0.18);
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    /* カードリストがパネルからはみ出たらスクロール */
+    .exhibition-list {
+        flex: 1;
+        overflow-y: auto;
+        min-height: 0;
+        grid-template-columns: 1fr; /* PC右列では1列に戻す */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 93, 157, 0.35) transparent;
+    }
+
+    .exhibition-list::-webkit-scrollbar {
+        width: 6px;
+    }
+    .exhibition-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .exhibition-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 93, 157, 0.35);
+        border-radius: 3px;
+    }
+
+    /* 件数テキスト */
+    .exhibition-count {
+        flex-shrink: 0;
+        margin: 0 4px 10px;
+    }
+}
+
+.card-pin-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #f05d9d;
+    color: #fff;
+    font-size: .6rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.exhibition-poster-info {
+    margin-top: 12px;
+    padding: 0 4px 4px;
+}
+
+.exhibition-poster-name {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #151515;
+}
+
+.exhibition-poster-meta {
+    margin: 0;
+    font-size: .78rem;
+    color: #555;
 }
