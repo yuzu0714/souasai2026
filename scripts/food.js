@@ -19,24 +19,24 @@
 const DEFAULT_FOOD_IMAGE = "images/food-baby-castella.png";
 
 const foodItems = [
-    { club: "弓道",       name: "唐揚げ",         category: "club", image: "", price: "", detail: "" },
-    { club: "5I",         name: "フランクフルト",  category: "club", image: "", price: "", detail: "" },
-    { club: "5Z",         name: "ベビーカステラ",  category: "club", image: "", price: "", detail: "" },
-    { club: "去年度執行委員", name: "かき氷",      category: "club", image: "", price: "", detail: "" },
-    { club: "書道",       name: "たい焼き",        category: "club", image: "", price: "", detail: "" },
-    { club: "柔道",       name: "パン",            category: "club", image: "", price: "", detail: "" },
-    { club: "棋道",       name: "アメリカンドッグ",category: "club", image: "", price: "", detail: "" },
-    { club: "野球",       name: "餃子",            category: "club", image: "", price: "", detail: "" },
-    { club: "バドミントン",name: "わたあめ",       category: "club", image: "", price: "", detail: "" },
-    { club: "陸上",       name: "アイス",          category: "club", image: "../images/foods/rikujo.webp", price: "", detail: "" },
-    { club: "バレー",     name: "ドーナツ",        category: "club", image: "", price: "", detail: "" },
-    { club: "ロボ研",     name: "ジュース",        category: "club", image: "", price: "", detail: "" },
+    { club: "弓道",       name: "唐揚げ",         category: "club", image: "images/foods/karaage.webp", price: "", detail: "" },
+    { club: "5I",         name: "フランクフルト",  category: "club", image: "images/foods/furankufuruto.webp", price: "", detail: "" },
+    { club: "5Z",         name: "ベビーカステラ",  category: "club", image: "images/foods/bebikasutera.webp", price: "", detail: "" },
+    { club: "去年度執行委員", name: "かき氷",      category: "club", image: "images/foods/kakigori.webp", price: "", detail: "" },
+    { club: "書道",       name: "たい焼き",        category: "club", image: "images/foods/taiyaki.webp", price: "", detail: "" },
+    { club: "柔道",       name: "パン",            category: "club", image: "images/foods/pan.webp", price: "", detail: "" },
+    { club: "棋道",       name: "アメリカンドッグ",category: "club", image: "images/foods/amerikandog.webp", price: "", detail: "" },
+    { club: "野球",       name: "餃子",            category: "club", image: "images/foods/gyoza.webp", price: "", detail: "" },
+    { club: "バドミントン",name: "わたあめ",       category: "club", image: "images/foods/wataame.webp", price: "", detail: "" },
+    { club: "陸上",       name: "アイス",          category: "club", image: "images/foods/rikujo.webp", price: "", detail: "" },
+    { club: "バレー",     name: "ドーナツ",        category: "club", image: "images/foods/donattsu.webp", price: "", detail: "" },
+    { club: "ロボ研",     name: "ジュース",        category: "club", image: "images/foods/jusu.webp", price: "", detail: "" },
     { club: "サッカー",   name: "駄菓子",          category: "club", image: "", price: "", detail: "" },
-    { club: "バスケ",     name: "たこ焼き",        category: "club", image: "", price: "", detail: "" },
-    { club: "3I",         name: "焼き鳥",          category: "club", image: "", price: "", detail: "" },
-    { club: "卓球",       name: "チュロス",        category: "club", image: "", price: "", detail: "" },
-    { club: "テニス",     name: "クレープ",        category: "club", image: "", price: "", detail: "" },
-    { club: "ソフトテニス",name: "焼きそば",       category: "club", image: "", price: "", detail: "" }
+    { club: "バスケ",     name: "たこ焼き",        category: "club", image: "images/foods/takoyaki.webp", price: "", detail: "" },
+    { club: "3I",         name: "焼き鳥",          category: "club", image: "images/foods/yakitori.webp", price: "", detail: "" },
+    { club: "卓球",       name: "チュロス",        category: "club", image: "images/foods/churosu.webp", price: "", detail: "" },
+    { club: "テニス",     name: "クレープ",        category: "club", image: "images/foods/kurepu.webp", price: "", detail: "" },
+    { club: "ソフトテニス",name: "焼きそば",       category: "club", image: "images/foods/yakisoba.webp", price: "", detail: "" }
 ];
 
 // ============================================================
