@@ -18,33 +18,32 @@ const DEFAULT_EXHIBITION_IMAGE = "images/food-baby-castella.png";
 
 const exhibitionItems = [
     //1F
-    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "", mapX: 54, mapY: 42 },
+    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "../images/exhibitions/kagaku.webp", mapX: 54, mapY: 42 },
     { name: "機械専門展示", course: "機械コース", place: "3M教室", floor: "1F", number: "21", category: "course", image: "", mapX: 36, mapY: 55 },
     { name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "31", category: "course", image: "", mapX: 27.5, mapY: 55 },
     { name: "機械専門展示", course: "機械コース", place: "5M教室", floor: "1F", number: "41", category: "course", image: "", mapX: 19, mapY: 55 },
     { name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "51", category: "course", image: "../images/exhibitions/e.webp", mapX: 69, mapY: 20 },
-    { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "61", category: "course", image: "", mapX: 84, mapY: 82 },
+    { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "61", category: "course", image: "../images/exhibitions/program.webp", mapX: 84, mapY: 82 },
     //2F
-    { name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "12", category: "course", image: "", mapX: 39, mapY: 25 },
-    { name: "軽音学部ライブ", course: "軽音学部", place: "1-2教室", floor: "2F", number: "22", category: "course", image: "", mapX: 29, mapY: 25 },
+    { name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "12", category: "course", image: "../images/exhibitions/keion.webp", mapX: 39, mapY: 25 },
+    { name: "軽音学部ライブ", course: "軽音学部", place: "1-2教室", floor: "2F", number: "22", category: "course", image: "../images/exhibitions/keion.webp", mapX: 29, mapY: 25 },
     { name: "電気専門展示", course: "電気コース", place: "2E教室", floor: "2F", number: "32", category: "course", image: "", mapX: 63, mapY: 14 },
     { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "42", category: "course", image: "", mapX: 71.5, mapY: 14 },
     { name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "", mapX: 80, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "62", category: "course", image: "", mapX: 54, mapY: 38 },
-    { name: "フォトスポット", course: "美術部", place: "5E教室", floor: "2F", number: "72", category: "course", image: "", mapX: 36, mapY: 49 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "../images/exhibitions/bijutu.webp", mapX: 27.5, mapY: 49 },
     { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "../images/exhibitions/shodo.webp", mapX: 21.5, mapY: 46.5 },
     { name: "写真展示", course: "写真部", place: "2M教室", floor: "2F", number: "102", category: "course", image: "../images/exhibitions/syashin.webp", mapX: 17.5, mapY: 50.5 },
-    { name: "天文愛好会展示", course: "天文愛好会", place: "3Z教室", floor: "2F", number: "122", category: "course", image: "../images/exhibitions/tenmon.webp", mapX: 34, mapY: 76 },
+    { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "122", category: "course", image: "../images/exhibitions/tenmon.webp", mapX: 34, mapY: 76 },
     { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "132", category: "course", image: "../images/exhibitions/rakugo.webp", mapX: 25, mapY: 76 },
-    { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "142", category: "course", image: "", mapX: 84, mapY: 76 },
+    { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "142", category: "course", image: "../images/exhibitions/program.webp", mapX: 84, mapY: 76 },
     //3F
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "13", category: "course", image: "", mapX: 38.5, mapY: 25 },
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-4教室", floor: "3F", number: "23", category: "course", image: "", mapX: 29, mapY: 25 },
-    { name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "", mapX: 19, mapY: 48.5 },
-    { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "", mapX: 27.5, mapY: 48.5 },
-    { name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "", mapX: 36, mapY: 48.5 },
-    { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "63", category: "course", image: "", mapX: 34, mapY: 68 },
+    { name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "../images/exhibitions/joho.webp", mapX: 19, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "../images/exhibitions/joho.webp", mapX: 27.5, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "../images/exhibitions/joho.webp", mapX: 36, mapY: 48.5 },
+    { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "63", category: "course", image: "../images/exhibitions/kenchiku.webp", mapX: 34, mapY: 68 },
     { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "73", category: "course", image: "", mapX: 65, mapY: 78 }
 ];
 
@@ -404,3 +403,164 @@ window.addEventListener('resize', syncCardsPanelHeight);
 if (window.ResizeObserver && _mapSection) {
     new ResizeObserver(syncCardsPanelHeight).observe(_mapSection);
 }
+
+// ──────────────────────────────────────────────
+//  マップ ズーム＆パン（ホイール・ドラッグ・ピンチ）
+// ──────────────────────────────────────────────
+(function () {
+    const mapEl     = document.querySelector('.exhibition-map');
+    const mapContent= document.getElementById('exhibitionMapContent');
+    const btnIn     = document.getElementById('mapZoomIn');
+    const btnOut    = document.getElementById('mapZoomOut');
+    const btnReset  = document.getElementById('mapZoomReset');
+
+    if (!mapEl || !mapContent) return;
+
+    const MIN = 1, MAX = 5, STEP = 0.35;
+
+    let scale = 1, ox = 0, oy = 0;
+
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+    function applyTransform(animate) {
+        // 移動量の上限：マップがはみ出しすぎないよう制限
+        const maxX = (scale - 1) * mapEl.clientWidth  / 2;
+        const maxY = (scale - 1) * mapEl.clientHeight / 2;
+        ox = clamp(ox, -maxX, maxX);
+        oy = clamp(oy, -maxY, maxY);
+        mapContent.style.transition = animate ? 'transform 0.22s cubic-bezier(0.25,0.8,0.25,1)' : 'none';
+        mapContent.style.transform  = `translate(${ox}px,${oy}px) scale(${scale})`;
+        mapEl.style.cursor          = scale > 1 ? (dragging ? 'grabbing' : 'grab') : 'default';
+        syncButtons();
+    }
+
+    function zoomAt(newScale, cx, cy) {
+        // cx,cy: mapEl 左上基準のオフセット
+        const px = cx - mapEl.clientWidth  / 2;
+        const py = cy - mapEl.clientHeight / 2;
+        const ratio = newScale / scale;
+        ox = px + (ox - px) * ratio;
+        oy = py + (oy - py) * ratio;
+        scale = newScale;
+        applyTransform(false);
+    }
+
+    function syncButtons() {
+        if (btnIn)    btnIn.disabled    = scale >= MAX;
+        if (btnOut)   btnOut.disabled   = scale <= MIN;
+        if (btnReset) btnReset.disabled = (scale === 1 && ox === 0 && oy === 0);
+    }
+
+    // ── マウスホイール ──────────────────────────
+    mapEl.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const rect = mapEl.getBoundingClientRect();
+        const cx   = e.clientX - rect.left;
+        const cy   = e.clientY - rect.top;
+        const factor = e.deltaY < 0 ? 1.06 : 1 / 1.06;
+        zoomAt(clamp(scale * factor, MIN, MAX), cx, cy);
+    }, { passive: false });
+
+    // ── マウスドラッグ ──────────────────────────
+    let dragging = false, dsx = 0, dsy = 0, dox = 0, doy = 0;
+
+    mapEl.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        dragging = true;
+        dsx = e.clientX; dsy = e.clientY;
+        dox = ox;        doy = oy;
+        mapEl.style.cursor = 'grabbing';
+        e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        ox = dox + (e.clientX - dsx);
+        oy = doy + (e.clientY - dsy);
+        applyTransform(false);
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        applyTransform(false);
+    });
+
+    // ── タッチ（ピンチ＋パン） ─────────────────
+    let lastDist = 0, lastMidX = 0, lastMidY = 0;
+
+    function getTouches(e) { return Array.from(e.touches).slice(0, 2); }
+
+    function touchInfo(t, rect) {
+        const mid = t.length >= 2
+            ? { x: (t[0].clientX + t[1].clientX) / 2, y: (t[0].clientY + t[1].clientY) / 2 }
+            : { x: t[0].clientX, y: t[0].clientY };
+        const dist = t.length >= 2
+            ? Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY)
+            : 0;
+        return { cx: mid.x - rect.left, cy: mid.y - rect.top, dist };
+    }
+
+    mapEl.addEventListener('touchstart', (e) => {
+        const t = getTouches(e);
+        const rect = mapEl.getBoundingClientRect();
+        const info = touchInfo(t, rect);
+        lastDist = info.dist; lastMidX = info.cx; lastMidY = info.cy;
+        e.preventDefault();
+    }, { passive: false });
+
+    mapEl.addEventListener('touchmove', (e) => {
+        const t = getTouches(e);
+        const rect = mapEl.getBoundingClientRect();
+        const info = touchInfo(t, rect);
+
+        // パン
+        ox += info.cx - lastMidX;
+        oy += info.cy - lastMidY;
+
+        // ピンチ
+        if (t.length >= 2 && lastDist > 0) {
+            const ratio    = info.dist / lastDist;
+            const newScale = clamp(scale * ratio, MIN, MAX);
+            const px = info.cx - mapEl.clientWidth  / 2;
+            const py = info.cy - mapEl.clientHeight / 2;
+            ox = px + (ox - px) * (newScale / scale);
+            oy = py + (oy - py) * (newScale / scale);
+            scale = newScale;
+        }
+
+        lastDist = info.dist; lastMidX = info.cx; lastMidY = info.cy;
+        applyTransform(false);
+        e.preventDefault();
+    }, { passive: false });
+
+    mapEl.addEventListener('touchend', (e) => {
+        const t = getTouches(e);
+        if (t.length > 0) {
+            const rect = mapEl.getBoundingClientRect();
+            const info = touchInfo(t, rect);
+            lastDist = info.dist; lastMidX = info.cx; lastMidY = info.cy;
+        }
+    });
+
+    // ── ズームボタン ────────────────────────────
+    function zoomCenter(factor) {
+        const cx = mapEl.clientWidth  / 2;
+        const cy = mapEl.clientHeight / 2;
+        zoomAt(clamp(scale * factor, MIN, MAX), cx, cy);
+        applyTransform(true);
+    }
+
+    if (btnIn)    btnIn.addEventListener('click',    () => zoomCenter(1 + STEP));
+    if (btnOut)   btnOut.addEventListener('click',   () => zoomCenter(1 / (1 + STEP)));
+    if (btnReset) btnReset.addEventListener('click', () => {
+        scale = 1; ox = 0; oy = 0; applyTransform(true);
+    });
+
+    // 階数切り替え時にリセット
+    document.querySelectorAll('.floor-tab').forEach(tab =>
+        tab.addEventListener('click', () => { scale = 1; ox = 0; oy = 0; applyTransform(true); })
+    );
+
+    syncButtons();
+})();

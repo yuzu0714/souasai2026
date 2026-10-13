@@ -68,8 +68,8 @@
 }
 
 .footer-logo .logo-box a:first-child {
-  width: auto;
-  padding: 10px 12px;
+  width: 60px;
+  padding: 0;
 }
 
 .footer-logo img {
@@ -79,8 +79,9 @@
 }
 
 .footer-logo a:first-child img {
-  width: auto;
+  width: 40px;
   height: 40px;
+  object-fit: contain;
 }
 
 .footer-copyright {
@@ -128,8 +129,8 @@
   }
 
   .footer-logo .logo-box a:first-child {
-    width: auto;
-    padding: 7px 9px;
+    width: 44px;
+    padding: 0;
   }
 
   .footer-logo img {
@@ -138,8 +139,9 @@
   }
 
   .footer-logo a:first-child img {
-    width: auto;
+    width: 30px;
     height: 30px;
+    object-fit: contain;
   }
 
   .footer-copyright {

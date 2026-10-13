@@ -95,6 +95,20 @@
             </div>
             <p class="food-count" id="foodCount"></p>
             <section class="food-list" id="foodList" aria-live="polite"></section>
+
+        <!-- 売店詳細モーダル -->
+        <div class="food-modal-overlay" id="foodModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalFoodName">
+            <div class="food-modal">
+                <button class="food-modal-close" id="foodModalClose" aria-label="閉じる">✕</button>
+                <img class="food-modal-image" id="modalImage" src="" alt="">
+                <div class="food-modal-body">
+                    <p class="food-modal-club" id="modalClub"></p>
+                    <h2 class="food-modal-name" id="modalFoodName"></h2>
+                    <p class="food-modal-price" id="modalPrice"></p>
+                    <p class="food-modal-detail" id="modalDetail"></p>
+                </div>
+            </div>
+        </div>
         </main>
 
         <footer class="site-footer">
