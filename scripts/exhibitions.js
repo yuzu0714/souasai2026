@@ -18,7 +18,7 @@ const DEFAULT_EXHIBITION_IMAGE = "images/food-baby-castella.png";
 
 const exhibitionItems = [
     //1F
-    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "../images/exhibitions/kagaku.webp", mapX: 54, mapY: 42 },
+    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "11", category: "course", image: "../images/exhibitions/z.webp", mapX: 54, mapY: 42 },
     { name: "機械専門展示", course: "機械コース", place: "3M教室", floor: "1F", number: "21", category: "course", image: "", mapX: 36, mapY: 55 },
     { name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "31", category: "course", image: "", mapX: 27.5, mapY: 55 },
     { name: "機械専門展示", course: "機械コース", place: "5M教室", floor: "1F", number: "41", category: "course", image: "", mapX: 19, mapY: 55 },
@@ -27,9 +27,9 @@ const exhibitionItems = [
     //2F
     { name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "12", category: "course", image: "../images/exhibitions/keion.webp", mapX: 39, mapY: 25 },
     { name: "軽音学部ライブ", course: "軽音学部", place: "1-2教室", floor: "2F", number: "22", category: "course", image: "../images/exhibitions/keion.webp", mapX: 29, mapY: 25 },
-    { name: "電気専門展示", course: "電気コース", place: "2E教室", floor: "2F", number: "32", category: "course", image: "", mapX: 63, mapY: 14 },
-    { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "42", category: "course", image: "", mapX: 71.5, mapY: 14 },
-    { name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "", mapX: 80, mapY: 14 },
+    { name: "電気専門展示", course: "電気コース", place: "2E教室", floor: "2F", number: "32", category: "course", image: "../images/exhibitions/e.webp", mapX: 63, mapY: 14 },
+    { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "42", category: "course", image: "../images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
+    { name: "電気専門展示", course: "電気コース", place: "4E教室", floor: "2F", number: "52", category: "course", image: "../images/exhibitions/e.webp", mapX: 80, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "62", category: "course", image: "", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "82", category: "course", image: "../images/exhibitions/bijutu.webp", mapX: 27.5, mapY: 49 },
     { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "92", category: "course", image: "../images/exhibitions/shodo.webp", mapX: 21.5, mapY: 46.5 },
@@ -40,9 +40,9 @@ const exhibitionItems = [
     //3F
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "13", category: "course", image: "", mapX: 38.5, mapY: 25 },
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-4教室", floor: "3F", number: "23", category: "course", image: "", mapX: 29, mapY: 25 },
-    { name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "../images/exhibitions/joho.webp", mapX: 19, mapY: 48.5 },
-    { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "../images/exhibitions/joho.webp", mapX: 27.5, mapY: 48.5 },
-    { name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "../images/exhibitions/joho.webp", mapX: 36, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "3I教室", floor: "3F", number: "33", category: "course", image: "../images/exhibitions/i.webp", mapX: 19, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "43", category: "course", image: "../images/exhibitions/i.webp", mapX: 27.5, mapY: 48.5 },
+    { name: "情報専門展示", course: "情報コース", place: "中講義室", floor: "3F", number: "53", category: "course", image: "../images/exhibitions/i.webp", mapX: 36, mapY: 48.5 },
     { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "63", category: "course", image: "../images/exhibitions/kenchiku.webp", mapX: 34, mapY: 68 },
     { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "73", category: "course", image: "", mapX: 65, mapY: 78 }
 ];
