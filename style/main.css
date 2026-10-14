@@ -316,22 +316,6 @@ body {
     overflow: hidden;
     background: #d7ebe4;
     line-height: 0;
-    animation: hyoushi-shake 0.3s linear 2.48s;
-}
-
-/* 校舎と人物を同じ倍率で引く。ロゴと光は外側に置いて位置をずらさない */
-.hyoushi-stage {
-    position: absolute;
-    inset: 0;
-    transform-origin: center 30%;
-    transform: scale(1.25);
-    animation: hyoushi-zoomout 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes hyoushi-zoomout {
-    to {
-        transform: scale(1);
-    }
 }
 
 /* 背景も人物も同じキャンバス。枠の比率が絵と一致するので、終了時は all.webp と同じ構図になる */
@@ -344,47 +328,43 @@ body {
     object-fit: fill;
 }
 
-/* 校舎が先にふっと出て、下の段を左から、そのあと上の段を左から浮かぶ */
+/* 校舎は暗めの寄りから、人物よりずっとゆっくり明るく等倍へ戻る */
 .hyoushi-bg {
     opacity: 0;
-    animation: hyoushi-bg-in 0.7s ease forwards;
+    transform: scale(1.08);
+    transform-origin: center 30%;
+    filter: brightness(0.6);
+    animation: hyoushi-bg-in 4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hyoushi-layer {
     opacity: 0;
-    transform: translateY(18%);
-    animation: hyoushi-arrive 0.72s cubic-bezier(0.16, 0.8, 0.24, 1) forwards;
+    transform: translateY(6%);
+    animation: hyoushi-arrive 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: var(--hyoushi-delay, 0.3s);
 }
 
 @keyframes hyoushi-bg-in {
     to {
         opacity: 1;
+        transform: scale(1);
+        filter: brightness(1);
     }
 }
 
 @keyframes hyoushi-arrive {
-    0% {
-        opacity: 0;
-        transform: translateY(18%);
-    }
-
-    60% {
+    70% {
         opacity: 1;
-        transform: translateY(-2%);
+        transform: translateY(-0.35%);
     }
 
-    80% {
-        transform: translateY(0.6%);
-    }
-
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* 全員のあと、タイトルを大きい状態から叩きつけ、着地で表紙を揺らす */
+/* 全員のあと、タイトルを少し下からすっと出す。最後の人物は 1.4s + 0.95s */
 .hyoushi-logo {
     position: absolute;
     z-index: 3;
@@ -393,121 +373,19 @@ body {
     width: min(72%, 520px);
     height: auto;
     opacity: 0;
-    transform: translateX(-50%) scale(2.6);
-    transform-origin: center center;
-    animation: hyoushi-logo-slam 0.48s cubic-bezier(0.2, 0.85, 0.28, 1) 2.2s forwards;
+    transform: translateX(-50%) translateY(12px);
+    animation: hyoushi-logo-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 2.3s forwards;
     pointer-events: none;
 }
 
-@keyframes hyoushi-logo-slam {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) scale(2.6);
-    }
-
-    18% {
+@keyframes hyoushi-logo-in {
+    to {
         opacity: 1;
-    }
-
-    62% {
-        opacity: 1;
-        transform: translateX(-50%) scale(0.94);
-    }
-
-    80% {
-        transform: translateX(-50%) scale(1.03);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-    }
-}
-
-.hyoushi-burst,
-.hyoushi-flash {
-    position: absolute;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0;
-}
-
-.hyoushi-burst {
-    left: 50%;
-    top: 36%;
-    width: 150%;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%) scale(0.2);
-    background: repeating-conic-gradient(
-        from 0deg,
-        rgba(255, 214, 80, 0) 0deg 10deg,
-        rgba(255, 244, 190, 0.9) 10deg 16deg
-    );
-    animation: hyoushi-burst 0.7s ease-out 2.42s forwards;
-}
-
-.hyoushi-flash {
-    inset: 0;
-    background: #fff;
-    animation: hyoushi-flash 0.38s ease-out 2.48s forwards;
-}
-
-@keyframes hyoushi-burst {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
-    }
-
-    20% {
-        opacity: 0.95;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1.2) rotate(22deg);
-    }
-}
-
-@keyframes hyoushi-flash {
-    0% {
-        opacity: 0;
-    }
-
-    18% {
-        opacity: 0.82;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes hyoushi-shake {
-    0%,
-    100% {
-        transform: translate3d(0, 0, 0);
-    }
-
-    20% {
-        transform: translate3d(-7px, 4px, 0);
-    }
-
-    40% {
-        transform: translate3d(6px, -3px, 0);
-    }
-
-    60% {
-        transform: translate3d(-4px, 2px, 0);
-    }
-
-    80% {
-        transform: translate3d(2px, -1px, 0);
+        transform: translateX(-50%) translateY(0);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hyoushi-hero,
-    .hyoushi-stage,
     .hyoushi-bg,
     .hyoushi-layer,
     .hyoushi-logo {
@@ -519,10 +397,5 @@ body {
 
     .hyoushi-logo {
         transform: translateX(-50%);
-    }
-
-    .hyoushi-burst,
-    .hyoushi-flash {
-        display: none;
     }
 }
