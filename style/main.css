@@ -98,23 +98,45 @@ body {
 /* ===== 流れる文字（main2.cssより） ===== */
 .ticker {
     overflow: hidden;
+    color: #fff;
+    background: #00b6c0;
+    font-weight: 700;
+    line-height: 1.4;
     white-space: nowrap;
-    background: #06b6d4;
-    padding: 10px 0;
 }
 
 .ticker-track {
-    display: inline-block;
-    animation: ticker-scroll 30s linear infinite;
-    color: #fff;
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 24s linear infinite;
+}
+
+.ticker-track span {
+    display: block;
+    padding: 12px 3rem;
 }
 
 @keyframes ticker-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .ticker-track span {
+        font-size: 0.5rem;
+        padding: 10px 2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+        animation: none;
+    }
 }
 
 /* ===== aboutセクション（index.htmlより） ===== */
