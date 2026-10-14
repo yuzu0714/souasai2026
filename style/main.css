@@ -409,6 +409,64 @@ body {
     }
 }
 
+.hyoushi-burst,
+.hyoushi-flash {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.hyoushi-burst {
+    left: 50%;
+    top: 36%;
+    width: 150%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%) scale(0.2);
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 214, 80, 0) 0deg 10deg,
+        rgba(255, 244, 190, 0.9) 10deg 16deg
+    );
+    animation: hyoushi-burst 0.7s ease-out 2.42s forwards;
+}
+
+.hyoushi-flash {
+    inset: 0;
+    background: #fff;
+    animation: hyoushi-flash 0.38s ease-out 2.48s forwards;
+}
+
+@keyframes hyoushi-burst {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+    }
+
+    20% {
+        opacity: 0.95;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.2) rotate(22deg);
+    }
+}
+
+@keyframes hyoushi-flash {
+    0% {
+        opacity: 0;
+    }
+
+    18% {
+        opacity: 0.82;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes hyoushi-shake {
     0%,
     100% {
@@ -445,5 +503,10 @@ body {
 
     .hyoushi-logo {
         transform: translateX(-50%);
+    }
+
+    .hyoushi-burst,
+    .hyoushi-flash {
+        display: none;
     }
 }
