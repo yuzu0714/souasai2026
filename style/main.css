@@ -201,49 +201,60 @@ body {
     }
 }
 
-/* ===== ページカード一覧（index2.htmlより） ===== */
+/* ===== ページカード（main2.cssより） ===== */
 .page-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    width: 100%;
+    display: grid;
+    gap: 18px;
+    width: 480px;
+    max-width: 92%;
+    margin: 30px auto 10px;
 }
 
 .page-card {
+    position: relative;
     display: flex;
+    min-height: 180px;
+    flex-direction: column;
     align-items: center;
-    gap: 18px;
-    padding: 22px 24px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 18px;
+    color: #fff;
+    background: linear-gradient(rgba(17, 31, 42, 0.62), rgba(17, 31, 42, 0.62)), url("../images/people.PNG") center 42% / cover;
+    border: 2px solid #00b6c0;
+    border-radius: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
     text-decoration: none;
-    background: #fff;
-    border-bottom: 1px solid #e5e7eb;
-    transition: background 0.18s;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.page-card:hover {
-    background: #f0f9ff;
+.page-card:hover,
+.page-card:focus-visible {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+}
+
+.page-card:focus-visible {
+    outline: 3px solid #ffd400;
+    outline-offset: 3px;
 }
 
 .page-card-title {
-    font-family: "Caprasimo", serif;
-    font-size: clamp(1.1rem, 4vw, 1.6rem);
-    color: #263d82;
-    letter-spacing: 0.08em;
-    min-width: 0;
+    font-family: "Caprasimo", Georgia, serif;
+    font-size: clamp(1.55rem, 6vw, 2.4rem);
+    font-weight: 400;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
 }
 
 .page-card-line {
-    flex: 1;
-    height: 1px;
-    background: #e5e7eb;
+    width: min(90%, 420px);
+    margin: 8px 0 7px;
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .page-card-subtitle {
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    color: #6b7280;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    white-space: nowrap;
+    font-size: 0.95rem;
 }
 
 /* スクロールアニメーション */
