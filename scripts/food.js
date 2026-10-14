@@ -133,7 +133,7 @@ function renderItems() {
         return;
     }
 
-    list.innerHTML = visible.map((item, idx) => `
+    list.innerHTML = `<div class="food-container">` + visible.map((item, idx) => `
         <article class="food-card" data-idx="${idx}" tabindex="0" role="button" aria-label="${item.name}の詳細を見る">
             <img
                 class="food-image"
@@ -142,12 +142,12 @@ function renderItems() {
                 onerror="${IMG_ONERROR}"
             >
             <div class="food-card-body">
-                <p class="food-club">${item.club}${item.tag ? `<span class="food-badge">${item.tag}</span>` : ""}</p>
                 <h2 class="food-name">${item.name}</h2>
+                <p class="food-club">${item.club}${item.tag ? `<span class="food-badge">${item.tag}</span>` : ""}</p>
                 ${item.price ? `<p class="food-price">${item.price}</p>` : ""}
             </div>
         </article>
-    `).join("");
+    `).join("") + `</div>`;
 
     // カードクリック → モーダル
     list.querySelectorAll(".food-card").forEach((card, i) => {
