@@ -139,65 +139,66 @@ body {
     }
 }
 
-/* ===== aboutセクション（index.htmlより） ===== */
+/* ===== 黄色いスペース（index.htmlより） ===== */
 .about-section {
-    background: #fde68a;
-    padding: 40px 20px 50px;
+    width: 480px;
+    max-width: 100%;
+    margin: 28px auto 0;
+    background-color: #F5C800;
+    border-radius: 50% 50% 0 0 / 200px 200px 0 0;
+    padding: 100px 24px 40px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .about-heading {
-    font-size: clamp(1.5rem, 5vw, 2.4rem);
-    color: #292936;
-    letter-spacing: 0.18em;
-    margin: 0 0 16px;
+    font-size: 40px;
+    font-weight: 800;
+    /* ExtraBold */
+    color: #1B3BCD;
+    margin: 0 0 20px;
 }
 
 .about-sub {
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    color: #292936;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: bold;
     line-height: 1.8;
-    margin: 0 0 16px;
+    margin: 0 0 20px;
 }
 
 .about-body {
-    font-size: clamp(0.85rem, 2vw, 1rem);
-    color: #444;
-    line-height: 1.85;
-    max-width: 640px;
-    margin: 0 auto 28px;
-}
-
-.about-img {
-    max-width: 480px;
-    margin: 0 auto 24px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    font-size: 14px;
+    line-height: 1.9;
+    text-align: center;
+    margin: 0 0 24px;
 }
 
 .about-img img {
-    display: block;
     width: 100%;
-    height: auto;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 24px;
 }
 
 .download-link {
-    display: inline-block;
-    padding: 12px 28px;
-    background: #263d82;
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 700;
-    border-radius: 999px;
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    transition: background 0.2s;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1B2A6B;
+    text-decoration: underline;
+    padding: 12px 0;
 }
 
-.download-link:hover {
-    background: #1a2d5a;
+@media (max-width: 768px) {
+    .about-section {
+        width: 90%;
+        border-radius: 50% 50% 0 0 / 175px 175px 0 0;
+        padding: 100px 24px 40px;
+    }
+
+    .about-img img {
+        max-width: 85%;
+    }
 }
 
 /* ===== ページカード一覧（index2.htmlより） ===== */
