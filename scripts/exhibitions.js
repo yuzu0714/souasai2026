@@ -327,6 +327,18 @@ function renderPins() {
             allCards.forEach((card) => {
                 card.classList.toggle("is-dimmed", card.dataset.number !== item.number);
             });
+
+            // クリックしたピンの点滅を止める
+            pin.classList.remove("is-blinking");
+
+            // 詳細モーダルを開く
+            openPoster(item);
+
+            // 対応カードへスクロール
+            const targetCard = document.querySelector(`.exhibition-card[data-number="${item.number}"]`);
+            if (targetCard) {
+                targetCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
         });
     });
 }
