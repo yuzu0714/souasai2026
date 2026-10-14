@@ -319,6 +319,21 @@ body {
     animation: hyoushi-shake 0.3s linear 2.48s;
 }
 
+/* 校舎と人物を同じ倍率で引く。ロゴと光は外側に置いて位置をずらさない */
+.hyoushi-stage {
+    position: absolute;
+    inset: 0;
+    transform-origin: center 30%;
+    transform: scale(1.25);
+    animation: hyoushi-zoomout 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hyoushi-zoomout {
+    to {
+        transform: scale(1);
+    }
+}
+
 /* 背景も人物も同じキャンバス。枠の比率が絵と一致するので、終了時は all.webp と同じ構図になる */
 .hyoushi-bg,
 .hyoushi-layer {
@@ -492,6 +507,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     .hyoushi-hero,
+    .hyoushi-stage,
     .hyoushi-bg,
     .hyoushi-layer,
     .hyoushi-logo {
