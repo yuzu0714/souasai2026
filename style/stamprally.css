@@ -149,6 +149,10 @@
   opacity: 1; /* 押したらグレー丸の上に表示 */
 }
 
+.stamp-slot.is-collected .stamp-slot-circle {
+  background: transparent; /* スタンプ済みはグレー背景を消す */
+}
+
 .stamp-slot-label {
   font-weight: 700;
   font-size: 15px;
