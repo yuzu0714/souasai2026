@@ -28,7 +28,7 @@ const foodItems = [
     { club: "棋道",       name: "アメリカンドッグ",category: "club", image: "images/foods/amerikandog.webp", price: "", detail: "" },
     { club: "野球",       name: "餃子",            category: "club", image: "images/foods/gyoza.webp", price: "", detail: "" },
     { club: "バドミントン",name: "わたあめ",       category: "club", image: "images/foods/wataame.webp", price: "", detail: "" },
-    { club: "陸上",       name: "アイス",          category: "club", image: "images/foods/rikujo.webp", price: "", detail: "" },
+    { club: "陸上",       name: "アイス",          category: "club", image: "images/foods/aisukurimu.webp", price: "", detail: "" },
     { club: "バレー",     name: "ドーナツ",        category: "club", image: "images/foods/donattsu.webp", price: "", detail: "" },
     { club: "ロボ研",     name: "ジュース",        category: "club", image: "images/foods/jusu.webp", price: "", detail: "" },
     { club: "サッカー",   name: "駄菓子",          category: "club", image: "", price: "", detail: "" },
@@ -127,7 +127,7 @@ function renderItems() {
         .filter((item) => !selected.length || selected.includes(item[filterKey]))
         .filter((item) => `${item.name}${item.club}`.toLowerCase().includes(keyword));
 
-    count.textContent = `${visible.length}件の売店`;
+    count.textContent = '';
     if (!visible.length) {
         list.innerHTML = '<p class="food-empty">該当する売店がありません。</p>';
         return;
@@ -135,16 +135,17 @@ function renderItems() {
 
     list.innerHTML = visible.map((item, idx) => `
         <article class="food-card" data-idx="${idx}" tabindex="0" role="button" aria-label="${item.name}の詳細を見る">
-            <div>
-                <h2 class="food-name">${item.name}</h2>
-                <p class="food-club">${item.club}${item.tag ? `<span class="food-badge">${item.tag}</span>` : ""}</p>
-            </div>
             <img
                 class="food-image"
                 src="${resolveImage(item.image)}"
                 alt="${item.name}"
                 onerror="${IMG_ONERROR}"
             >
+            <div class="food-card-body">
+                <p class="food-club">${item.club}${item.tag ? `<span class="food-badge">${item.tag}</span>` : ""}</p>
+                <h2 class="food-name">${item.name}</h2>
+                ${item.price ? `<p class="food-price">${item.price}</p>` : ""}
+            </div>
         </article>
     `).join("");
 
