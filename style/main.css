@@ -339,9 +339,21 @@ body {
 
 .hyoushi-layer {
     opacity: 0;
-    transform: translateY(6%);
-    animation: hyoushi-arrive 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: var(--hyoushi-delay, 0.3s);
+    transform: translateY(var(--from-y)) scale(var(--from-s));
+    animation: hyoushi-arrive var(--arrive) cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: var(--hyoushi-delay, 0.2s);
+}
+
+.hyoushi-layer[data-depth="back"] {
+    --from-y: 5%;
+    --from-s: 0.96;
+    --arrive: 0.55s;
+}
+
+.hyoushi-layer[data-depth="front"] {
+    --from-y: 14%;
+    --from-s: 1.06;
+    --arrive: 0.5s;
 }
 
 @keyframes hyoushi-bg-in {
@@ -353,14 +365,14 @@ body {
 }
 
 @keyframes hyoushi-arrive {
-    70% {
-        opacity: 1;
-        transform: translateY(-0.35%);
+    from {
+        opacity: 0;
+        transform: translateY(var(--from-y)) scale(var(--from-s));
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
