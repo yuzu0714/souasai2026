@@ -100,9 +100,7 @@
                 <img src="images/people.webp" alt="蒼阿祭チラシ">
             </div>
 
-            <a href="files/pamphlet.pdf" class="download-link" download>
-                ↓ パンフレットをダウンロードする
-            </a>
+            <a href="files/pamphlet.pdf" class="download-link" download onclick="return confirm('パンフレットをダウンロードしますか？')">↓ パンフレットをダウンロードする</a>
         </section>
 
         <!-- ページカード一覧（index2.htmlより） -->
@@ -168,6 +166,20 @@
 
     <script>
         // スクロールアニメーション
+
+        // 少し下にスクロールしたら「蒼阿祭について」セクションへ自動スクロール
+        (function() {
+            const aboutSection = document.getElementById('about');
+            if (!aboutSection) return;
+            let triggered = false;
+            window.addEventListener('scroll', function() {
+                if (triggered) return;
+                if (window.scrollY > 60) {
+                    triggered = true;
+                    aboutSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, { passive: true });
+        })();
         const scrollCards = document.querySelectorAll('.scroll-card');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
