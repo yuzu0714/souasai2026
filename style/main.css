@@ -308,54 +308,96 @@ body {
     }
 }
 
-/* ===== 表紙イラスト（全幅ヒーロー） ===== */
+/* ===== 表紙イラスト（all.webp と同じ比率で全幅表示） ===== */
 .hyoushi-hero {
     position: relative;
     width: 100%;
-    height: 100vh;
+    aspect-ratio: 2894 / 4093;
     overflow: hidden;
-    background: #000;
+    background: #d7ebe4;
     line-height: 0;
 }
 
-/* 背景画像 */
-.hyoushi-bg {
+/* 背景も人物も同じキャンバス。枠の比率が絵と一致するので、終了時は all.webp と同じ構図になる */
+.hyoushi-bg,
+.hyoushi-layer {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    object-fit: fill;
 }
 
-/* レイヤー画像共通 */
-.hyoushi-layer {
-    position: absolute;
-    bottom: 0;
-    height: 85%;
-    width: auto;
-    object-fit: contain;
-    object-position: bottom center;
+/* 校舎が先にふっと出て、下の段を左から、そのあと上の段を左から浮かぶ */
+.hyoushi-bg {
     opacity: 0;
-    animation: hyoushi-slidein 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: hyoushi-bg-in 0.7s ease forwards;
 }
 
-.hyoushi-kikai {
-    left: 3%;
-    height: 70%;   /* ← この数値を大きくすると拡大 */
-    animation-delay: 0.6s;
-    transform: translateY(20px);
+.hyoushi-layer {
+    opacity: 0;
+    transform: translateY(4.5%);
+    filter: blur(8px);
+    animation: hyoushi-arrive 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--hyoushi-delay, 0.3s);
 }
 
-.hyoushi-fijiiku {
-    right: 3%;
-    animation-delay: 1.0s;
-    transform: translateY(20px);
+@keyframes hyoushi-bg-in {
+    to {
+        opacity: 1;
+    }
 }
 
-@keyframes hyoushi-slidein {
+@keyframes hyoushi-arrive {
+    55% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
     to {
         opacity: 1;
         transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* 全員のあと、タイトルをポンと出す。最後の人物は 1.4s + 1.05s で揃う */
+.hyoushi-logo {
+    position: absolute;
+    z-index: 3;
+    top: 24%;
+    left: 50%;
+    width: min(72%, 520px);
+    height: auto;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.2);
+    transform-origin: center center;
+    animation: hyoushi-logo-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 2.05s forwards;
+    pointer-events: none;
+}
+
+@keyframes hyoushi-logo-pop {
+    40% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hyoushi-bg,
+    .hyoushi-layer,
+    .hyoushi-logo {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .hyoushi-logo {
+        transform: translateX(-50%);
     }
 }
