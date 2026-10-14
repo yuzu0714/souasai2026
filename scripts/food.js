@@ -31,7 +31,7 @@ const foodItems = [
     { club: "陸上",       name: "アイス",          category: "club", image: "images/foods/aisukurimu.webp", price: "", detail: "" },
     { club: "バレー",     name: "ドーナツ",        category: "club", image: "images/foods/donattsu.webp", price: "", detail: "" },
     { club: "ロボ研",     name: "ジュース",        category: "club", image: "images/foods/jusu.webp", price: "", detail: "" },
-    { club: "サッカー",   name: "駄菓子",          category: "club", image: "", price: "", detail: "" },
+    { club: "サッカー",   name: "駄菓子",          category: "club", image: "images/foods/dagashi.webp", price: "", detail: "" },
     { club: "バスケ",     name: "たこ焼き",        category: "club", image: "images/foods/takoyaki.webp", price: "", detail: "" },
     { club: "3I",         name: "焼き鳥",          category: "club", image: "images/foods/yakitori.webp", price: "", detail: "" },
     { club: "卓球",       name: "チュロス",        category: "club", image: "images/foods/churosu.webp", price: "", detail: "" },
