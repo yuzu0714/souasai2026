@@ -824,7 +824,7 @@
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     min-height: 200px;
-    background: linear-gradient(to bottom, #fff8fb, #ffd6e8);
+    background: linear-gradient(to bottom, #fff0f6, #ffb8d8);
     margin-top: 60px;
     padding-bottom: 80px;
 }
