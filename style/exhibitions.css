@@ -774,3 +774,9 @@
     display: block;
     pointer-events: none;
 }
+
+/* 黄色枠内カルーセル */
+.exhibition-carousel--yellow {
+    margin-top: 24px;
+    padding-bottom: 24px;
+}

@@ -733,3 +733,78 @@ if (window.ResizeObserver && _mapSection) {
 
     syncButtons();
 })();
+
+// ============================================================
+// 黄色枠内ポスターカルーセル（第2カルーセル）
+// ============================================================
+(function () {
+    var seen = new Set();
+    var carouselItems = exhibitionItems.filter(function(item) {
+        var img = item.image;
+        if (!img || seen.has(img)) return false;
+        seen.add(img);
+        return true;
+    });
+
+    var track  = document.getElementById('carouselTrack2');
+    var dotsEl = document.getElementById('carouselDots2');
+    if (!track || carouselItems.length === 0) return;
+
+    // スライドを描画
+    track.innerHTML = carouselItems.map(function(item, i) {
+        return '<div class="swiper-slide carousel-slide" data-index="' + i + '">' +
+            '<div class="carousel-card">' +
+            '<img class="carousel-card-img" src="' + resolveImage(item.image) + '" alt="' + item.name + '" onerror="' + IMG_ONERROR + '">' +
+            '<div class="carousel-card-info">' +
+            '<p class="carousel-card-name">' + item.name + '</p>' +
+            '<p class="carousel-card-meta">' + item.course + '</p>' +
+            '</div></div></div>';
+    }).join('');
+
+    // ドット描画
+    dotsEl.innerHTML = carouselItems.map(function(_, i) {
+        return '<button class="carousel-dot' + (i === 0 ? ' is-active' : '') +
+               '" data-index="' + i + '" aria-label="' + (i + 1) + '枚目"></button>';
+    }).join('');
+
+    // Swiper 初期化
+    var swiper2 = new Swiper('.exhibition-swiper2', {
+        loop: true,
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 1.5,
+        spaceBetween: 12,
+        speed: 520,
+        navigation: {
+            nextEl: '#carouselNext2',
+            prevEl: '#carouselPrev2',
+            disabledClass: 'swiper-button-disabled',
+        },
+    });
+
+    // スライド変更時にドット更新
+    swiper2.on('slideChange', function() {
+        dotsEl.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+            d.classList.toggle('is-active', i === swiper2.activeIndex);
+        });
+    });
+
+    // ドットクリック
+    dotsEl.querySelectorAll('.carousel-dot').forEach(function(dot) {
+        dot.addEventListener('click', function() {
+            swiper2.slideTo(Number(dot.dataset.index));
+        });
+    });
+
+    // カードクリックでポスターモーダルを開く
+    track.addEventListener('click', function(e) {
+        var slide = e.target.closest('.swiper-slide');
+        if (!slide) return;
+        var i = Number(slide.dataset.index);
+        if (swiper2.activeIndex === i) {
+            openPoster(carouselItems[i]);
+        } else {
+            swiper2.slideTo(i);
+        }
+    });
+})();
