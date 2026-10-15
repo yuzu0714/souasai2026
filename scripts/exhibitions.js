@@ -738,12 +738,10 @@ if (window.ResizeObserver && _mapSection) {
 // 黄色枠内ポスターカルーセル（第2カルーセル）
 // ============================================================
 (function () {
-    var seen = new Set();
+    var allowedImages = ['i.webp', 'e.webp', 'z.webp'];
     var carouselItems = exhibitionItems.filter(function(item) {
-        var img = item.image;
-        if (!img || seen.has(img)) return false;
-        seen.add(img);
-        return true;
+        var img = item.image || '';
+        return allowedImages.some(function(name) { return img.endsWith(name); });
     });
 
     var track  = document.getElementById('carouselTrack2');
