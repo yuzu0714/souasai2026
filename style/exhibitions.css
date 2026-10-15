@@ -642,14 +642,14 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
+    width: 34px;
+    height: 34px;
     padding: 0;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.92);
     border: 2px solid rgba(0, 182, 192, 0.45);
     color: #00b6c0;
-    font-size: 30px;
+    font-size: 22px;
     line-height: 1;
     cursor: pointer;
     z-index: 10;
