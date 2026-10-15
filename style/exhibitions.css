@@ -716,7 +716,7 @@
     font-weight: 700;
     color: #d94f8a;
     text-align: center;
-    margin-top: -20px;
+    margin-top: -40px;
     margin-bottom: 0;
     padding-bottom: 20px;
     position: relative;
@@ -726,6 +726,18 @@
     pointer-events: none;
 }
 
+
+/* 字幕下の日本語サブテキスト */
+.carousel-subtitle-ja {
+    display: block;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #d94f8a;
+    letter-spacing: 0.15em;
+    transform: rotate(0deg);
+    margin-top: 2px;
+}
 /* セクション境界（黄色の波形）→ yellow-rect内に移動済み */
 .section-divider {
     display: none;
