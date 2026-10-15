@@ -92,11 +92,18 @@
             </section>
 
             <!-- 専門展示マップ -->
-            <section class="exhibition-content">
+            <div class="exhibition-location-wrapper">
+                <div class="exhibition-location-tabs" id="exhibitionLocationTabs">
+                    <button class="location-tab is-active" type="button" data-location="校内">校内</button>
+                    <button class="location-tab" type="button" data-location="校外">校外</button>
+                    <button class="location-tab" type="button" data-location="図書館">図書館</button>
+                </div>
+
+                <section class="exhibition-content">
                 <section class="exhibition-map-section">
 
                     <!-- 階数切り替え -->
-                    <div class="exhibition-floor-tabs">
+                    <div class="exhibition-floor-tabs" id="exhibitionFloorTabsWrapper">
                         <button class="floor-tab is-active" type="button" data-floor="1F">1F</button>
                         <button class="floor-tab" type="button" data-floor="2F">2F</button>
                         <button class="floor-tab" type="button" data-floor="3F">3F</button>
@@ -122,7 +129,8 @@
                     <p class="exhibition-count" id="exhibitionCount"></p>
                     <section class="exhibition-list" id="exhibitionList" aria-live="polite"></section>
                 </div>
-            </section>
+                </section>
+            </div><!-- /.exhibition-location-wrapper -->
             
             <div class="exhibition-poster-modal" id="exhibitionPosterModal" hidden>
                 <div class="exhibition-poster-overlay" id="exhibitionPosterOverlay"></div>

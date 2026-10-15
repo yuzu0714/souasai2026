@@ -382,6 +382,12 @@
         width: min(100% - 48px, 1160px);
     }
 
+    /* ラッパーはラウンドコーナーを維持 */
+    .exhibition-location-wrapper {
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
     /* コンテンツエリアを左右2列に */
     .exhibition-content {
         display: grid;
@@ -505,4 +511,69 @@
 .map-ctrl-btn:disabled {
     opacity: 0.3;
     cursor: default;
+}
+
+/* ============================================================
+   ロケーションラッパー＆タブ（校内 / 校外 / 図書館）
+   タイムスケジュールと同じ：タブが枠線上部にくっつくデザイン
+   ============================================================ */
+.exhibition-location-wrapper {
+    margin-top: 20px;
+    border: 3px solid #00b6c0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.exhibition-location-tabs {
+    display: flex;
+    border-bottom: 3px solid #00b6c0;
+}
+
+.location-tab {
+    flex: 1;
+    padding: 13px 0;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-right: 2px solid #00b6c0;
+    cursor: pointer;
+    background: #fff;
+    color: #00b6c0;
+    transition: background 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    font-family: inherit;
+}
+
+.location-tab:last-child {
+    border-right: none;
+}
+
+.location-tab.is-active {
+    background: #00b6c0;
+    color: #fff;
+}
+
+/* exhibition-content はラッパー内に入ったので margin-top をリセット */
+.exhibition-location-wrapper > .exhibition-content {
+    margin-top: 0;
+    border-radius: 0;
+}
+
+/* 校外・図書館では階数タブを非表示 */
+.exhibition-floor-tabs.is-hidden {
+    display: none;
+}
+
+/* 校外・図書館のマップなし案内 */
+.exhibition-map-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    color: #aaa;
+    font-size: 1rem;
+    font-weight: 700;
+    box-sizing: border-box;
 }
