@@ -970,7 +970,7 @@ if (window.ResizeObserver && _mapSection) {
                 observer.disconnect();
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.6 });
     observer.observe(heading);
 })();
 
