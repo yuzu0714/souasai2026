@@ -609,8 +609,8 @@
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
-    object-fit: cover;
-    background: #f5f5f5;
+    object-fit: contain;
+    background: #fff;
     border-radius: 20px;
 }
 
