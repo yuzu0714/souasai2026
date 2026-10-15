@@ -76,6 +76,18 @@
         <main class="exhibitions-page">
             <h1 class="exhibition-title">Exhibitions</h1>
 
+                        <!-- ポスターカルーセル -->
+            <section class="exhibition-carousel" aria-label="展示ポスター">
+                <div class="carousel-stage">
+                    <div class="carousel-viewport">
+                        <div class="carousel-track" id="carouselTrack"></div>
+                    </div>
+                    <button class="carousel-btn carousel-btn--prev" id="carouselPrev" aria-label="前の展示">&#8249;</button>
+                    <button class="carousel-btn carousel-btn--next" id="carouselNext" aria-label="次の展示">&#8250;</button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </section>
+
             <section class="exhibition-finder" aria-label="専門展示を探す">
                 <label class="search-box">
                     <span class="sr-only">展示名やコース/部活名で検索</span>

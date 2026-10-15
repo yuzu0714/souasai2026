@@ -577,3 +577,142 @@
     font-weight: 700;
     box-sizing: border-box;
 }
+
+/* ============================================================
+   展示ポスターカルーセル（Nifrel スタイル）
+   ============================================================ */
+.exhibition-carousel {
+    margin-bottom: 24px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.carousel-stage {
+    position: relative;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 12px;
+    will-change: transform;
+}
+
+.carousel-card {
+    flex-shrink: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s;
+}
+
+.carousel-card:active {
+    transform: scale(0.97);
+}
+
+.carousel-card-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.carousel-card-info {
+    padding: 12px 14px 14px;
+}
+
+.carousel-card-name {
+    margin: 0 0 4px;
+    font-size: .92rem;
+    font-weight: 700;
+    color: #151515;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carousel-card-meta {
+    margin: 0;
+    font-size: .72rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 左右矢印ボタン */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid rgba(0, 182, 192, 0.45);
+    color: #00b6c0;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-btn--prev { left: 6px; }
+.carousel-btn--next { right: 6px; }
+
+.carousel-btn:hover {
+    background: #00b6c0;
+    color: #fff;
+    border-color: #00b6c0;
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+/* ドットインジケーター */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, transform 0.25s;
+    flex-shrink: 0;
+}
+
+.carousel-dot.is-active {
+    background: #fff;
+    transform: scale(1.45);
+}
+
+@media (min-width: 960px) {
+    .exhibition-carousel {
+        max-width: 520px; /* 左カラムと同じ幅感 */
+    }
+}
