@@ -640,6 +640,11 @@ locationTabs.forEach((tab) => {
     // Swiper 初期化
     var swiper = new Swiper('.exhibition-swiper', {
         loop: true,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 1.5,
@@ -894,6 +899,11 @@ if (window.ResizeObserver && _mapSection) {
     // Swiper 初期化
     var swiper2 = new Swiper('.exhibition-swiper2', {
         loop: true,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 1.5,
@@ -996,6 +1006,11 @@ if (window.ResizeObserver && _mapSection) {
 
     var swiper3 = new Swiper('.exhibition-swiper3', {
         loop: eventImages.length > 1,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 1.5,
@@ -1049,4 +1064,19 @@ if (window.ResizeObserver && _mapSection) {
         });
     }, { threshold: 0.3 });
     observer.observe(heading);
+})();
+
+// カルーセルポスターフェードイン
+(function () {
+    var wraps = document.querySelectorAll('.carousel-swiper-wrap');
+    if (!wraps.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    wraps.forEach(function(wrap) { observer.observe(wrap); });
 })();

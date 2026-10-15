@@ -946,3 +946,93 @@
     margin: 48px 0 0;
     letter-spacing: 0.03em;
 }
+
+/* ===== PC レイアウト追加調整 ===== */
+@media (min-width: 960px) {
+
+    /* カルーセルセクション内コンテンツを中央に */
+    .white-rect,
+    .yellow-rect,
+    .blue-rect {
+        display: flow-root;
+    }
+
+    .white-rect > *,
+    .yellow-rect > *,
+    .blue-rect > * {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 波SVGは全幅のままにする */
+    .white-wave-top,
+    .yellow-wave-top,
+    .blue-wave-top {
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    /* カルーセルは中央寄せ・幅制限 */
+    .exhibition-carousel {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* カードの画像サイズを揃える */
+    .carousel-card-img {
+        width: 100%;
+        aspect-ratio: 1 / 1.414;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* マップで確認・検索エリアも中央揃え */
+    .map-section-heading {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .exhibition-finder {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* カルーセルのサブタイトルも中央内に収める */
+    .carousel-subtitle {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 960px) {
+    .white-wave-top,
+    .yellow-wave-top,
+    .blue-wave-top {
+        height: 140px;
+        top: -136px;
+    }
+}
+
+/* ── カルーセルポスターフェードイン ── */
+.carousel-swiper-wrap {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.carousel-swiper-wrap.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 960px) {
+    .exhibition-title {
+        margin-bottom: 60px;
+    }
+}
