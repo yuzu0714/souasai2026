@@ -489,8 +489,9 @@ locationTabs.forEach((tab) => {
 (function () {
     var seen = new Set();
     var carouselItems = exhibitionItems.filter(function(item) {
-        var img = item.image;
+        var img = item.image || '';
         if (!img || seen.has(img)) return false;
+        if (!img.includes('images/club/') && !img.includes('images/club\\')) return false;
         seen.add(img);
         return true;
     });
