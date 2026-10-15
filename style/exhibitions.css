@@ -744,7 +744,7 @@
 .yellow-band {
     background: transparent;
     margin-top: -4px;
-    padding-bottom: 80px;
+    padding-bottom: 0;
 }
 
 /* 黄色の四角ブロック */
