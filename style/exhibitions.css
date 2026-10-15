@@ -708,3 +708,15 @@
         max-width: 520px;
     }
 }
+
+/* カルーセル下サブタイトル */
+.carousel-subtitle {
+    font-family: "Story Script", cursive;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    margin: 4px 0 20px;
+    transform: rotate(-3deg);
+    letter-spacing: 0.03em;
+    pointer-events: none;
+}
