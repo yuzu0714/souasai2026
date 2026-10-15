@@ -852,10 +852,12 @@
     }
 }
 
-.section-heading {
+.section-heading,
+.carousel-subtitle {
     opacity: 0;
 }
 
-.section-heading.is-visible {
+.section-heading.is-visible,
+.carousel-subtitle.is-visible {
     animation: fadeInUp 0.7s ease forwards;
 }
