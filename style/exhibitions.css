@@ -711,9 +711,10 @@
 
 /* カルーセル下サブタイトル */
 .carousel-subtitle {
-    font-family: "Story Script", cursive;
+    font-family: "Dancing Script", cursive;
     font-size: 2rem;
-    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+    color: #00b6c0;
     text-align: center;
     margin: 4px 0 20px;
     transform: rotate(-3deg);
