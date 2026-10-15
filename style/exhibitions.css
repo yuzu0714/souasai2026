@@ -188,7 +188,7 @@
     border: 2px solid #f05d9d;
     border-radius: 10px;
     background: #fff;
-    color: #f05d9d;
+    color: #00b6c0;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -536,10 +536,10 @@
     font-size: 16px;
     font-weight: 700;
     border: none;
-    border-right: 2px solid #00b6c0;
+    border-right: 2px solid rgba(255,255,255,0.3);
     cursor: pointer;
     background: #fff;
-    color: #d94f8a;
+    color: #00b6c0;
     transition: background 0.2s, color 0.2s;
     -webkit-tap-highlight-color: transparent;
     font-family: inherit;

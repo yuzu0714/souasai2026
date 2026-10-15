@@ -28,12 +28,16 @@ const exhibitionItems = [
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "../images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "../images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
     { name: "写真部展示", course: "写真部 書道部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "../images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
+    { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "../images/club/engeki.webp", mapX: 34, mapY: 70 },
     { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "D02", category: "course", location: "校内", image: "../images/club/tenmon.webp", mapX: 34, mapY: 76 },
     { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "D03", category: "course", location: "校内", image: "../images/club/rakugo.webp", mapX: 25, mapY: 76 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "i02", category: "course", location: "校内", image: "../images/club/puroguraming.webp", mapX: 84, mapY: 76 },
     //3F
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "", mapX: 38.5, mapY: 25 },
     { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "G01", category: "course", location: "校内", image: "../images/exhibitions/i.webp", mapX: 27.5, mapY: 48.5 },
+    { name: "コスプレクローク", course: "", place: "建設製図室", floor: "3F", number: "H02", category: "course", location: "校内", image: "", description: "コスプレクローク", mapX: 34, mapY: 76 },
+    { name: "更衣室", course: "", place: "2C", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
+    { name: "更衣室", course: "", place: "4C", floor: "3F", number: "H03", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 68 },
     { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "H01", category: "course", location: "校内", image: "../images/exhibitions/kenchiku.webp", mapX: 34, mapY: 68 },
     { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "H05", category: "course", location: "校内", image: "", mapX: 65, mapY: 78 }
 ];
@@ -203,12 +207,12 @@ function renderItems() {
                     </p>
                 </div>
 
-                <img
+                ${item.image ? `<img
                     src="${resolveImage(item.image)}"
                     class="exhibition-image"
                     alt="${item.name}"
                     onerror="${IMG_ONERROR}"
-                >
+                >` : ''}
             </article>
         `).join("")
         : '<p class="exhibition-empty">該当する展示がありません。</p>';
@@ -246,10 +250,23 @@ let currentPosterItem = null;
 
 function openPoster(item) {
     currentPosterItem = item;
-    posterImage.src = resolveImage(item.image);
-    posterImage.alt = item.name + "のポスター";
+
+    const descEl = document.getElementById("exhibitionPosterDesc");
+
+    if (item.description) {
+        // テキストのみ表示モード
+        posterImage.style.display = "none";
+        if (descEl) { descEl.textContent = item.description; descEl.style.display = ""; }
+    } else {
+        posterImage.style.display = "";
+        posterImage.src = resolveImage(item.image);
+        posterImage.alt = item.name + "のポスター";
+        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
+    }
+
     document.getElementById("exhibitionPosterName").textContent = item.name;
-    document.getElementById("exhibitionPosterMeta").textContent = item.course + "  ·  " + item.place;
+    document.getElementById("exhibitionPosterMeta").textContent =
+        [item.course, item.place].filter(Boolean).join("  ·  ");
     posterModal.hidden = false;
 
     // 地図ボタン：校内のみ有効化
@@ -263,6 +280,9 @@ function openPoster(item) {
 function closePoster() {
     posterModal.hidden = true;
     posterImage.src = "";
+    posterImage.style.display = "";
+    const descEl = document.getElementById("exhibitionPosterDesc");
+    if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
     // dimを解除
     document.querySelectorAll(".exhibition-card").forEach((c) => c.classList.remove("is-dimmed"));
 }
