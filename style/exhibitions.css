@@ -768,7 +768,7 @@
     margin-right: calc(50% - 50vw);
     min-height: 460px;
     background: #ffe84d;
-    margin-top: 70px;
+    margin-top: 0;
 }
 
 /* 波（yellow-rect上部に絶対配置） */
@@ -826,7 +826,7 @@
     min-height: 200px;
     background: #fff0f6;
     margin-top: 60px;
-    padding-bottom: 32px;
+    padding-bottom: 80px;
 }
 
 /* 白い波（white-rect上部に絶対配置） */
