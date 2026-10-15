@@ -710,6 +710,10 @@
     }
 }
 
+.exhibition-carousel {
+    margin-top: 32px;
+}
+
 /* カルーセル下サブタイトル */
 .carousel-subtitle {
     font-family: "Story Script", cursive;
