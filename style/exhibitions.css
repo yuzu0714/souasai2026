@@ -716,7 +716,10 @@
     font-weight: 700;
     color: #d94f8a;
     text-align: center;
-    margin: 4px 0 20px;
+    margin-top: -48px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
     transform: rotate(-3deg);
     letter-spacing: 0.03em;
     pointer-events: none;
