@@ -739,9 +739,13 @@ if (window.ResizeObserver && _mapSection) {
 // ============================================================
 (function () {
     var allowedImages = ['i.webp', 'e.webp', 'z.webp'];
+    var seen2 = new Set();
     var carouselItems = exhibitionItems.filter(function(item) {
         var img = item.image || '';
-        return allowedImages.some(function(name) { return img.endsWith(name); });
+        if (!allowedImages.some(function(name) { return img.endsWith(name); })) return false;
+        if (seen2.has(img)) return false;
+        seen2.add(img);
+        return true;
     });
 
     var track  = document.getElementById('carouselTrack2');
