@@ -734,9 +734,9 @@
     font-family: sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #d94f8a;
+    color: #555555;
     letter-spacing: 0.15em;
-    transform: rotate(0deg);
+    transform: rotate(3deg);
     margin-top: 2px;
 }
 /* セクション境界（黄色の波形）→ yellow-rect内に移動済み */
@@ -759,7 +759,9 @@
 .yellow-rect {
     position: relative;
     display: flow-root;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     min-height: 460px;
     background: #ffe84d;
     margin-top: 70px;
