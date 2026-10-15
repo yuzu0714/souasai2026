@@ -485,6 +485,13 @@ const locationSingleMap = {
     "校外": "images/maps/map_4.svg",
 };
 
+// 図書館用フロアマップ
+const libraryFloorMaps = {
+    "1F": "images/maps/map_5.svg",
+    "2F": "images/maps/map_6.svg",
+};
+let activeLibraryFloor = "1F";
+
 function updateLocationView() {
     const isKonai = activeLocation === "校内";
     const singleMap = locationSingleMap[activeLocation];
@@ -496,6 +503,12 @@ function updateLocationView() {
 
     const pins = document.getElementById("exhibitionPins");
     let placeholder = mapEl ? mapEl.querySelector(".exhibition-map-placeholder") : null;
+
+    // 図書館タブを一度リセット（校内/校外に戻ったとき用）
+    if (floorTabsWrapper) {
+        floorTabsWrapper.querySelectorAll(".library-floor-tab").forEach(t => t.style.display = "none");
+        floorTabsWrapper.querySelectorAll(".floor-tab:not(.library-floor-tab)").forEach(t => t.style.display = "");
+    }
 
     if (isKonai) {
         // 校内：通常の階数マップを表示
@@ -515,8 +528,46 @@ function updateLocationView() {
             exhibitionMapImage.alt = activeLocation + "のマップ";
         }
         if (pins) pins.style.display = "none";
+    } else if (activeLocation === "図書館") {
+        // 図書館：専用フロアタブを表示して切り替え
+        if (placeholder) placeholder.remove();
+        if (exhibitionMapImage) {
+            exhibitionMapImage.style.display = "";
+            exhibitionMapImage.src = libraryFloorMaps[activeLibraryFloor];
+            exhibitionMapImage.alt = "図書館" + activeLibraryFloor + "のマップ";
+        }
+        if (pins) pins.style.display = "none";
+
+        // 図書館用フロアタブを生成（なければ）
+        if (floorTabsWrapper && !floorTabsWrapper.querySelector(".library-floor-tab")) {
+            floorTabsWrapper.classList.remove("is-hidden");
+            // 既存のフロアタブを一時的に非表示にして図書館用を追加
+            floorTabsWrapper.querySelectorAll(".floor-tab").forEach(t => t.style.display = "none");
+            Object.keys(libraryFloorMaps).forEach((floor) => {
+                if (!floorTabsWrapper.querySelector(`.library-floor-tab[data-floor="${floor}"]`)) {
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className = "floor-tab library-floor-tab" + (floor === activeLibraryFloor ? " is-active" : "");
+                    btn.dataset.floor = floor;
+                    btn.textContent = floor;
+                    btn.addEventListener("click", () => {
+                        activeLibraryFloor = floor;
+                        floorTabsWrapper.querySelectorAll(".library-floor-tab").forEach(t =>
+                            t.classList.toggle("is-active", t.dataset.floor === floor)
+                        );
+                        exhibitionMapImage.src = libraryFloorMaps[floor];
+                        exhibitionMapImage.alt = "図書館" + floor + "のマップ";
+                    });
+                    floorTabsWrapper.appendChild(btn);
+                }
+            });
+        } else if (floorTabsWrapper) {
+            floorTabsWrapper.classList.remove("is-hidden");
+            floorTabsWrapper.querySelectorAll(".floor-tab:not(.library-floor-tab)").forEach(t => t.style.display = "none");
+            floorTabsWrapper.querySelectorAll(".library-floor-tab").forEach(t => t.style.display = "");
+        }
     } else {
-        // 地図画像がない場合（図書館など）：準備中を表示
+        // 地図画像がない場合：準備中を表示
         if (exhibitionMapImage) exhibitionMapImage.style.display = "none";
         if (pins) pins.style.display = "none";
         if (mapEl && !placeholder) {
@@ -889,6 +940,92 @@ if (window.ResizeObserver && _mapSection) {
 // Technical Exhibitions 見出しフェードイン
 (function () {
     var heading = document.querySelector('.carousel-subtitle');
+    if (!heading) return;
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                heading.classList.add('is-visible');
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+    observer.observe(heading);
+})();
+
+// ============================================================
+// Eventsカルーセル（青色帯）
+// ============================================================
+(function () {
+    var eventImages = [
+        'images/events/figiku.webp',
+        'images/events/yukyu.webp',
+    ];
+
+    var track  = document.getElementById('carouselTrack3');
+    var dotsEl = document.getElementById('carouselDots3');
+    if (!track) return;
+
+    // スライドを描画
+    track.innerHTML = eventImages.map(function(img, i) {
+        var name = img.replace(/.*\//, '').replace(/\.\w+$/, '');
+        return '<div class="swiper-slide carousel-slide" data-index="' + i + '">' +
+            '<div class="carousel-card">' +
+            '<img class="carousel-card-img" src="' + img + '" alt="イベントポスター ' + (i+1) + '" onerror="' + IMG_ONERROR + '">' +
+            '</div></div>';
+    }).join('');
+
+    if (dotsEl) {
+        dotsEl.innerHTML = eventImages.map(function(_, i) {
+            return '<button class="carousel-dot' + (i === 0 ? ' is-active' : '') +
+                   '" data-index="' + i + '" aria-label="' + (i + 1) + '枚目"></button>';
+        }).join('');
+    }
+
+    var swiper3 = new Swiper('.exhibition-swiper3', {
+        loop: eventImages.length > 1,
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 1.5,
+        spaceBetween: 12,
+        speed: 520,
+        navigation: {
+            nextEl: '#carouselNext3',
+            prevEl: '#carouselPrev3',
+            disabledClass: 'swiper-button-disabled',
+        },
+    });
+
+    swiper3.on('slideChange', function() {
+        if (!dotsEl) return;
+        dotsEl.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+            d.classList.toggle('is-active', i === swiper3.realIndex);
+        });
+    });
+
+    if (dotsEl) {
+        dotsEl.querySelectorAll('.carousel-dot').forEach(function(dot) {
+            dot.addEventListener('click', function() {
+                swiper3.slideTo(Number(dot.dataset.index));
+            });
+        });
+    }
+
+    // カードクリックでポスターモーダルを開く
+    track.addEventListener('click', function(e) {
+        var slide = e.target.closest('.swiper-slide');
+        if (!slide) return;
+        if (slide.classList.contains('swiper-slide-active')) {
+            var i = Number(slide.dataset.index);
+            openPoster({ name: 'イベント', course: '', place: '', image: eventImages[i], location: '' });
+        } else {
+            swiper3.slideToLoop(Number(slide.dataset.index));
+        }
+    });
+})();
+
+// Events 見出しフェードイン
+(function () {
+    var heading = document.querySelector('.carousel-subtitle--events');
     if (!heading) return;
     var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
