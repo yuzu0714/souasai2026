@@ -17,7 +17,7 @@
 
 .exhibition-finder {
     overflow: hidden;
-    margin-top: 40px;
+    margin-top: 12px;
     border: 2px solid #00b6c0;
     border-radius: 8px;
     background: #fff;
@@ -767,6 +767,7 @@
     min-height: 460px;
     background: linear-gradient(to bottom, #fffde8, #ffe066);
     margin-top: 0;
+    padding-bottom: 80px;
 }
 
 /* 波（yellow-rect上部に絶対配置） */
@@ -900,7 +901,7 @@
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     min-height: 460px;
-    background: linear-gradient(to bottom, #e8f6ff, #9dd8f5);
+    background: linear-gradient(to bottom, #e8f7fd, #7ec8e3);
     margin-top: 0;
 }
 
@@ -933,4 +934,15 @@
 .carousel-subtitle--events.is-visible {
     opacity: 1;
     transform: translateY(0) rotate(-3deg);
+}
+
+/* ── マップで確認 見出し ─────────────────────── */
+.map-section-heading {
+    font-family: "Story Script", cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #d94f8a;
+    text-align: center;
+    margin: 48px 0 0;
+    letter-spacing: 0.03em;
 }
