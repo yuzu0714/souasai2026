@@ -767,7 +767,7 @@
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     min-height: 460px;
-    background: #fff9c4;
+    background: linear-gradient(to bottom, #fffde8, #ffe066);
     margin-top: 0;
 }
 
