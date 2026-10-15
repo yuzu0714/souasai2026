@@ -578,42 +578,31 @@
     box-sizing: border-box;
 }
 
-/* ============================================================
-   展示ポスターカルーセル（Nifrel スタイル）
-   ============================================================ */
-.exhibition-carousel {
-    margin-bottom: 24px;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.carousel-stage {
+.carousel-swiper-wrap {
     position: relative;
-}
-
-.carousel-viewport {
     overflow: hidden;
 }
 
-.carousel-track {
-    display: flex;
-    gap: 12px;
-    will-change: transform;
+.exhibition-swiper {
+    overflow: visible;
 }
 
+/* カードの基本スタイル */
 .carousel-card {
-    flex-shrink: 0;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     background: #fff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
     -webkit-tap-highlight-color: transparent;
-    transition: transform 0.15s;
+    transform: scale(0.88);
+    opacity: 0.6;
+    transition: transform 0.52s ease, opacity 0.52s ease;
 }
 
-.carousel-card:active {
-    transform: scale(0.97);
+.swiper-slide-active .carousel-card {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .carousel-card-img {
@@ -679,9 +668,10 @@
     border-color: #00b6c0;
 }
 
-.carousel-btn:disabled {
+.carousel-btn.swiper-button-disabled {
     opacity: 0.3;
     cursor: default;
+    pointer-events: none;
 }
 
 /* ドットインジケーター */
@@ -713,6 +703,6 @@
 
 @media (min-width: 960px) {
     .exhibition-carousel {
-        max-width: 520px; /* 左カラムと同じ幅感 */
+        max-width: 520px;
     }
 }

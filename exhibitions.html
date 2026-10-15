@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/menu.css">
         <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.1.14/swiper-bundle.min.css">
         <link rel="stylesheet" href="style/exhibitions.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,11 +77,11 @@
         <main class="exhibitions-page">
             <h1 class="exhibition-title">Exhibitions</h1>
 
-                        <!-- ポスターカルーセル -->
+                        <!-- ポスターカルーセル（Swiper） -->
             <section class="exhibition-carousel" aria-label="展示ポスター">
-                <div class="carousel-stage">
-                    <div class="carousel-viewport">
-                        <div class="carousel-track" id="carouselTrack"></div>
+                <div class="carousel-swiper-wrap">
+                    <div class="swiper exhibition-swiper">
+                        <div class="swiper-wrapper" id="carouselTrack"></div>
                     </div>
                     <button class="carousel-btn carousel-btn--prev" id="carouselPrev" aria-label="前の展示">&#8249;</button>
                     <button class="carousel-btn carousel-btn--next" id="carouselNext" aria-label="次の展示">&#8250;</button>
@@ -225,6 +226,7 @@
             });
         </script>
         <script src="scripts/exhibitions.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.1.14/swiper-bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script src="scripts/h1-slide-anim.js"></script>
     </body>

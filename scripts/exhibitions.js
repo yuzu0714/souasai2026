@@ -480,10 +480,9 @@ locationTabs.forEach((tab) => {
 
 
 // ============================================================
-//  ポスターカルーセル（Nifrel スタイル）
+//  ポスターカルーセル（Swiper / Nifrel スタイル）
 // ============================================================
 (function () {
-    // 画像がある展示（同一画像は1件のみ）
     var seen = new Set();
     var carouselItems = exhibitionItems.filter(function(item) {
         var img = item.image;
@@ -492,97 +491,66 @@ locationTabs.forEach((tab) => {
         return true;
     });
 
-    var currentIndex = 0;
-    var PEEK = 28;  // px：左右に見える前後カードの幅
-    var GAP  = 12;  // px：カード間の隙間
+    var track  = document.getElementById('carouselTrack');
+    var dotsEl = document.getElementById('carouselDots');
+    if (!track || carouselItems.length === 0) return;
 
-    var track    = document.getElementById('carouselTrack');
-    var dotsEl   = document.getElementById('carouselDots');
-    var btnPrev  = document.getElementById('carouselPrev');
-    var btnNext  = document.getElementById('carouselNext');
-    var viewport = track ? track.parentElement : null;
-
-    if (!track || !viewport || carouselItems.length === 0) return;
-
-    // ── 描画 ─────────────────────────────────────────────────
+    // スライドを描画
     track.innerHTML = carouselItems.map(function(item, i) {
-        return '<div class="carousel-card" data-index="' + i + '" role="button" tabindex="0" aria-label="' + item.name + 'のポスターを見る">' +
+        return '<div class="swiper-slide carousel-slide" data-index="' + i + '">' +
+            '<div class="carousel-card">' +
             '<img class="carousel-card-img" src="' + resolveImage(item.image) + '" alt="' + item.name + '" onerror="' + IMG_ONERROR + '">' +
             '<div class="carousel-card-info">' +
-              '<p class="carousel-card-name">' + item.name + '</p>' +
-              '<p class="carousel-card-meta">' + item.course + '</p>' +
-            '</div>' +
-        '</div>';
+            '<p class="carousel-card-name">' + item.name + '</p>' +
+            '<p class="carousel-card-meta">' + item.course + '</p>' +
+            '</div></div></div>';
     }).join('');
 
-    dotsEl.innerHTML = carouselItems.map(function(item, i) {
+    // ドット描画
+    dotsEl.innerHTML = carouselItems.map(function(_, i) {
         return '<button class="carousel-dot' + (i === 0 ? ' is-active' : '') +
-               '" data-index="' + i + '" aria-label="' + (i + 1) + '枚目: ' + item.name + '"></button>';
+               '" data-index="' + i + '" aria-label="' + (i + 1) + '枚目"></button>';
     }).join('');
 
-    // ── カードクリック ────────────────────────────────────────
-    track.querySelectorAll('.carousel-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-            openPoster(carouselItems[Number(card.dataset.index)]);
-        });
-        card.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openPoster(carouselItems[Number(card.dataset.index)]);
-            }
-        });
+    // Swiper 初期化
+    var swiper = new Swiper('.exhibition-swiper', {
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 1.12,
+        spaceBetween: 12,
+        speed: 520,
+        navigation: {
+            nextEl: '#carouselNext',
+            prevEl: '#carouselPrev',
+            disabledClass: 'swiper-button-disabled',
+        },
     });
 
-    // ── ドットクリック ────────────────────────────────────────
-    dotsEl.querySelectorAll('.carousel-dot').forEach(function(dot) {
-        dot.addEventListener('click', function() { goTo(Number(dot.dataset.index)); });
-    });
-
-    // ── 左右ボタン ────────────────────────────────────────────
-    btnPrev.addEventListener('click', function() { goTo(currentIndex - 1); });
-    btnNext.addEventListener('click', function() { goTo(currentIndex + 1); });
-
-    // ── 移動 ─────────────────────────────────────────────────
-    function goTo(index) {
-        currentIndex = Math.max(0, Math.min(carouselItems.length - 1, index));
-        applyTransform(true);
+    // スライド変更時にドット更新
+    swiper.on('slideChange', function() {
         dotsEl.querySelectorAll('.carousel-dot').forEach(function(d, i) {
-            d.classList.toggle('is-active', i === currentIndex);
+            d.classList.toggle('is-active', i === swiper.activeIndex);
         });
-        btnPrev.disabled = currentIndex === 0;
-        btnNext.disabled = currentIndex === carouselItems.length - 1;
-    }
+    });
 
-    function getCardWidth() {
-        return viewport.offsetWidth - PEEK * 2;
-    }
-
-    function applyTransform(animate) {
-        var w = getCardWidth();
-        track.querySelectorAll('.carousel-card').forEach(function(c) {
-            c.style.width = w + 'px';
+    // ドットクリック
+    dotsEl.querySelectorAll('.carousel-dot').forEach(function(dot) {
+        dot.addEventListener('click', function() {
+            swiper.slideTo(Number(dot.dataset.index));
         });
-        var offset = PEEK - currentIndex * (w + GAP);
-        track.style.transition = animate
-            ? 'transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-            : 'none';
-        track.style.transform = 'translateX(' + offset + 'px)';
-    }
+    });
 
-    // 初回
-    goTo(0);
-    window.addEventListener('resize', function() { applyTransform(false); });
-
-    // ── タッチスワイプ ────────────────────────────────────────
-    var tsX = 0;
-    viewport.addEventListener('touchstart', function(e) {
-        tsX = e.touches[0].clientX;
-    }, { passive: true });
-    viewport.addEventListener('touchend', function(e) {
-        var dx = e.changedTouches[0].clientX - tsX;
-        if (dx < -40) goTo(currentIndex + 1);
-        else if (dx > 40) goTo(currentIndex - 1);
-    }, { passive: true });
+    // カードクリックでポスターモーダルを開く
+    track.addEventListener('click', function(e) {
+        var slide = e.target.closest('.swiper-slide');
+        if (!slide) return;
+        var i = Number(slide.dataset.index);
+        if (swiper.activeIndex === i) {
+            openPoster(carouselItems[i]);
+        } else {
+            swiper.slideTo(i);
+        }
+    });
 })();
 
 // 初回レンダリング
