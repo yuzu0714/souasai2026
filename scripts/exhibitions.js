@@ -27,6 +27,8 @@ const exhibitionItems = [
     { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "E02", category: "course", location: "校内", image: "../images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "../images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "../images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
+    { name: "吹奏楽部演奏", course: "吹奏楽部", place: "", floor: "2F", number: "C03", category: "course", location: "校内", image: "../images/club/suisougaku.webp", mapX: 0, mapY: 0 },
+    { name: "書道部展示", course: "書道部", place: "", floor: "2F", number: "C04", category: "course", location: "校内", image: "../images/club/shodo.webp", mapX: 0, mapY: 0 },
     { name: "写真部展示", course: "写真部 書道部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "../images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
     { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "../images/club/engeki.webp", mapX: 34, mapY: 70 },
     { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "D02", category: "course", location: "校内", image: "../images/club/tenmon.webp", mapX: 34, mapY: 76 },
@@ -865,12 +867,11 @@ if (window.ResizeObserver && _mapSection) {
 // 黄色枠内ポスターカルーセル（第2カルーセル）
 // ============================================================
 (function () {
-    var allowedImages = ['i.webp', 'e.webp', 'z.webp'];
     var seen2 = new Set();
     var carouselItems = exhibitionItems.filter(function(item) {
         var img = item.image || '';
-        if (!allowedImages.some(function(name) { return img.endsWith(name); })) return false;
-        if (seen2.has(img)) return false;
+        if (!img || seen2.has(img)) return false;
+        if (!img.includes('images/exhibitions/')) return false;
         seen2.add(img);
         return true;
     });
