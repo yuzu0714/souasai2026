@@ -514,6 +514,7 @@ locationTabs.forEach((tab) => {
 
     // Swiper 初期化
     var swiper = new Swiper('.exhibition-swiper', {
+        loop: true,
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 1.5,
