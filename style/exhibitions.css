@@ -742,7 +742,7 @@
 
 /* 波の下の黄色帯 */
 .yellow-band {
-    background: rgba(255, 225, 0, 0.18);
+    background: transparent;
     margin-top: -4px;
     padding-bottom: 80px;
 }
