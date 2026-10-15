@@ -550,11 +550,12 @@ locationTabs.forEach((tab) => {
     track.addEventListener('click', function(e) {
         var slide = e.target.closest('.swiper-slide');
         if (!slide) return;
-        var i = Number(slide.dataset.index);
-        if (swiper.activeIndex === i) {
+        if (slide.classList.contains('swiper-slide-active')) {
+            var i = Number(slide.dataset.index);
             openPoster(carouselItems[i]);
         } else {
-            swiper.slideTo(i);
+            var i = Number(slide.dataset.index);
+            swiper.slideToLoop(i);
         }
     });
 })();
@@ -803,11 +804,12 @@ if (window.ResizeObserver && _mapSection) {
     track.addEventListener('click', function(e) {
         var slide = e.target.closest('.swiper-slide');
         if (!slide) return;
-        var i = Number(slide.dataset.index);
-        if (swiper2.activeIndex === i) {
+        if (slide.classList.contains('swiper-slide-active')) {
+            var i = Number(slide.dataset.index);
             openPoster(carouselItems[i]);
         } else {
-            swiper2.slideTo(i);
+            var i = Number(slide.dataset.index);
+            swiper2.slideToLoop(i);
         }
     });
 })();
