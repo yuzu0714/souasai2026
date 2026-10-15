@@ -40,7 +40,7 @@ const exhibitionItems = [
     { name: "コスプレクローク", course: "", place: "建設製図室", floor: "3F", number: "H02", category: "course", location: "校内", image: "", description: "コスプレクローク", mapX: 34, mapY: 76 },
     { name: "更衣室", course: "", place: "2C", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
     { name: "更衣室", course: "", place: "4C", floor: "3F", number: "H03", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 68 },
-    { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "H01", category: "course", location: "校内", image: "../images/exhibitions/kenchiku.webp", mapX: 34, mapY: 68 },
+    { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "H01", category: "course", location: "校内", image: "../images/exhibitions/c.webp", mapX: 34, mapY: 68 },
     { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "H05", category: "course", location: "校内", image: "", mapX: 65, mapY: 78 }
 ];
 
@@ -641,7 +641,7 @@ locationTabs.forEach((tab) => {
 
     // Swiper 初期化
     var swiper = new Swiper('.exhibition-swiper', {
-        loop: true,
+        loop: carouselItems.length >= 4,
         autoplay: {
             delay: 2000,
             disableOnInteraction: false,
@@ -899,7 +899,7 @@ if (window.ResizeObserver && _mapSection) {
 
     // Swiper 初期化
     var swiper2 = new Swiper('.exhibition-swiper2', {
-        loop: true,
+        loop: carouselItems.length >= 4,
         autoplay: {
             delay: 2000,
             disableOnInteraction: false,
