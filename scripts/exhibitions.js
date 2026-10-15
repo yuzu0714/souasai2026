@@ -810,3 +810,18 @@ if (window.ResizeObserver && _mapSection) {
         }
     });
 })();
+
+// Clubs 見出しフェードイン
+(function () {
+    var heading = document.querySelector('.section-heading');
+    if (!heading) return;
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                heading.classList.add('is-visible');
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+    observer.observe(heading);
+})();
