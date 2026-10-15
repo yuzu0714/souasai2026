@@ -90,6 +90,7 @@ searchIcon.addEventListener("click", (event) => {
     tabs.classList.remove("is-open");
     filters.classList.remove("is-open");
     search.blur();
+    renderPins();
 });
 
 function renderFilters() {
@@ -385,6 +386,16 @@ search.addEventListener("input", () => {
     renderFilters();
     renderItems();
     renderPins();
+});
+
+// Enterキーで検索確定（パネルを閉じてピンのエフェクトを再起動）
+search.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        tabs.classList.remove("is-open");
+        filters.classList.remove("is-open");
+        search.blur();
+        renderPins();
+    }
 });
 
 
