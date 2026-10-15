@@ -50,36 +50,6 @@ body {
     margin: 0;
     overflow: hidden;
     background: #fff;
-    padding-top: 84px;
-    /* 固定ヘッダー分の余白 */
-}
-
-.hero-eyebrow {
-    margin: 0;
-    padding: 22px 16px 4px;
-    color: #292936;
-    font-size: clamp(0.8rem, 2.4vw, 1.1rem);
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-align: center;
-}
-
-.hero h1 {
-    margin: 0;
-    padding: 0 16px 18px;
-    color: #263d82;
-    font-size: clamp(2.5rem, 10vw, 5.5rem);
-    letter-spacing: 0.18em;
-    line-height: 1.1;
-    text-align: center;
-}
-
-.hero h1 span {
-    display: block;
-    margin-top: 4px;
-    font-family: "Caprasimo", serif;
-    font-size: 0.32em;
-    letter-spacing: 0.16em;
 }
 
 .hero-image {
@@ -320,7 +290,8 @@ body {
 
 /* 背景も人物も同じキャンバス。枠の比率が絵と一致するので、終了時は all.webp と同じ構図になる */
 .hyoushi-bg,
-.hyoushi-layer {
+.hyoushi-layer,
+.hyoushi-foods {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -376,7 +347,20 @@ body {
     }
 }
 
-/* 最後の人物が止まるのは約1.55秒。一拍置いて、上から叩きつけて止める */
+/* 最後の人が残っているあいだに食べ物を出し、そのあとロゴを叩きつける */
+.hyoushi-foods {
+    z-index: 2;
+    opacity: 0;
+    animation: hyoushi-foods-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) 1.25s forwards;
+    pointer-events: none;
+}
+
+@keyframes hyoushi-foods-in {
+    to {
+        opacity: 1;
+    }
+}
+
 .hyoushi-logo {
     position: absolute;
     z-index: 3;
@@ -388,7 +372,7 @@ body {
     transform: translateX(-50%) translateY(-70%) scale(1.55);
     transform-origin: center bottom;
     filter: drop-shadow(0 28px 16px rgba(0, 0, 0, 0.15));
-    animation: hyoushi-logo-slam 0.42s cubic-bezier(0.2, 0.75, 0.2, 1) 2s forwards;
+    animation: hyoushi-logo-slam 0.42s cubic-bezier(0.2, 0.75, 0.2, 1) 2.7s forwards;
     pointer-events: none;
 }
 
@@ -424,6 +408,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .hyoushi-bg,
     .hyoushi-layer,
+    .hyoushi-foods,
     .hyoushi-logo {
         animation: none;
         opacity: 1;
