@@ -443,7 +443,11 @@ function updateLocationView() {
     if (isKonai) {
         // 校内：通常の階数マップを表示
         if (placeholder) placeholder.remove();
-        if (exhibitionMapImage) exhibitionMapImage.style.display = "";
+        if (exhibitionMapImage) {
+            exhibitionMapImage.style.display = "";
+            exhibitionMapImage.src = floorMapImages[activeFloor];
+            exhibitionMapImage.alt = activeFloor + "の専門展示マップ";
+        }
         if (pins) pins.style.display = "";
     } else if (singleMap) {
         // 地図画像がある場合（校外など）
