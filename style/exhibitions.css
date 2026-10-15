@@ -490,7 +490,7 @@
     border: 2px solid #00b6c0;
     border-radius: 8px;
     background: #fff;
-    color: #00b6c0;
+    color: #d94f8a;
     font-size: 18px;
     font-weight: 700;
     line-height: 1;
@@ -538,7 +538,7 @@
     border-right: 2px solid #00b6c0;
     cursor: pointer;
     background: #fff;
-    color: #00b6c0;
+    color: #d94f8a;
     transition: background 0.2s, color 0.2s;
     -webkit-tap-highlight-color: transparent;
     font-family: inherit;
@@ -648,7 +648,7 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.92);
     border: 2px solid rgba(0, 182, 192, 0.45);
-    color: #00b6c0;
+    color: #d94f8a;
     font-size: 20px;
     line-height: 0;
     cursor: pointer;
@@ -713,7 +713,7 @@
 .carousel-subtitle {
     font-family: "Story Script", cursive;
     font-size: 2rem;
-    color: #00b6c0;
+    color: #d94f8a;
     text-align: center;
     margin: 4px 0 20px;
     transform: rotate(-3deg);
