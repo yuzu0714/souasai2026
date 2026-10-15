@@ -859,3 +859,35 @@
 .carousel-subtitle.is-visible {
     animation: fadeInUp 0.7s ease forwards;
 }
+
+/* ── 地図で確認するボタン ───────────────────── */
+.exhibition-map-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 999px;
+    background: #ffb347;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #d47f00;
+    transition: transform 0.12s, box-shadow 0.12s;
+    float: right;
+}
+.exhibition-map-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #d47f00;
+}
+.exhibition-map-link-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #d47f00;
+}
+
+.exhibition-map-link-btn .material-symbols-outlined {
+    font-size: 18px;
+    line-height: 1;
+}

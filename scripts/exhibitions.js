@@ -250,12 +250,22 @@ const posterImage = document.getElementById("exhibitionPosterImage");
 const posterClose = document.getElementById("exhibitionPosterClose");
 const posterOverlay = document.getElementById("exhibitionPosterOverlay");
 
+let currentPosterItem = null;
+
 function openPoster(item) {
+    currentPosterItem = item;
     posterImage.src = resolveImage(item.image);
     posterImage.alt = item.name + "のポスター";
     document.getElementById("exhibitionPosterName").textContent = item.name;
     document.getElementById("exhibitionPosterMeta").textContent = item.course + "  ·  " + item.place;
     posterModal.hidden = false;
+
+    // 地図ボタン：校内のみ有効化
+    const mapLinkBtn = document.getElementById("exhibitionMapLinkBtn");
+    if (mapLinkBtn) {
+        const hasMap = item.location === "校内" && item.floor && item.mapX != null;
+        mapLinkBtn.style.display = hasMap ? "" : "none";
+    }
 }
 
 function closePoster() {
@@ -267,6 +277,53 @@ function closePoster() {
 
 posterClose.addEventListener("click", closePoster);
 posterOverlay.addEventListener("click", closePoster);
+
+// 地図で確認するボタン
+document.getElementById("exhibitionMapLinkBtn").addEventListener("click", () => {
+    if (!currentPosterItem) return;
+
+    const item = currentPosterItem;
+    closePoster();
+
+    // ─── ロケーション切り替え ───
+    if (item.location && item.location !== activeLocation) {
+        activeLocation = item.location;
+        document.querySelectorAll(".location-tab").forEach(t =>
+            t.classList.toggle("is-active", t.dataset.location === activeLocation)
+        );
+        updateLocationView();
+    }
+
+    // ─── フロア切り替え（校内のみ） ───
+    if (item.location === "校内" && item.floor && item.floor !== activeFloor) {
+        activeFloor = item.floor;
+        exhibitionMapImage.src = floorMapImages[activeFloor];
+        exhibitionMapImage.alt = activeFloor + "の専門展示マップ";
+        document.querySelectorAll(".floor-tab").forEach(t =>
+            t.classList.toggle("is-active", t.dataset.floor === activeFloor)
+        );
+    }
+
+    // ピンとカードを再描画してから光らせる
+    renderItems();
+    renderPins();
+
+    // ─── 対応ピンを光らせる ───
+    const targetPin = document.querySelector(
+        `.exhibition-pin[data-number="${item.number}"]`
+    );
+    if (targetPin) {
+        targetPin.classList.add("is-blinking");
+    }
+
+    // ─── マップセクションまでスクロール ───
+    const mapWrapper = document.querySelector(".exhibition-location-wrapper");
+    if (mapWrapper) {
+        const OFFSET = 100; // 固定ヘッダー＋余白
+        const top = mapWrapper.getBoundingClientRect().top + window.scrollY - OFFSET;
+        window.scrollTo({ top, behavior: "smooth" });
+    }
+});
 
 function renderPins() {
     const pins = document.getElementById("exhibitionPins");
