@@ -662,7 +662,7 @@ locationTabs.forEach((tab) => {
     // スライド変更時にドット更新
     swiper.on('slideChange', function() {
         dotsEl.querySelectorAll('.carousel-dot').forEach(function(d, i) {
-            d.classList.toggle('is-active', i === swiper.activeIndex);
+            d.classList.toggle('is-active', i === swiper.realIndex);
         });
     });
 
@@ -920,7 +920,7 @@ if (window.ResizeObserver && _mapSection) {
     // スライド変更時にドット更新
     swiper2.on('slideChange', function() {
         dotsEl.querySelectorAll('.carousel-dot').forEach(function(d, i) {
-            d.classList.toggle('is-active', i === swiper2.activeIndex);
+            d.classList.toggle('is-active', i === swiper2.realIndex);
         });
     });
 
