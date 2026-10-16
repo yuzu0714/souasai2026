@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     width: min(100% - 32px, 520px);
     margin: 0 auto;
-    padding: 80px 0 42px;
+    padding: 80px 0 0;
 }
 
 .exhibition-title {
@@ -1107,4 +1107,9 @@ body {
     .exhibition-title {
         margin-bottom: 60px;
     }
+}
+
+/* フッターとの隙間をなくす */
+.site-footer {
+    margin-top: 0;
 }
