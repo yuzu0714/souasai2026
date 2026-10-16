@@ -17,6 +17,7 @@
 
 .exhibition-finder {
     overflow: hidden;
+    margin-top: 12px;
     border: 2px solid #00b6c0;
     border-radius: 8px;
     background: #fff;
@@ -187,7 +188,7 @@
     border: 2px solid #f05d9d;
     border-radius: 10px;
     background: #fff;
-    color: #f05d9d;
+    color: #00b6c0;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -382,6 +383,12 @@
         width: min(100% - 48px, 1160px);
     }
 
+    /* ラッパーはラウンドコーナーを維持 */
+    .exhibition-location-wrapper {
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
     /* コンテンツエリアを左右2列に */
     .exhibition-content {
         display: grid;
@@ -484,7 +491,7 @@
     border: 2px solid #00b6c0;
     border-radius: 8px;
     background: #fff;
-    color: #00b6c0;
+    color: #d94f8a;
     font-size: 18px;
     font-weight: 700;
     line-height: 1;
@@ -505,4 +512,527 @@
 .map-ctrl-btn:disabled {
     opacity: 0.3;
     cursor: default;
+}
+
+/* ============================================================
+   ロケーションラッパー＆タブ（校内 / 校外 / 図書館）
+   タイムスケジュールと同じ：タブが枠線上部にくっつくデザイン
+   ============================================================ */
+.exhibition-location-wrapper {
+    margin-top: 20px;
+    border: 3px solid #00b6c0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.exhibition-location-tabs {
+    display: flex;
+    border-bottom: 3px solid #00b6c0;
+}
+
+.location-tab {
+    flex: 1;
+    padding: 13px 0;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-right: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    background: #fff;
+    color: #00b6c0;
+    transition: background 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    font-family: inherit;
+}
+
+.location-tab:last-child {
+    border-right: none;
+}
+
+.location-tab.is-active {
+    background: #00b6c0;
+    color: #fff;
+}
+
+/* exhibition-content はラッパー内に入ったので margin-top をリセット */
+.exhibition-location-wrapper > .exhibition-content {
+    margin-top: 0;
+    border-radius: 0;
+}
+
+/* 校外・図書館では階数タブを非表示 */
+.exhibition-floor-tabs.is-hidden {
+    display: none;
+}
+
+/* 校外・図書館のマップなし案内 */
+.exhibition-map-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    color: #aaa;
+    font-size: 1rem;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.carousel-swiper-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.exhibition-swiper {
+    overflow: visible;
+}
+
+/* カードの基本スタイル */
+.carousel-card {
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+    transform: scale(0.88);
+    opacity: 0.6;
+    transition: transform 0.52s ease, opacity 0.52s ease;
+}
+
+.swiper-slide-active .carousel-card {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.carousel-card-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.carousel-card-info {
+    display: none;
+}
+
+.carousel-card-name {
+    margin: 0 0 4px;
+    font-size: .92rem;
+    font-weight: 700;
+    color: #151515;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carousel-card-meta {
+    margin: 0;
+    font-size: .72rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 左右矢印ボタン */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid rgba(0, 182, 192, 0.45);
+    color: #d94f8a;
+    font-size: 20px;
+    line-height: 0;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-btn--prev { left: 6px; }
+.carousel-btn--next { right: 6px; }
+
+.carousel-btn:hover {
+    background: #00b6c0;
+    color: #fff;
+    border-color: #00b6c0;
+}
+
+.carousel-btn.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* ドットインジケーター */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, transform 0.25s;
+    flex-shrink: 0;
+}
+
+.carousel-dot.is-active {
+    background: #fff;
+    transform: scale(1.45);
+}
+
+@media (min-width: 960px) {
+    .exhibition-carousel {
+        max-width: 520px;
+    }
+}
+
+.exhibition-carousel {
+    margin-top: 10px;
+}
+
+/* カルーセル下サブタイトル */
+.carousel-subtitle {
+    font-family: "Story Script", cursive;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #ff6b1a;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    transform: rotate(-3deg);
+    letter-spacing: 0.03em;
+    pointer-events: none;
+}
+
+
+/* 字幕下の日本語サブテキスト */
+.carousel-subtitle-ja {
+    display: block;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0.15em;
+    transform: rotate(3deg);
+    margin-top: 2px;
+}
+/* セクション境界（黄色の波形）→ yellow-rect内に移動済み */
+.section-divider {
+    display: none;
+}
+
+.section-divider svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 波の下の黄色帯 → yellow-rect内に移動済み */
+.yellow-band {
+    display: none;
+}
+
+/* 黄色の四角ブロック */
+.yellow-rect {
+    position: relative;
+    display: flow-root;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: 460px;
+    background: linear-gradient(to bottom, #fffde8, #ffe066);
+    margin-top: 0;
+    padding-bottom: 80px;
+}
+
+/* 波（yellow-rect上部に絶対配置） */
+.yellow-wave-top {
+    position: absolute;
+    top: -68px;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    display: block;
+    pointer-events: none;
+}
+
+/* 黄色枠内カルーセル */
+.exhibition-carousel--yellow {
+    margin-top: 24px;
+    padding-bottom: 24px;
+    max-width: none;
+}
+
+/* セクション見出し（Clubs など） */
+.section-heading {
+    font-family: "Story Script", cursive;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #d94f8a;
+    text-align: center;
+    margin-top: -8px;
+    margin-bottom: 0;
+    padding-bottom: 4px;
+    position: relative;
+    z-index: 1;
+    transform: rotate(-3deg);
+    letter-spacing: 0.03em;
+}
+
+.section-heading-ja {
+    display: block;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0.15em;
+    transform: rotate(3deg);
+    margin-top: 2px;
+}
+
+/* 白い背景ブロック（Clubsセクション） */
+.white-rect {
+    position: relative;
+    display: flow-root;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: 200px;
+    background: linear-gradient(to bottom, #fff0f6, #ffb8d8);
+    margin-top: 30px;
+    padding-bottom: 80px;
+}
+
+/* 白い波（white-rect上部に絶対配置） */
+.white-wave-top {
+    position: absolute;
+    top: -68px;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    display: block;
+    pointer-events: none;
+}
+
+/* Clubs フェードインアニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px) rotate(-3deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(-3deg);
+    }
+}
+
+.section-heading,
+.carousel-subtitle {
+    opacity: 0;
+}
+
+.section-heading.is-visible,
+.carousel-subtitle.is-visible {
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+/* ── 地図で確認するボタン ───────────────────── */
+.exhibition-map-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 999px;
+    background: #ffb347;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #d47f00;
+    transition: transform 0.12s, box-shadow 0.12s;
+    float: right;
+}
+.exhibition-map-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #d47f00;
+}
+.exhibition-map-link-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #d47f00;
+}
+
+.exhibition-map-link-btn .material-symbols-outlined {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* ── Eventsセクション（青帯） ──────────────────────── */
+.blue-rect {
+    position: relative;
+    display: flow-root;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: 460px;
+    background: linear-gradient(to bottom, #e8f7fd, #7ec8e3);
+    margin-top: 0;
+}
+
+.blue-wave-top {
+    position: absolute;
+    top: -68px;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    display: block;
+    pointer-events: none;
+}
+
+.exhibition-carousel--blue {
+    margin-top: 24px;
+    padding-bottom: 24px;
+    max-width: none;
+}
+
+.carousel-subtitle--events {
+    color: #2980b9;
+}
+
+/* フェードイン（blue-rect内） */
+.carousel-subtitle--events {
+    opacity: 0;
+    transform: translateY(18px) rotate(-3deg);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.carousel-subtitle--events.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(-3deg);
+}
+
+/* ── マップで確認 見出し ─────────────────────── */
+.map-section-heading {
+    font-family: "Story Script", cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #d94f8a;
+    text-align: center;
+    margin: 48px 0 0;
+    letter-spacing: 0.03em;
+}
+
+/* ===== PC レイアウト追加調整 ===== */
+@media (min-width: 960px) {
+
+    /* カルーセルセクション内コンテンツを中央に */
+    .white-rect,
+    .yellow-rect,
+    .blue-rect {
+        display: flow-root;
+    }
+
+    .white-rect > *,
+    .yellow-rect > *,
+    .blue-rect > * {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 波SVGは全幅のままにする */
+    .white-wave-top,
+    .yellow-wave-top,
+    .blue-wave-top {
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    /* カルーセルは中央寄せ・幅制限 */
+    .exhibition-carousel {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* カードの画像サイズを揃える */
+    .carousel-card-img {
+        width: 100%;
+        aspect-ratio: 1 / 1.414;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* マップで確認・検索エリアも中央揃え */
+    .map-section-heading {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .exhibition-finder {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* カルーセルのサブタイトルも中央内に収める */
+    .carousel-subtitle {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 960px) {
+    .white-wave-top,
+    .yellow-wave-top,
+    .blue-wave-top {
+        height: 140px;
+        top: -136px;
+    }
+}
+
+/* ── カルーセルポスターフェードイン ── */
+.carousel-swiper-wrap {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.carousel-swiper-wrap.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 960px) {
+    .exhibition-title {
+        margin-bottom: 60px;
+    }
 }

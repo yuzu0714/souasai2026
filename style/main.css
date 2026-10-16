@@ -158,6 +158,28 @@ body {
     text-decoration: underline;
     padding: 12px 0;
 }
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1B2A6B;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    margin-top: 16px;
+    transition: background 0.2s, transform 0.15s;
+}
+.download-btn:hover {
+    background: #00b6c0;
+    transform: translateY(-2px);
+}
+.download-btn:active {
+    transform: translateY(0);
+}
+
 
 @media (max-width: 768px) {
     .about-section {

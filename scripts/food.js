@@ -22,7 +22,7 @@ const foodItems = [
     { club: "弓道",       name: "唐揚げ",         category: "club", image: "images/foods/karaage.webp", price: "", detail: "" },
     { club: "5I",         name: "フランクフルト",  category: "club", image: "images/foods/furankufuruto.webp", price: "", detail: "" },
     { club: "5Z",         name: "ベビーカステラ",  category: "club", image: "images/foods/bebikasutera.webp", price: "", detail: "" },
-    { club: "去年度執行委員", name: "かき氷",      category: "club", image: "images/foods/kakigori.webp", price: "", detail: "" },
+    { club: "昨年度執行委員", name: "かき氷",      category: "club", image: "images/foods/kakigori.webp", price: "", detail: "" },
     { club: "書道",       name: "たい焼き",        category: "club", image: "images/foods/taiyaki.webp", price: "", detail: "" },
     { club: "柔道",       name: "パン",            category: "club", image: "images/foods/pan.webp", price: "", detail: "" },
     { club: "棋道",       name: "アメリカンドッグ",category: "club", image: "images/foods/amerikandog.webp", price: "", detail: "" },

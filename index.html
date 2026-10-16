@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>蒼阿祭2026</title>
+
+    <meta property="og:title" content="蒼阿祭2026">
+    <meta name="keywords" content="蒼阿祭, 蒼阿祭2026, そうあさい, そうあさい２０２６, Souasai,souasai2026,阿南高専文化祭,阿南高専高専祭">
+    <meta name="description" content="蒼阿祭2026の公式ウェブサイト。イベントスケジュール、展示、模擬店の情報はこちら。">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/menu.css">
+    <link rel="stylesheet" href="style/footer.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Noto+Sans+JP:wght@400;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dots">
+
+    <header class="site-header" id="siteHeader">
+        <div class="logo">Menu</div>
+        <button class="hamburger-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
+            <span class="hamburger-icon">
+                <span></span><span></span><span></span>
+            </span>
+        </button>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="menu-list">
+            <ul>
+                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.html#about">蒼阿祭について</a></li>
+                <li><a href="food.html">売店</a></li>
+                <li><a href="exhibitions.html">展示</a></li>
+                <li><a href="timeschedule.html">タイムスケジュール</a></li>
+                <li><a href="stamprally.html">スタンプラリー</a></li>
+                <li><a href="access.html">交通アクセス</a></li>
+            </ul>
+        </nav>
+
+        <div class="contact-card">
+            <p class="contact-title">contact</p>
+            <p class="contact-label">総務課連絡先:</p>
+            <p class="contact-value">0884-23-7100</p>
+            <p class="contact-label">住所：〒774-0017</p>
+            <p class="contact-value">徳島県阿南市見能林町青木265</p>
+        </div>
+    </div>
+
+    <main class="hero">
+
+        <!-- 表紙イラスト（全幅表示） -->
+        <section class="hyoushi-hero">
+            <img class="hyoushi-bg" src="images/hyoushi/background.webp" alt="蒼阿祭2026表紙イラスト" loading="eager">
+            <img class="hyoushi-layer" data-depth="back" style="--hyoushi-delay:1s" src="images/hyoushi/kikai.webp" alt="機械" loading="eager">
+            <img class="hyoushi-layer" data-depth="back" style="--hyoushi-delay:0.8s" src="images/hyoushi/fijiiku.webp" alt="フィジーク" loading="eager">
+            <img class="hyoushi-layer" data-depth="front" style="--hyoushi-delay:0.4s" src="images/hyoushi/gita.webp" alt="ギター" loading="eager">
+            <img class="hyoushi-layer" data-depth="front" style="--hyoushi-delay:0.6s" src="images/hyoushi/aidoru.webp" alt="アイドル" loading="eager">
+            <img class="hyoushi-layer" data-depth="front" style="--hyoushi-delay:0.2s" src="images/hyoushi/kagaku.webp" alt="化学" loading="eager">
+            <img class="hyoushi-foods" src="images/hyoushi/foods.webp" alt="売店の食べ物" loading="eager">
+            <img class="hyoushi-logo" src="images/hyoushi/logo.png" alt="蒼阿祭 アオハル 〜蒼春〜" loading="eager">
+        </section>
+
+        <!-- ヒーローカード（index2.htmlより） -->
+        <section class="hero-card">
+            <div class="ticker anim-fade-up" style="--anim-delay:0.52s" aria-label="蒼阿祭からのお知らせ">
+                <div class="ticker-track">
+                    <span>「蒼阿祭」へようこそ！今年も、みんなでつくり上げた楽しい企画が盛りだくさんです。高専ならではの専門展示や体験コーナー、心弾むステージや模擬店など、見て・触れて・味わって楽しめる出し物をご用意しました。気になる場所を自由に巡りながら、笑顔いっぱいの一日を過ごしてください。&emsp;&emsp;&emsp;</span>
+                    <span
+                        aria-hidden="true">「蒼阿祭」へようこそ！今年も、みんなでつくり上げた楽しい企画が盛りだくさんです。高専ならではの専門展示や体験コーナー、心弾むステージや模擬店など、見て・触れて・味わって楽しめる出し物をご用意しました。気になる場所を自由に巡りながら、笑顔いっぱいの一日を過ごしてください。&emsp;&emsp;&emsp;</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 黄色いスペース（index.htmlより） -->
+        <section id="about" class="about-section anim-fade-up" style="--anim-delay:0.1s">
+            <h2 class="about-heading">蒼阿祭について</h2>
+
+            <p class="about-sub">
+                第20回　阿南高専蒼阿祭<br>
+                開催日程：11月7日（日）<br>
+                9:00～18:00
+            </p>
+
+            <p class="about-body">
+                蒼阿祭とは、徳島県の阿南工業高等専門学校で開催される年に一度の文化祭です。<br>
+                学生によるダンスや売店、専門展示など魅力的な出し物たくさんあります。
+                今年のテーマ「蒼春（アオハル）」の通り、学生の皆さんはめいいっぱい蒼阿祭で蒼春を楽しんでください。
+            </p>
+
+            <div class="about-img">
+                <img src="images/hyoushi/all.webp" alt="蒼阿祭パンフレット">
+            </div>
+
+            <a href="files/pamphlet.pdf" class="download-btn" download>↓ パンフレットをダウンロードする</a>
+        </section>
+
+        <!-- ページカード一覧（index2.htmlより） -->
+        <nav class="page-cards" aria-label="ページ一覧">
+            <a class="page-card scroll-card" style="--card-delay:0s" href="food.html">
+                <span class="page-card-title">Foods</span>
+                <span class="page-card-line"></span>
+                <span class="page-card-subtitle">売店</span>
+            </a>
+            <a class="page-card scroll-card" style="--card-delay:0.1s" href="exhibitions.html">
+                <span class="page-card-title">Exhibition</span>
+                <span class="page-card-line"></span>
+                <span class="page-card-subtitle">展示</span>
+            </a>
+            <a class="page-card scroll-card" style="--card-delay:0.2s" href="timeschedule.html">
+                <span class="page-card-title">Time Schedule</span>
+                <span class="page-card-line"></span>
+                <span class="page-card-subtitle">タイムスケジュール</span>
+            </a>
+            <a class="page-card scroll-card" style="--card-delay:0.3s" href="stamprally.html">
+                <span class="page-card-title">Stamp Rally</span>
+                <span class="page-card-line"></span>
+                <span class="page-card-subtitle">スタンプラリー</span>
+            </a>
+            <a class="page-card scroll-card" style="--card-delay:0.4s" href="access.html">
+                <span class="page-card-title">Access</span>
+                <span class="page-card-line"></span>
+                <span class="page-card-subtitle">交通アクセス</span>
+            </a>
+        </nav>
+
+    </main>
+
+    <footer class="site-footer">
+        <nav class="footer-links">
+            <ul class="footer-links-col">
+                <li><a href="index.html">About</a></li>
+                <li><a href="food.html">Foods</a></li>
+                <li><a href="exhibitions.html">Exhibitions</a></li>
+            </ul>
+            <ul class="footer-links-col">
+                <li><a href="timeschedule.html">Time schedule</a></li>
+                <li><a href="stamprally.html">Stamp rally</a></li>
+                <li><a href="access.html">Access</a></li>
+            </ul>
+        </nav>
+
+        <hr class="footer-divider">
+
+        <div class="footer-logo">
+            <div class="logo-box">
+                <a href="https://www.anan-nct.ac.jp/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/icons/anan-logo.webp" alt="阿南高専ロゴ">
+                </a>
+                <a href="https://www.instagram.com/nit.anancollege/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/icons/insta-icon.webp" alt="Instagram">
+                </a>
+            </div>
+        </div>
+
+        <p class="footer-copyright">@2026 蒼阿祭実行委員会</p>
+    </footer>
+
+    <script>
+        // スクロールアニメーション
+
+        // 少し下にスクロールしたら「蒼阿祭について」セクションへ自動スクロール
+        (function() {
+            const aboutSection = document.getElementById('about');
+            if (!aboutSection) return;
+            let triggered = false;
+            window.addEventListener('scroll', function() {
+                if (triggered) return;
+                if (window.scrollY > 60) {
+                    triggered = true;
+                    aboutSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, { passive: true });
+        })();
+        const scrollCards = document.querySelectorAll('.scroll-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        scrollCards.forEach(card => observer.observe(card));
+
+        const menuBtn = document.getElementById('menuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const siteHeader = document.getElementById('siteHeader');
+
+        function toggleMenu() {
+            const isOpen = menuOverlay.classList.toggle('is-open');
+            siteHeader.classList.toggle('is-open', isOpen);
+            menuBtn.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.menu-list a').forEach((link) => {
+            link.addEventListener('click', () => {
+                if (menuOverlay.classList.contains('is-open')) toggleMenu();
+            });
+        });
+    </script>
+</body>
+
+</html>
