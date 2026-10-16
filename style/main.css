@@ -33,10 +33,23 @@ body {
 
 /* 背景のドット柄 */
 .dots {
-    background-color: #fff;
-    background-image: radial-gradient(circle, #06b6d4 3px, transparent 3px);
-    background-position: 0 0;
-    background-size: 20px 20px;
+    background-color: #f3fdff;
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0,182,192,0.12) 0px,
+        rgba(0,182,192,0.12) 1.5px,
+        transparent 1.5px,
+        transparent 20px
+    );
+}
+
+/* index.html 専用：グリッド背景 */
+.dots.grid {
+    background-image:
+        linear-gradient(rgba(0,182,192,0.15) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0,182,192,0.15) 2px, transparent 2px);
+    background-size: 24px 24px;
+    background-position: center center;
 }
 
 /* ===== ヒーローセクション（main2.cssより） ===== */
@@ -300,8 +313,13 @@ body {
     }
 
     .dots {
-        background-image: radial-gradient(circle, #06b6d4 3px, transparent 3px);
-        background-size: 30px 30px;
+        background-image: repeating-linear-gradient(
+            45deg,
+            rgba(0,182,192,0.12) 0px,
+            rgba(0,182,192,0.12) 1.5px,
+            transparent 1.5px,
+            transparent 20px
+        );
     }
 }
 
