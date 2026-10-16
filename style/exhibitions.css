@@ -1,4 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .exhibitions-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     width: min(100% - 32px, 520px);
     margin: 0 auto;
     padding: 80px 0 42px;
@@ -16,9 +25,11 @@
 }
 
 .exhibition-finder {
+    position: relative;
+    z-index: 4;
     overflow: hidden;
     margin-top: 12px;
-    border: 2px solid #00b6c0;
+    border: 2px solid #ffa600;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 3px 8px rgba(0, 0, 0, .18);
@@ -47,7 +58,7 @@
     width: 34px;
     height: 34px;
     color: #fff;
-    background: #00b6c0;
+    background: #ffa600;
     border-radius: 4px;
     font-size: 28px;
     line-height: 29px;
@@ -101,7 +112,7 @@
     font-size: .84rem;
 }
 
-.filter-option input { accent-color: #00b6c0; }
+.filter-option input { accent-color: #ffa600; }
 
 .exhibition-count {
     margin: 18px 4px 8px;
@@ -130,7 +141,7 @@
     width: 100%;
     margin-top: 20px;
     padding: 16px;
-    background: #00B6C0;
+    background: #ffa600;
     border-radius: 32px;
     box-sizing: border-box;
 }
@@ -145,7 +156,7 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border: 2px solid #00b6c0;
+    border: 2px solid #ffa600;
     border-radius: 12px;
     background: #fff;
     touch-action: none;
@@ -188,7 +199,7 @@
     border: 2px solid #f05d9d;
     border-radius: 10px;
     background: #fff;
-    color: #00b6c0;
+    color: #ffa600;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -402,7 +413,7 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        border: 3px solid #00B6C0;
+        border: 3px solid #ffa600;
         border-radius: 20px;
         background: rgba(0, 182, 192, 0.18);
         padding: 12px;
@@ -488,7 +499,7 @@
     width: 36px;
     height: 36px;
     padding: 0;
-    border: 2px solid #00b6c0;
+    border: 2px solid #ffa600;
     border-radius: 8px;
     background: #fff;
     color: #d94f8a;
@@ -505,7 +516,7 @@
 }
 
 .map-ctrl-btn:hover:not(:disabled) {
-    background: #00b6c0;
+    background: #ffa600;
     color: #fff;
 }
 
@@ -520,14 +531,14 @@
    ============================================================ */
 .exhibition-location-wrapper {
     margin-top: 20px;
-    border: 3px solid #00b6c0;
+    border: 3px solid #ffa600;
     border-radius: 16px;
     overflow: hidden;
 }
 
 .exhibition-location-tabs {
     display: flex;
-    border-bottom: 3px solid #00b6c0;
+    border-bottom: 3px solid #ffa600;
 }
 
 .location-tab {
@@ -539,7 +550,7 @@
     border-right: 2px solid rgba(255,255,255,0.3);
     cursor: pointer;
     background: #fff;
-    color: #00b6c0;
+    color: #ffa600;
     transition: background 0.2s, color 0.2s;
     -webkit-tap-highlight-color: transparent;
     font-family: inherit;
@@ -550,7 +561,7 @@
 }
 
 .location-tab.is-active {
-    background: #00b6c0;
+    background: #ffa600;
     color: #fff;
 }
 
@@ -664,9 +675,9 @@
 .carousel-btn--next { right: 6px; }
 
 .carousel-btn:hover {
-    background: #00b6c0;
+    background: #ffa600;
     color: #fff;
-    border-color: #00b6c0;
+    border-color: #ffa600;
 }
 
 .carousel-btn.swiper-button-disabled {
@@ -881,7 +892,7 @@
 }
 .exhibition-map-link-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 0 #d47f00;
+    box-shadow: 0 5px 0 #ffa600;
 }
 .exhibition-map-link-btn:active {
     transform: translateY(2px);
@@ -959,12 +970,13 @@
 /* ── マップ背景（山の下の黄色エリア） ─────────────────────── */
 .map-yellow-bg {
     position: relative;
+    flex: 1;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     background: #f5f0c8;
     margin-top: -80px;
-    padding: 0 calc(50vw - 50%) 32px;
+    padding: 0 calc(50vw - 50%) 48px;
 }
 
 /* ── マップ見出しブロック ─────────────────────── */
