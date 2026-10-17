@@ -115,7 +115,7 @@
                 margin-left: calc(50% - 50vw);
                 margin-right: calc(50% - 50vw);
                 background: linear-gradient(to bottom, #caf0f8, #ade8f4);
-                padding: 28px 16px 280px;
+                padding: 28px 16px 300px;
                 box-sizing: border-box;
             }
 
@@ -134,11 +134,14 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                position: relative;
+                z-index: 5;
+                padding-bottom: 40px;
             }
             /* ===== 駐車場 山型セパレーター ===== */
             .access-parking-mountain {
                 position: relative;
-                margin-top: -240px;
+                margin-top: -300px;
                 width: 100vw;
                 margin-left: calc(50% - 50vw);
                 margin-right: calc(50% - 50vw);
@@ -162,7 +165,7 @@
                 margin-left: calc(50% - 50vw);
                 margin-right: calc(50% - 50vw);
                 background: #f0fff4;
-                margin-top: -60px;
+                margin-top: 0;
                 padding: 0 16px 60px;
                 box-sizing: border-box;
             }
@@ -284,7 +287,6 @@
         <div class="access-parking-mountain">
             <svg viewBox="0 0 375 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- 山の両サイドを青で塗り（青セクションの終わりをコーナーに合わせる） -->
-                <rect x="0" y="0" width="375" height="300" fill="#ade8f4"/>
                 <!-- 緑の山 -->
                 <path d="M0,240 L130,100 C180,48 195,48 245,100 L375,240 L375,300 L0,300 Z" fill="#f0fff4"/>
             </svg>
