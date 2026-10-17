@@ -63,7 +63,7 @@
             .access-map-wrap {
                 margin-top: 16px;
                 width: 100%;
-                height: 300px;
+                height: 560px;
                 border-radius: 20px;
                 overflow: hidden;
                 border: 3px solid #00B6C0;
@@ -97,7 +97,7 @@
             @media (max-width: 768px) {
                 .access-map-wrap {
                 margin-top: 16px;
-                    height: 240px;
+                    height: 440px;
                 }
                 .access-section {
                     margin-bottom: 8px;
@@ -115,7 +115,7 @@
                 margin-left: calc(50% - 50vw);
                 margin-right: calc(50% - 50vw);
                 background: linear-gradient(to bottom, #caf0f8, #ade8f4);
-                padding: 28px 16px 60px;
+                padding: 28px 16px 280px;
                 box-sizing: border-box;
             }
 
@@ -126,7 +126,6 @@
                 width: 100%;
                 height: 120px;
                 display: block;
-                pointer-events: none;
             }
 
             .access-map-inner {
@@ -135,6 +134,42 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+            }
+            /* ===== 駐車場 山型セパレーター ===== */
+            .access-parking-mountain {
+                position: relative;
+                margin-top: -240px;
+                width: 100vw;
+                margin-left: calc(50% - 50vw);
+                margin-right: calc(50% - 50vw);
+                height: 300px;
+                z-index: 3;
+                pointer-events: none;
+            }
+            .access-parking-mountain svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* ===== 駐車場 背景エリア ===== */
+            .access-parking-bg {
+                position: relative;
+                z-index: 4;
+                width: 100vw;
+                margin-left: calc(50% - 50vw);
+                margin-right: calc(50% - 50vw);
+                background: #f0fff4;
+                margin-top: -60px;
+                padding: 0 16px 60px;
+                box-sizing: border-box;
+            }
+            .access-parking-inner {
+                max-width: 480px;
+                margin: 0 auto;
+                padding-top: 20px;
             }
         </style>
 
@@ -217,6 +252,26 @@
                    class="access-map-btn">
                     Google マップで開く →
                 </a>
+
+            </div>
+        </div>
+
+        <!-- 山型セパレーター -->
+        <div class="access-parking-mountain">
+            <svg viewBox="0 0 375 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 山の両サイドを青で塗り（青セクションの終わりをコーナーに合わせる） -->
+                <rect x="0" y="0" width="375" height="300" fill="#ade8f4"/>
+                <!-- 緑の山 -->
+                <path d="M0,240 L130,100 C180,48 195,48 245,100 L375,240 L375,300 L0,300 Z" fill="#f0fff4"/>
+            </svg>
+        </div>
+
+        <!-- 駐車場マップエリア -->
+        <div class="access-parking-bg">
+            <div class="access-parking-inner">
+                <h2 class="access-section-title" style="color:#00B6C0; margin-bottom:32px; font-size:2rem; font-weight:800; text-align:center;">駐車場</h2>
+                <img src="images/maps/parking.svg" alt="駐車場"
+                     style="width:100%; border-radius:12px; display:block; margin-top:4px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
             </div>
         </div>
 
