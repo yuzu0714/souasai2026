@@ -345,6 +345,7 @@ body {
     padding: 12px;
     box-sizing: border-box;
     border-radius: 16px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
     background: #fff;
     overflow: auto;
 }
@@ -354,6 +355,7 @@ body {
     width: 100%;
     height: auto;
     border-radius: 8px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .exhibition-poster-close {
@@ -415,7 +417,7 @@ body {
         overflow: hidden;
         border: 3px solid #ffa600;
         border-radius: 20px;
-        background: rgba(0, 182, 192, 0.18);
+        background: rgba(255, 255, 255, 0.35);
         padding: 12px;
         box-sizing: border-box;
     }
@@ -533,6 +535,7 @@ body {
     margin-top: 20px;
     border: 3px solid #ffa600;
     border-radius: 16px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
@@ -622,6 +625,7 @@ body {
     height: auto;
     object-fit: cover;
     border-radius: 20px;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-card-info {
@@ -1113,4 +1117,25 @@ body {
 /* フッターとの隙間をなくす */
 .site-footer {
     margin-top: 0;
+}
+
+/* ===== 校外図セクション ===== */
+.kougai-map-section {
+    max-width: 900px;
+    margin: 48px auto 60px;
+    padding: 0 16px;
+    text-align: center;
+}
+.kougai-map-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 16px;
+}
+.kougai-map-img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 0 auto;
 }
