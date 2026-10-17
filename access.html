@@ -45,7 +45,7 @@
             /* ===== アクセスセクション ===== */
             .access-section {
                 max-width: 480px;
-                margin: 0 auto 60px;
+                margin: 0 auto 8px;
                 padding: 0 16px;
                 display: flex;
                 flex-direction: column;
@@ -61,6 +61,7 @@
             }
 
             .access-map-wrap {
+                margin-top: 16px;
                 width: 100%;
                 height: 300px;
                 border-radius: 20px;
@@ -95,14 +96,51 @@
 
             @media (max-width: 768px) {
                 .access-map-wrap {
+                margin-top: 16px;
                     height: 240px;
                 }
+                .access-section {
+                    margin-bottom: 8px;
+                }
+                .access-wave-top {
+                    top: -90px;
+                    height: 120px;
+                }
+            }
+
+            /* ===== 地図エリア 波＋背景セクション ===== */
+            .access-map-section {
+                position: relative;
+                width: 100vw;
+                margin-left: calc(50% - 50vw);
+                margin-right: calc(50% - 50vw);
+                background: linear-gradient(to bottom, #caf0f8, #ade8f4);
+                padding: 28px 16px 60px;
+                box-sizing: border-box;
+            }
+
+            .access-wave-top {
+                position: absolute;
+                top: -90px;
+                left: 0;
+                width: 100%;
+                height: 120px;
+                display: block;
+                pointer-events: none;
+            }
+
+            .access-map-inner {
+                max-width: 480px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
             }
         </style>
 
     </head>
 
-    <body class="dots">
+    <body class="dots grid">
 
         <header class="site-header" id="siteHeader">
             <div class="logo">Menu</div>
@@ -148,27 +186,39 @@
                 </p>
             </div>
 
-            <div class="access-map-wrap">
-                <iframe
-                    src="https://maps.google.com/maps?q=%E9%98%BF%E5%8D%97%E5%B7%A5%E6%A5%AD%E9%AB%98%E7%AD%89%E5%B0%82%E9%96%80%E5%AD%A6%E6%A0%A1&hl=ja&z=15&output=embed"
-                    width="100%"
-                    height="100%"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="阿南工業高等専門学校 地図">
-                </iframe>
-            </div>
-
-            <a href="https://maps.google.com/maps?q=阿南工業高等専門学校"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="access-map-btn">
-                Google マップで開く →
-            </a>
-
         </section>
+
+        <div class="access-map-section">
+            <svg class="access-wave-top" viewBox="0 0 375 120" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <!-- section 上端(y=90)以降を確実に埋める solid rect -->
+                <rect x="0" y="88" width="375" height="32" fill="#caf0f8"/>
+                <!-- 大きい波 -->
+                <path d="M0,60 C60,90 130,30 187,55 C244,80 310,28 375,50 L375,120 L0,120 Z" fill="#caf0f8"/>
+                <!-- 小さい奥の波（同系色で継ぎ目なし） -->
+                <path d="M0,75 C80,55 160,85 230,68 C295,52 340,78 375,65 L375,120 L0,120 Z" fill="#caf0f8"/>
+            </svg>
+            <div class="access-map-inner">
+                <div class="access-map-wrap">
+                    <iframe
+                        src="https://maps.google.com/maps?q=%E9%98%BF%E5%8D%97%E5%B7%A5%E6%A5%AD%E9%AB%98%E7%AD%89%E5%B0%82%E9%96%80%E5%AD%A6%E6%A0%A1&hl=ja&z=15&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="阿南工業高等専門学校 地図">
+                    </iframe>
+                </div>
+
+                <a href="https://maps.google.com/maps?q=阿南工業高等専門学校"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="access-map-btn">
+                    Google マップで開く →
+                </a>
+            </div>
+        </div>
 
 
         <footer class="site-footer">
