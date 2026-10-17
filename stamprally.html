@@ -152,6 +152,17 @@
             </div><!-- /.stamp-teal-rect -->
         </main>
 
+        <!-- ===== コンプリートモーダル ===== -->
+        <div class="stamp-complete-overlay" id="stampCompleteOverlay" hidden>
+            <div class="stamp-complete-modal">
+                <div class="stamp-complete-confetti" aria-hidden="true">🎉</div>
+                <p class="stamp-complete-title">コンプリート！</p>
+                <p class="stamp-complete-msg">全てスタンプをゲットしました！<br>お菓子つかみ取りに<br>行きましょう！</p>
+                <p class="stamp-complete-hint">体育館付近の受付へ</p>
+                <button class="stamp-complete-close" id="stampCompleteClose">閉じる</button>
+            </div>
+        </div>
+
         <footer class="site-footer">
             <nav class="footer-links">
             <ul class="footer-links-col">
@@ -225,6 +236,12 @@
 
             if (collected >= TOTAL_STATIONS) {
                 progressText.textContent = '全部揃いました！体育館付近の受付へ行こう！';
+                // コンプリートモーダルを表示（初回のみ）
+                const overlay = document.getElementById('stampCompleteOverlay');
+                if (overlay) overlay.hidden = false;
+                document.getElementById('stampCompleteClose').addEventListener('click', () => {
+                    overlay.hidden = true;
+                });
                 snackSlot.hidden = false;
                 if (stamps['snack']) {
                     const img = snackSlot.querySelector('.stamp-icon');

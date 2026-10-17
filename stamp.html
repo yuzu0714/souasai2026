@@ -127,6 +127,14 @@
                 iconEl.style.display = 'none';
                 messageEl.textContent = '7つのスタンプを全部集めてから、また来てね。';
                 btnEl.style.display = 'none';
+            } else if (stamps['snack']) {
+                // すでにお菓子つかみ取り済み
+                titleEl.textContent = 'すでに参加済みです';
+                titleEl.style.color = '#888';
+                iconEl.style.display = 'none';
+                messageEl.innerHTML = 'お菓子つかみ取りは<br>お済みです🍬<br>またね！';
+                messageEl.style.color = '#888';
+                btnEl.style.display = 'none';
             } else {
                 titleEl.textContent = 'お菓子つかみ取り';
                 titleEl.style.color = '#e08a00';
