@@ -130,11 +130,16 @@
   }
 }
 
-/* ===== exhibitions：PC 時ポスターを縮小 ===== */
+/* ===== exhibitions：PC 時ポスターを縮小（左右パディングで幅を詰める） ===== */
 @media (min-width: 769px) {
   .exhibition-carousel {
-    transform: scale(0.78);
-    transform-origin: top center;
-    margin-bottom: -22%; /* scale で生じる余白を詰める */
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+  /* yellow-rect 内のカルーセルも同様 */
+  .exhibition-carousel--yellow,
+  .exhibition-carousel--blue {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
   }
 }
