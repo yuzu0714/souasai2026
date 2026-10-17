@@ -130,16 +130,70 @@
   }
 }
 
-/* ===== exhibitions：PC 時ポスターを縮小（左右パディングで幅を詰める） ===== */
+
+
+/* ===== exhibitions.css の 960px ブレークポイントをスマホ表示に戻す ===== */
+/* body が 420px に制限されているため、viewport 幅ベースの PC 用レイアウトをリセット */
 @media (min-width: 769px) {
-  .exhibition-carousel {
-    padding-left: 28px !important;
-    padding-right: 28px !important;
+  /* exhibitions-page 幅制限リセット */
+  .exhibitions-page {
+    width: 100% !important;
+    max-width: 100% !important;
   }
-  /* yellow-rect 内のカルーセルも同様 */
-  .exhibition-carousel--yellow,
-  .exhibition-carousel--blue {
-    padding-left: 28px !important;
-    padding-right: 28px !important;
+
+  /* マップ＋カードの2列グリッドをスマホ表示（1列）に戻す */
+  .exhibition-content {
+    display: block !important;
+    grid-template-columns: unset !important;
+  }
+
+  /* カードパネルの PC 用枠線・スクロールをリセット */
+  .exhibition-cards-panel {
+    display: block !important;
+    overflow: hidden !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    max-height: none !important;
+  }
+
+  /* カードリストをスマホと同じ単列に */
+  .exhibition-list {
+    flex: unset !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 色帯セクション内子要素の max-width をリセット */
+  .white-rect > *,
+  .yellow-rect > *,
+  .blue-rect > * {
+    max-width: none !important;
+  }
+
+  /* 波SVGをスマホ値に固定（960px で height:140px/top:-136px になるのを戻す） */
+  .white-wave-top,
+  .yellow-wave-top,
+  .blue-wave-top {
+    height: 72px !important;
+    top: -68px !important;
+  }
+
+  /* カルーセルの幅制限・中央寄せをリセット（Swiper の動作を壊さない） */
+  .exhibition-carousel {
+    max-width: none !important;
+  }
+
+  /* 検索・見出しの幅制限リセット */
+  .map-section-heading,
+  .exhibition-finder,
+  .carousel-subtitle {
+    max-width: none !important;
+  }
+
+  /* タイトル下余白リセット */
+  .exhibition-title {
+    margin-bottom: initial !important;
   }
 }
