@@ -41,7 +41,13 @@ const exhibitionItems = [
     { name: "更衣室", course: "", place: "2C", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
     { name: "更衣室", course: "", place: "4C", floor: "3F", number: "H03", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 68 },
     { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "H01", category: "course", location: "校内", image: "images/exhibitions/c.webp", mapX: 34, mapY: 68 },
-    { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "H05", category: "course", location: "校内", image: "", mapX: 65, mapY: 78 }
+    { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "H05", category: "course", location: "校内", image: "", mapX: 65, mapY: 78 },
+    // 図書館 1F
+    { name: "中学生説明会", course: "", place: "視聴覚室", floor: "1F", number: "J01", category: "course", location: "図書館", image: "", mapX: 78, mapY: 55 },
+    { name: "", course: "", place: "多目的室", floor: "1F", number: "J02", category: "course", location: "図書館", image: "", mapX: 33, mapY: 88 },
+    // 図書館 2F
+    { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "", mapX: 33, mapY: 35 },
+    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "", mapX: 25, mapY: 85 }
 ];
 
 // ============================================================
@@ -192,8 +198,9 @@ function renderItems() {
     });
 
     // 表示するのは現在の階の展示
+    const currentFloorForItems = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
     const visible = matchedItems.filter(
-        (item) => item.floor === activeFloor
+        (item) => item.floor === currentFloorForItems
     );
 
     count.textContent = `${visible.length}件の展示`;
@@ -365,8 +372,9 @@ function renderPins() {
         );
 
     // 現在の階のピン（ロケーションでも絞り込む）
+    const currentFloor = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
     const visibleItems = exhibitionItems.filter(
-        (item) => item.floor === activeFloor && item.location === activeLocation
+        (item) => item.floor === currentFloor && item.location === activeLocation
     );
 
     pins.innerHTML = visibleItems.map((item, index) => {
@@ -495,9 +503,7 @@ const floorTabsWrapper = document.getElementById("exhibitionFloorTabsWrapper");
 const mapEl = document.querySelector(".exhibition-map");
 
 // ロケーションごとの地図画像（校内は floorMapImages を使用）
-const locationSingleMap = {
-    "校外": "images/maps/map_4.svg",
-};
+const locationSingleMap = {};
 
 // 図書館用フロアマップ
 const libraryFloorMaps = {
@@ -550,7 +556,7 @@ function updateLocationView() {
             exhibitionMapImage.src = libraryFloorMaps[activeLibraryFloor];
             exhibitionMapImage.alt = "図書館" + activeLibraryFloor + "のマップ";
         }
-        if (pins) pins.style.display = "none";
+        if (pins) pins.style.display = "";
 
         // 図書館用フロアタブを生成（なければ）
         if (floorTabsWrapper && !floorTabsWrapper.querySelector(".library-floor-tab")) {
@@ -571,6 +577,8 @@ function updateLocationView() {
                         );
                         exhibitionMapImage.src = libraryFloorMaps[floor];
                         exhibitionMapImage.alt = "図書館" + floor + "のマップ";
+                        renderItems();
+                        renderPins();
                     });
                     floorTabsWrapper.appendChild(btn);
                 }
