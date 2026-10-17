@@ -158,6 +158,24 @@ function renderItems() {
             if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
         });
     });
+
+    // スクロールフェードイン
+    observeCards();
+}
+
+function observeCards() {
+    const cards = list.querySelectorAll(".food-card");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add("is-visible");
+                }, i * 60);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    cards.forEach((card) => observer.observe(card));
 }
 
 document.querySelectorAll(".food-tab").forEach((tab) => tab.addEventListener("click", () => {
