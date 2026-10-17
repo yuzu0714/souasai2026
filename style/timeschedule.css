@@ -4,7 +4,6 @@
                 padding: 0 16px;
             }
 
-            /* 外枠（点線ボーダー） */
             .schedule-outer {
                 border: 3px solid #00b6c0;
                 border-radius: 15px;
@@ -39,11 +38,11 @@
             }
 
             .tab-btn:first-child {
-                border-top-left-radius: 0px;
+                border-top-left-radius: 12px;
             }
 
             .tab-btn:last-child {
-                border-top-right-radius: 0px;
+                border-top-right-radius: 12px;
             }
 
             /* カードリスト */
@@ -52,8 +51,6 @@
                 display: none;
                 flex-direction: column;
                 gap: 12px;
-                max-height: 520px;
-                overflow-y: auto;
             }
 
             .schedule-list.active {
@@ -68,6 +65,7 @@
                 padding: 14px 24px;
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 gap: 16px;
                 transition: transform 0.18s ease, box-shadow 0.18s ease;
                 cursor: pointer;
@@ -93,14 +91,15 @@
                 font-weight: bold;
                 color: #333;
                 white-space: nowrap;
+                text-align: right;
             }
 
             .card-time {
-                font-size: 15px;
+                font-size: 22px;
                 color: #555;
-                white-space: nowrap;
-                margin-left: auto;
-                text-align: right;
+                text-align: left;
+                font-family: "Caprasimo", serif;
+                line-height: 1.1;
             }
 
             /* ---- イベントカードスライダー ---- */

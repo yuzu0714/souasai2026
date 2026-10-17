@@ -37,15 +37,9 @@
             }
         }
 
-        /* カード内の時間を右揃え */
         .schedule-card {
             display: flex !important;
             align-items: center !important;
-        }
-        .card-time {
-            margin-left: auto !important;
-            text-align: right !important;
-            flex-shrink: 0;
         }
 
         /* ---- 水平カルーセル ---- */
@@ -237,6 +231,14 @@
         .schedule-card.dimmed .ended-label {
             display: block;
         }
+
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .schedule-card.fade-in {
+            animation: cardFadeIn 0.4s ease both;
+        }
     </style>
 
 </head>
@@ -277,16 +279,6 @@
     <h1>Time Schedule</h1>
 
     <!-- イベントカードカルーセル -->
-    <section class="event-slider-section">
-        <div class="carousel-outer" id="carouselOuter">
-            <div class="card-stack" id="cardStack"></div>
-            <button class="carousel-arrow carousel-prev" id="sliderPrev" aria-label="前のイベント">&#8249;</button>
-            <button class="carousel-arrow carousel-next" id="sliderNext" aria-label="次のイベント">&#8250;</button>
-        </div>
-        <div class="slider-dots" id="sliderDots"></div>
-    </section>
-
-
     <section class="schedule-section">
         <div class="schedule-outer">
 
@@ -298,74 +290,81 @@
             <!-- 体育館 -->
             <div class="schedule-list active" id="tab-gym">
                 <div class="schedule-card">
+                    <span class="card-time">9:00 ~<br>&nbsp;&nbsp;9:10</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">開会式</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">9:00〜9:10</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">9:10 ~<br>&nbsp;&nbsp;10:10</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">ダンス</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">9:10〜10:10</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">10:30 ~<br>&nbsp;&nbsp;11:30</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">有志イベント</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">10:30〜11:30</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">11:30 ~<br>&nbsp;&nbsp;12:00</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">お菓子投げ</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">11:30〜12:00</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">12:00 ~<br>&nbsp;&nbsp;13:00</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">お昼休憩</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">12:00〜13:00</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">13:00 ~<br>&nbsp;&nbsp;14:00</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">ダンス</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">13:00〜14:00</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">14:15 ~<br>&nbsp;&nbsp;14:45</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">フィジーク</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">14:15〜14:45</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">15:00 ~<br>&nbsp;&nbsp;16:00</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">吹奏楽</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">15:00〜16:00</span>
                 </div>
                 <div class="schedule-card">
-                    <span class="card-title">抽選会</span>
+                    <span class="card-time">16:30 ~<br>&nbsp;&nbsp;17:00</span>
                     <span class="ended-label">終了しました</span>
-                    <span class="card-time">16:30〜17:00</span>
-                </div>
+                    <span class="card-title">抽選会</span>
                 </div>
             </div>
 
             <!-- 大講義室 -->
             <div class="schedule-list" id="tab-hall">
                 <div class="schedule-card">
-                    <span class="card-title">カラオケ大会</span>
+                    <span class="card-time">10:00 ~<br>&nbsp;&nbsp;10:30</span>
                     <span class="ended-label">終了しました</span>
-                    <span class="card-time">10:00〜10:30</span>
+                    <span class="card-title">カラオケ大会</span>
                 </div>
                 <div class="schedule-card">
+                    <span class="card-time">11:00 ~<br>&nbsp;&nbsp;12:00</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-title">軽音ライブ</span>
-                    <span class="ended-label">終了しました</span>
-                    <span class="card-time">11:00〜12:00</span>
                 </div>
                 <div class="schedule-card">
-                    <span class="card-title">カラオケ大会</span>
+                    <span class="card-time">15:00 ~<br>&nbsp;&nbsp;16:00</span>
                     <span class="ended-label">終了しました</span>
-                    <span class="card-time">15:00〜16:00</span>
-                </div>
+                    <span class="card-title">カラオケ大会</span>
                 </div>
             </div>
 
         </div>
+    </section>
+
+    <section class="event-slider-section">
+        <div class="carousel-outer" id="carouselOuter">
+            <div class="card-stack" id="cardStack"></div>
+            <button class="carousel-arrow carousel-prev" id="sliderPrev" aria-label="前のイベント">&#8249;</button>
+            <button class="carousel-arrow carousel-next" id="sliderNext" aria-label="次のイベント">&#8250;</button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
     </section>
 
     <footer class="site-footer">
@@ -672,6 +671,25 @@
 
         highlightCurrentCards();
         setInterval(highlightCurrentCards, 60000);
+
+        function animateCards() {
+            const cards = document.querySelectorAll('.schedule-list.active .schedule-card');
+            cards.forEach((card, i) => {
+                card.classList.remove('fade-in');
+                void card.offsetWidth; // reflow
+                card.style.animationDelay = (i * 0.07) + 's';
+                card.classList.add('fade-in');
+            });
+        }
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setTimeout(animateCards, 0);
+            });
+        });
+
+        animateCards();
+
 
         initCarousel();
 

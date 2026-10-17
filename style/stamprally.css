@@ -110,10 +110,10 @@
 
 .stamp-teal-wave-top {
   position: absolute;
-  top: -116px;
+  top: -60px;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 64px;
   display: block;
   pointer-events: none;
 }
