@@ -21,23 +21,21 @@
             <style>
             h1 {
                 font-family: "Caprasimo", serif;
-                font-size: 80px;
+                font-size: clamp(2.8rem, 15vw, 5rem);
                 color: #fff;
-                -webkit-text-stroke: 1px #000;
+                -webkit-text-stroke: 1px #151515;
                 text-stroke: 1px #151515;
-                text-shadow: 0 6px 0 #E60000;
-                margin-top: 110px;   /* 追加:固定ヘッダー(84px)の下に余白を作る */
-                text-align: center;  /* 追加:文字を中央揃えに */
+                text-shadow: 2px 4px 0 #E60000;
+                margin-top: 100px;
+                margin-bottom: 0;
+                text-align: center;
             }
 
-            @media (max-width: 768px) {
-                h1 {
-                    font-size: 50px; /* スマホ用にフォントサイズを調整 */
-                }
-            }
+            
         </style>
 
-    </head>
+        <link rel="stylesheet" href="style/pc-layout.css">
+</head>
 
     <body class="dots grid">
 
@@ -236,5 +234,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script src="scripts/h1-slide-anim.js"></script>
 
-    </body>
+    
+  <!-- PC サイドナビ（スマホでは非表示） -->
+  <aside class="pc-sidenav pc-sidenav--left">
+    <div class="pc-nav-logo">蒼阿祭<br>2026</div>
+    <nav>
+      <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="food.html">売店</a></li>
+      <li><a href="exhibitions.html">展示・校内マップ</a></li>
+      <li><a href="timeschedule.html">タイムスケジュール</a></li>
+      <li><a href="stamprally.html" class="active">スタンプラリー</a></li>
+      <li><a href="access.html">交通アクセス</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <aside class="pc-sidenav pc-sidenav--right">
+    <div class="pc-event-info">
+      <p><strong>開催日</strong>2026年<br>文化祭当日</p>
+      <p><strong>会場</strong>阿南工業高等専門学校</p>
+      <p><strong>住所</strong>〒774-0017<br>徳島県阿南市見能林町青木265</p>
+      <p><strong>お問い合わせ</strong>総務課<br>0884-23-7100</p>
+    </div>
+  </aside>
+</body>
 </html>

@@ -17,10 +17,10 @@ body {
     margin: 0 0 22px;
     color: #fff;
     font-family: "Caprasimo", serif;
-    font-size: clamp(3.1rem, 15vw, 5rem);
+    font-size: clamp(2.8rem, 15vw, 5rem);
     font-weight: 400;
     text-align: center;
-    text-shadow: 2px 3px 0 #FF74AB;
+    text-shadow: 2px 4px 0 #FF74AB;
     -webkit-text-stroke: 1px #151515;
 }
 

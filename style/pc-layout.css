@@ -1,0 +1,140 @@
+/* ===== PC レイアウト：スマホ幅（420px）中央固定 + サイドナビ ===== */
+/* スマホは変更なし */
+@media (max-width: 768px) {
+  .pc-sidenav { display: none; }
+}
+
+@media (min-width: 769px) {
+  /* html レベルで横スクロールを防ぐ（body の fixed 子要素に影響しない） */
+  html {
+    overflow-x: hidden;
+  }
+  /* body をスマホ幅に制限して中央配置 */
+  body {
+    max-width: 420px;
+    margin: 0 auto;
+    box-shadow: 0 0 60px rgba(0,0,0,0.12);
+  }
+
+  /* 固定ヘッダーをbody幅に合わせて中央に配置 */
+  .site-header {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 420px !important;
+  }
+
+  /* メニューオーバーレイは全画面のまま */
+  .menu-overlay {
+    position: fixed;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+  }
+
+  /* フッターは全幅 */
+  .site-footer {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+  }
+
+  /* ===== サイドナビ ===== */
+  .pc-sidenav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: calc((100vw - 420px) / 2);
+    box-sizing: border-box;
+    padding: 60px 16px 24px;
+    background: #f3fdff;
+    z-index: 200;
+  }
+  .pc-sidenav--left  { left: 0; border-right: 1px solid rgba(0,182,192,0.15); }
+  .pc-sidenav--right { right: 0; border-left: 1px solid rgba(0,182,192,0.15); }
+
+  /* サイドナビ内コンテンツ */
+  .pc-sidenav .pc-nav-logo {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #00B6C0;
+    margin-bottom: 24px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .pc-sidenav nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pc-sidenav nav ul li {
+    margin-bottom: 4px;
+  }
+  .pc-sidenav nav ul li a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+  .pc-sidenav nav ul li a:hover {
+    background: rgba(0,182,192,0.12);
+    color: #00B6C0;
+  }
+  .pc-sidenav nav ul li a.active {
+    background: rgba(0,182,192,0.18);
+    color: #00B6C0;
+  }
+
+  /* 右サイドのイベント情報 */
+  .pc-sidenav--right .pc-event-info {
+    font-size: 0.78rem;
+    color: #666;
+    line-height: 1.7;
+    font-family: "Noto Sans JP", sans-serif;
+    margin-top: 16px;
+  }
+  .pc-sidenav--right .pc-event-info strong {
+    display: block;
+    color: #00B6C0;
+    font-weight: 800;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+  }
+  .pc-sidenav--right .pc-event-info p {
+    margin: 0 0 12px;
+  }
+}
+/* ===== h1 フォントサイズ：PC でもスマホ幅相当に固定 ===== */
+@media (min-width: 769px) {
+  h1,
+  .exhibition-title,
+  .food-title {
+    /* body=420px 時の 15vw 相当 (63px ≈ 3.9rem) に固定 */
+    font-size: 3.9rem !important;
+  }
+}
+
+/* ===== index.html 表紙イラスト：PC のみ上余白 ===== */
+@media (min-width: 769px) {
+  .hyoushi-hero {
+    margin-top: 150px;
+  }
+}
+
+/* ===== exhibitions：PC 時ポスターを縮小 ===== */
+@media (min-width: 769px) {
+  .exhibition-carousel {
+    transform: scale(0.78);
+    transform-origin: top center;
+    margin-bottom: -22%; /* scale で生じる余白を詰める */
+  }
+}
