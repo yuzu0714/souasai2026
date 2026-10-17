@@ -201,6 +201,42 @@
                 font-size: 18px;
             }
         }
+
+        /* 現在時刻外のカード */
+        .schedule-card {
+            position: relative;
+        }
+        /* グレーオーバーレイ（opacity非使用で子要素に影響させない） */
+        .schedule-card.dimmed::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.68);
+            border-radius: inherit;
+            z-index: 1;
+            pointer-events: none;
+            transition: background 0.4s;
+        }
+        .schedule-card.current-time {
+            box-shadow: 0 4px 16px rgba(0,182,192,0.25);
+        }
+        .schedule-card .ended-label {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #c0000a;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .schedule-card.dimmed .ended-label {
+            display: block;
+        }
     </style>
 
 </head>
@@ -263,39 +299,49 @@
             <div class="schedule-list active" id="tab-gym">
                 <div class="schedule-card">
                     <span class="card-title">開会式</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">9:00〜9:10</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">ダンス</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">9:10〜10:10</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">有志イベント</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">10:30〜11:30</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">お菓子投げ</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">11:30〜12:00</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">お昼休憩</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">12:00〜13:00</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">ダンス</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">13:00〜14:00</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">フィジーク</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">14:15〜14:45</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">吹奏楽</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">15:00〜16:00</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">抽選会</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">16:30〜17:00</span>
+                </div>
                 </div>
             </div>
 
@@ -303,15 +349,19 @@
             <div class="schedule-list" id="tab-hall">
                 <div class="schedule-card">
                     <span class="card-title">カラオケ大会</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">10:00〜10:30</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">軽音ライブ</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">11:00〜12:00</span>
                 </div>
                 <div class="schedule-card">
                     <span class="card-title">カラオケ大会</span>
+                    <span class="ended-label">終了しました</span>
                     <span class="card-time">15:00〜16:00</span>
+                </div>
                 </div>
             </div>
 
@@ -556,6 +606,72 @@
             if (Math.abs(diff) > 40) diff > 0 ? goNext() : goPrev();
         });
         carouselEl.addEventListener('mouseleave', () => { isDragging = false; });
+
+
+        // ---- 現在時刻のカードをハイライト ----
+        function parseTime(str) {
+            const m = str.match(/(\d+):(\d+)/);
+            return m ? parseInt(m[1]) * 60 + parseInt(m[2]) : null;
+        }
+
+        function highlightCurrentCards() {
+            const now = new Date();
+            const nowMin = now.getHours() * 60 + now.getMinutes();
+
+            const allCards = document.querySelectorAll('.schedule-list.active .schedule-card');
+            let hasCurrent = false;
+
+            allCards.forEach(card => {
+                const timeEl = card.querySelector('.card-time');
+                if (!timeEl) return;
+                const timeText = timeEl.textContent.trim();
+                const parts = timeText.split('〜');
+                if (parts.length < 2) return;
+                const start = parseTime(parts[0]);
+                const end = parseTime(parts[1]);
+                if (start === null || end === null) return;
+
+                if (nowMin >= start && nowMin < end) {
+                    // 現在進行中
+                    card.classList.add('current-time');
+                    card.classList.remove('dimmed');
+                    hasCurrent = true;
+                } else if (nowMin >= end) {
+                    // 終了済み → 薄く
+                    card.classList.add('dimmed');
+                    card.classList.remove('current-time');
+                } else {
+                    // まだ始まっていない → 通常
+                    card.classList.remove('dimmed', 'current-time');
+                }
+            });
+
+            // 進行中イベントがある場合は未来のカードも薄くする
+            if (hasCurrent) {
+                allCards.forEach(card => {
+                    const timeEl = card.querySelector('.card-time');
+                    if (!timeEl) return;
+                    const parts = timeEl.textContent.trim().split('〜');
+                    if (parts.length < 2) return;
+                    const start = parseTime(parts[0]);
+                    if (start === null) return;
+                    if (nowMin < start) {
+                        card.classList.add('dimmed');
+                        card.classList.remove('current-time');
+                    }
+                });
+            }
+        }
+
+        // タブ切り替え時にも再ハイライト
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setTimeout(highlightCurrentCards, 0);
+            });
+        });
+
+        highlightCurrentCards();
+        setInterval(highlightCurrentCards, 60000);
 
         initCarousel();
 
