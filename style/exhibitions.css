@@ -528,7 +528,7 @@ body {
 }
 
 /* ============================================================
-   ロケーションラッパー＆タブ（校内 / 校外 / 図書館）
+   ロケーションラッパー＆タブ（校内 / 図書館 / 全体）
    タイムスケジュールと同じ：タブが枠線上部にくっつくデザイン
    ============================================================ */
 .exhibition-location-wrapper {
@@ -537,20 +537,29 @@ body {
     border-radius: 16px;
     box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    /* 想定外のサブピクセル隙間からクリーム背景が透けないようにする（見た目の色は同じ） */
+    background: #ffa600;
 }
 
 .exhibition-location-tabs {
-    display: flex;
-    border-bottom: 3px solid #ffa600;
+    /* タブ幅を均等に保つ。境目の線はなし、下はオレンジでつなぐ */
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    border-bottom: none;
+    /* 下地をオレンジにして、スマホの端数ズレでクリームが透けないようにする */
+    background: #ffa600;
+    position: relative;
+    z-index: 1;
+    /* 下のコンテンツにわずか重ねて隙間を潰す */
+    margin-bottom: -3px;
 }
 
 .location-tab {
-    flex: 1;
     padding: 13px 0;
     font-size: 16px;
     font-weight: 700;
     border: none;
-    border-right: 2px solid rgba(255,255,255,0.3);
     cursor: pointer;
     background: #fff;
     color: #ffa600;
@@ -559,27 +568,31 @@ body {
     font-family: inherit;
 }
 
-.location-tab:last-child {
-    border-right: none;
-}
-
 .location-tab.is-active {
     background: #ffa600;
     color: #fff;
+    /* 選択中タブの下端をオレンジで伸ばして隙間を隠す */
+    box-shadow: 0 3px 0 #ffa600;
 }
 
 /* exhibition-content はラッパー内に入ったので margin-top をリセット */
 .exhibition-location-wrapper > .exhibition-content {
     margin-top: 0;
     border-radius: 0;
+    /* タブ直後の余白を詰め、重ね分も足す */
+    padding-top: 15px;
 }
 
-/* 校外・図書館では階数タブを非表示 */
+.exhibition-location-wrapper .exhibition-map-section {
+    margin-top: 0;
+}
+
+/* 全体・図書館では階数タブを非表示（図書館は専用タブを表示） */
 .exhibition-floor-tabs.is-hidden {
     display: none;
 }
 
-/* 校外・図書館のマップなし案内 */
+/* マップなし案内 */
 .exhibition-map-placeholder {
     display: flex;
     align-items: center;
@@ -1119,23 +1132,3 @@ body {
     margin-top: 0;
 }
 
-/* ===== 校外図セクション ===== */
-.kougai-map-section {
-    max-width: 900px;
-    margin: 48px auto 60px;
-    padding: 0 16px;
-    text-align: center;
-}
-.kougai-map-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 16px;
-}
-.kougai-map-img {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
-    display: block;
-    margin: 0 auto;
-}
