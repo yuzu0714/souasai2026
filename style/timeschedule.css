@@ -8,13 +8,15 @@
                 border: 3px solid #00b6c0;
                 border-radius: 15px;
                 overflow: hidden;
-                background: #fff;
+                /* 四隅のサブピクセル隙間から背景が透けないようにする */
+                background: #00b6c0;
             }
 
             /* タブ */
             .schedule-tabs {
                 display: flex;
                 border-bottom: 3px solid #00b6c0;
+                background: #00b6c0;
             }
 
             .tab-btn {
@@ -51,6 +53,7 @@
                 display: none;
                 flex-direction: column;
                 gap: 12px;
+                background: #fff;
             }
 
             .schedule-list.active {
