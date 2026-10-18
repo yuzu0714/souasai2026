@@ -331,3 +331,48 @@
 .stamp-complete-close:hover {
   background: #d94b8a;
 }
+
+/* =====位置モーダル===== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: min(90%, 400px);
+}
+
+#modal-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.stamp-slot {
+    cursor: pointer;
+}
+
+#modal-image {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 16px auto;
+}
