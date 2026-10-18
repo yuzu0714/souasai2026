@@ -147,6 +147,11 @@
   overflow: hidden;
 }
 
+/*体育館のスタンプの位置調整*/
+.stamp-slot[data-station="7"] .stamp-icon {
+  transform: translateX(5px);
+}
+
 /* 上側のグレー丸(スタンプを押す前のプレースホルダー) */
 .stamp-slot-circle {
   position: relative;
