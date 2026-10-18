@@ -502,8 +502,10 @@ const locationTabs = document.querySelectorAll(".location-tab");
 const floorTabsWrapper = document.getElementById("exhibitionFloorTabsWrapper");
 const mapEl = document.querySelector(".exhibition-map");
 
-// ロケーションごとの地図画像（校内は floorMapImages を使用）
-const locationSingleMap = {};
+// ロケーションごとの地図画像（校内・図書館はフロア別画像を使用）
+const locationSingleMap = {
+    "全体": "images/maps/kougai.svg",
+};
 
 // 図書館用フロアマップ
 const libraryFloorMaps = {
@@ -524,7 +526,7 @@ function updateLocationView() {
     const pins = document.getElementById("exhibitionPins");
     let placeholder = mapEl ? mapEl.querySelector(".exhibition-map-placeholder") : null;
 
-    // 図書館タブを一度リセット（校内/校外に戻ったとき用）
+    // 図書館タブを一度リセット（校内・全体に戻ったとき用）
     if (floorTabsWrapper) {
         floorTabsWrapper.querySelectorAll(".library-floor-tab").forEach(t => t.style.display = "none");
         floorTabsWrapper.querySelectorAll(".floor-tab:not(.library-floor-tab)").forEach(t => t.style.display = "");
@@ -540,7 +542,7 @@ function updateLocationView() {
         }
         if (pins) pins.style.display = "";
     } else if (singleMap) {
-        // 地図画像がある場合（校外など）
+        // 地図画像が1枚の場合（全体など）
         if (placeholder) placeholder.remove();
         if (exhibitionMapImage) {
             exhibitionMapImage.style.display = "";
