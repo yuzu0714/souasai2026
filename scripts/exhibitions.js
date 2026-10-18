@@ -18,8 +18,8 @@ const DEFAULT_EXHIBITION_IMAGE = "images/food-baby-castella.png";
 
 const exhibitionItems = [
     //1F
-    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "A03", category: "course", location: "校内", image: "images/exhibitions/z.webp", mapX: 54, mapY: 42 },
     { name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "A04", category: "course", location: "校内", image: "images/exhibitions/m.webp", mapX: 27.5, mapY: 55 },
+    { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "A03", category: "course", location: "校内", image: "images/exhibitions/z.webp", mapX: 54, mapY: 42 },
     { name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "E01", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 69, mapY: 20 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "i01", category: "course", location: "校内", image: "images/club/puroguraming.webp", mapX: 84, mapY: 82 },
     //2F
@@ -28,7 +28,7 @@ const exhibitionItems = [
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
     { name: "吹奏楽部演奏", course: "吹奏楽部", place: "", floor: "2F", number: "C03", category: "course", location: "校内", image: "images/club/suisougaku.webp", mapX: 0, mapY: 0 },
-    { name: "書道部展示", course: "書道部", place: "", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 0, mapY: 0 },
+    { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 17.5, mapY: 50.5 },
     { name: "写真部展示", course: "写真部 書道部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
     { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "images/club/engeki.webp", mapX: 34, mapY: 70 },
     { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "D02", category: "course", location: "校内", image: "images/club/tenmon.webp", mapX: 34, mapY: 76 },
@@ -71,6 +71,50 @@ const searchIcon = document.querySelector(".search-icon");
 let activeTab = "exhibition";
 let activeFloor = "1F";
 let activeLocation = "校内";
+
+// マップピンを非表示にする展示名
+const MAP_HIDDEN = ["吹奏楽部演奏"];
+
+// アイテムごとの表示番号（タイプ別に全フロア通し連番）
+const pinSeqMap = new Map();
+(function() {
+    const floorOrder = ["1F", "2F", "3F"];
+    const getType = (item) =>
+        (item.image || '').includes('images/exhibitions/') ? 'exhibition'
+        : (item.image || '').includes('images/club/') ? 'club' : 'other';
+
+    // 吹奏楽部はピン非表示（カウントから除外）
+    const hiddenFromSeq = MAP_HIDDEN;
+    // 書道部は写真部と同じピン番号を共有
+    const sharedPinParent = { "書道部展示": "写真部展示" };
+
+    const types = ['exhibition', 'club', 'other'];
+    types.forEach((type) => {
+        // 非表示・共有子を除いてシーケンス番号を割り当て
+        const sorted = [...exhibitionItems]
+            .filter((item) => getType(item) === type
+                && !hiddenFromSeq.includes(item.name)
+                && !sharedPinParent[item.name])
+            .sort((a, b) => {
+                const fa = floorOrder.indexOf(a.floor);
+                const fb = floorOrder.indexOf(b.floor);
+                if (fa !== fb) return fa - fb;
+                return a.mapY - b.mapY;
+            });
+        sorted.forEach((item, i) => {
+            pinSeqMap.set(item, { type, seq: String(i + 1).padStart(2, '0') });
+        });
+
+        // 共有ピン：親と同じ番号を設定
+        Object.entries(sharedPinParent).forEach(([childName, parentName]) => {
+            const childItem = exhibitionItems.find(i => i.name === childName && getType(i) === type);
+            const parentItem = exhibitionItems.find(i => i.name === parentName && getType(i) === type);
+            if (childItem && parentItem && pinSeqMap.has(parentItem)) {
+                pinSeqMap.set(childItem, { ...pinSeqMap.get(parentItem) });
+            }
+        });
+    });
+})();
 
 search.addEventListener("focus", () => {
     tabs.classList.add("is-open");
@@ -199,17 +243,25 @@ function renderItems() {
 
     // 表示するのは現在の階の展示
     const currentFloorForItems = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
-    const visible = matchedItems.filter(
-        (item) => item.floor === currentFloorForItems
-    );
+    const typeOrder = { exhibition: 0, club: 1, other: 2 };
+    const visible = matchedItems
+        .filter((item) => item.floor === currentFloorForItems)
+        .sort((a, b) => {
+            const pa = pinSeqMap.get(a) || { type: 'other', seq: '99' };
+            const pb = pinSeqMap.get(b) || { type: 'other', seq: '99' };
+            const ta = typeOrder[pa.type] ?? 2;
+            const tb = typeOrder[pb.type] ?? 2;
+            if (ta !== tb) return ta - tb;
+            return pa.seq.localeCompare(pb.seq);
+        });
 
     count.textContent = `${visible.length}件の展示`;
 
     list.innerHTML = visible.length
         ? visible.map((item) => `
-            <article class="exhibition-card" data-number="${item.number}">
+            <article class="exhibition-card" data-number="${item.number}" data-type="${(pinSeqMap.get(item) || {}).type || 'other'}">
                 <div>
-                    <p class="exhibition-name"><span class="card-pin-number">${item.number}</span>${item.name}</p>
+                    <p class="exhibition-name"><span class="card-pin-number">${(pinSeqMap.get(item) || {}).seq || ''}</span>${item.name}</p>
                     <p class="exhibition-club">
                         ${item.course}
                         <span class="exhibition-badge">${item.place}</span>
@@ -281,7 +333,7 @@ function openPoster(item) {
     // 地図ボタン：校内のみ有効化
     const mapLinkBtn = document.getElementById("exhibitionMapLinkBtn");
     if (mapLinkBtn) {
-        const hasMap = item.location === "校内" && item.floor && item.mapX != null;
+        const hasMap = item.location === "校内" && item.floor && item.mapX != null && (item.mapX !== 0 || item.mapY !== 0);
         mapLinkBtn.style.display = hasMap ? "" : "none";
     }
 }
@@ -375,12 +427,15 @@ function renderPins() {
     const currentFloor = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
     const visibleItems = exhibitionItems.filter(
         (item) => item.floor === currentFloor && item.location === activeLocation
+            && !MAP_HIDDEN.includes(item.name)
+            && (item.mapX !== 0 || item.mapY !== 0)
     );
 
     pins.innerHTML = visibleItems.map((item, index) => {
         const isMatched =
             (keyword || selected.length) &&
             matchedItems.includes(item);
+        const { type, seq } = pinSeqMap.get(item) || { type: 'other', seq: '??' };
         return `
         <button
             type="button"
@@ -389,10 +444,11 @@ function renderPins() {
             aria-label="${item.name} ${item.place}"
             data-index="${index}"
             data-number="${item.number}"
+            data-type="${type}"
         >
             <span class="pin-shape">
                 <span class="pin-inner">
-                    ${(()=>{const m=item.number.match(/^([A-Za-z]+)(\d+)$/);return m?`<span class="pin-letter">${m[1]}</span><span class="pin-digits">${m[2]}</span>`:`<span class="pin-number">${item.number}</span>`;})()}
+                    <span class="pin-digits">${seq}</span>
                 </span>
             </span>
         </button>

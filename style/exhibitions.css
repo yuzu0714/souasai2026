@@ -269,6 +269,16 @@ body {
     transform: rotate(-45deg);
 }
 
+/* 専門展示：赤 */
+.exhibition-pin[data-type="exhibition"] .pin-shape {
+    background: #e03030;
+}
+
+/* 部活動：黄 */
+.exhibition-pin[data-type="club"] .pin-shape {
+    background: #f5c400;
+}
+
 /* 白い円＋数字を入れる部分 */
 .pin-inner {
     position: absolute;
@@ -302,7 +312,7 @@ body {
 /* 数字（下段・新形式） */
 .pin-digits {
     color: #151515;
-    font-size: 8px;
+    font-size: 7px;
     font-weight: bold;
     line-height: 1;
 }
@@ -458,12 +468,20 @@ body {
     height: 22px;
     margin-right: 6px;
     border-radius: 50%;
-    background: #f05d9d;
+    background: #aaa;
     color: #fff;
     font-size: .6rem;
     font-weight: 700;
     flex-shrink: 0;
     vertical-align: middle;
+}
+/* カードピン番号：地図ピンと同じ色 */
+.exhibition-card[data-type="exhibition"] .card-pin-number {
+    background: #e03030;
+}
+.exhibition-card[data-type="club"] .card-pin-number {
+    background: #f5c400;
+    color: #333;
 }
 
 .exhibition-poster-info {
