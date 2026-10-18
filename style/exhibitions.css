@@ -994,20 +994,6 @@ body {
     transform: translateX(-50%);
 }
 
-.map-title-sub {
-    font-family: "Noto Sans JP", sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #5e5e5e;
-    font-style: italic;
-    transform: rotate(-10deg);
-    transform-origin: left bottom;
-    display: block;
-    position: relative;
-    top: -80px;
-    margin: 0 0 -90px -110px;
-    letter-spacing: 0.02em;
-}
 
 /* ── マップで確認 見出し ─────────────────────── */
 .map-section-heading {

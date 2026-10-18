@@ -147,6 +147,13 @@
   overflow: hidden;
 }
 
+/* 体育館は末尾1つなので他と同じ幅で中央配置（margin:autoだけだとラベル幅に縮む） */
+.stamp-slot[data-station="7"] {
+  grid-column: span 2;
+  width: calc(50% - 9px);
+  justify-self: center;
+}
+
 /* 上側のグレー丸(スタンプを押す前のプレースホルダー) */
 .stamp-slot-circle {
   position: relative;
