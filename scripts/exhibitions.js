@@ -29,7 +29,7 @@ const exhibitionItems = [
     { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "E02", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
-    { name: "吹奏楽部演奏", course: "吹奏楽部", place: "", floor: "2F", number: "C03", category: "course", location: "校内", image: "images/club/suisougaku.webp", mapX: 0, mapY: 0 },
+    { name: "吹奏楽部演奏", course: "吹奏楽部", place: "第一体育館", floor: "全体", number: "C03", category: "course", location: "全体", image: "images/club/suisougaku.webp", mapX: 71, mapY: 50 },
     { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 17.5, mapY: 50.5 },
     { name: "写真部展示", course: "写真部 書道部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
     { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "images/club/engeki.webp", mapX: 34, mapY: 70 },
@@ -51,7 +51,8 @@ const exhibitionItems = [
     { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "images/events/biburio.webp", mapX: 33, mapY: 35 },
     { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", mapX: 25, mapY: 85 },
     // 全体
-    { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/hyoushi/fijiiku.webp", mapX: 50, mapY: 50 }
+    { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 71, mapY: 56 },
+    { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 32, mapY: 29 }
 ];
 
 // ============================================================
@@ -77,7 +78,7 @@ let activeFloor = "1F";
 let activeLocation = "校内";
 
 // マップピンを非表示にする展示名
-const MAP_HIDDEN = ["吹奏楽部演奏"];
+const MAP_HIDDEN = [];
 
 // アイテムごとの表示番号（タイプ別に全フロア通し連番）
 const pinSeqMap = new Map();
@@ -93,10 +94,11 @@ const pinSeqMap = new Map();
     // 書道部は写真部と同じピン番号を共有
     const sharedPinParent = { "書道部展示": "写真部展示" };
 
-    const locations = ['校内', '図書館'];
+    const locations = ['校内', '図書館', '全体'];
 
-    // exhibition・club は独立した連番
+    // exhibition はロケーションごとに独立した連番、club は全ロケーション通し連番
     ['exhibition', 'club'].forEach((type) => {
+        let seqCounter = 0;
         locations.forEach((location) => {
             const sorted = [...exhibitionItems]
                 .filter((item) => getType(item) === type
@@ -111,9 +113,12 @@ const pinSeqMap = new Map();
                     const yb = (b.mapX === 0 && b.mapY === 0) ? 999 : b.mapY;
                     return ya - yb;
                 });
-            sorted.forEach((item, i) => {
-                pinSeqMap.set(item, { type, seq: String(i + 1).padStart(2, '0') });
+            sorted.forEach((item) => {
+                seqCounter++;
+                pinSeqMap.set(item, { type, seq: String(seqCounter).padStart(2, '0') });
             });
+            // exhibition はロケーションごとにリセット、club は通し番号を維持
+            if (type !== 'club') seqCounter = 0;
             Object.entries(sharedPinParent).forEach(([childName, parentName]) => {
                 const childItem = exhibitionItems.find(i => i.name === childName && getType(i) === type && i.location === location);
                 const parentItem = exhibitionItems.find(i => i.name === parentName && getType(i) === type && i.location === location);
@@ -124,7 +129,8 @@ const pinSeqMap = new Map();
         });
     });
 
-    // info・other は両方グレーなのでロケーションごとに通し連番
+    // info・other は両方グレー：ロケーションをまたいで通し連番（校内→図書館と続く）
+    let graySeq = 0;
     locations.forEach((location) => {
         const sorted = [...exhibitionItems]
             .filter((item) => ['info', 'other'].includes(getType(item))
@@ -139,8 +145,9 @@ const pinSeqMap = new Map();
                 const yb = (b.mapX === 0 && b.mapY === 0) ? 999 : b.mapY;
                 return ya - yb;
             });
-        sorted.forEach((item, i) => {
-            pinSeqMap.set(item, { type: getType(item), seq: String(i + 1).padStart(2, '0') });
+        sorted.forEach((item) => {
+            graySeq++;
+            pinSeqMap.set(item, { type: getType(item), seq: String(graySeq).padStart(2, '0') });
         });
     });
 })();
