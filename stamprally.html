@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="style/menu.css">
         <link rel="stylesheet" href="style/footer.css">
         <link rel="stylesheet" href="style/stamprally.css">
+        <link rel="stylesheet" href="style/exhibitions.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,6 +152,24 @@
             </div>
             </div><!-- /.stamp-teal-rect -->
         </main>
+        
+        <!-- =====位置情報モーダル===== -->
+        <div id="stamp-info-modal" class="modal">
+		    <div class="modal-content">
+		        <button id="modal-close" type="button" aria-label="閉じる">×</button>
+		        <h2 id="modal-title"></h2>
+		        
+		        <!-- 展示と統一 -->
+		        <div class="exhibition-map" style="margin: 12px 0; aspect-ratio: 4140 / 4162; width: 100%; height: auto;">
+		            <div class="exhibition-map-content" id="modalMapContent">
+		                <img id="modal-image" class="exhibition-map-image" src="images/maps/floor1-map.svg" alt="マップ" style="object-fit: contain; width: 100%; height: 100%;">
+		                <div id="modal-pins" class="exhibition-pins"></div>
+		            </div>
+		        </div>
+		
+		        <p id="modal-description"></p>
+		    </div>
+		</div>
 
         <!-- ===== コンプリートモーダル ===== -->
         <div class="stamp-complete-overlay" id="stampCompleteOverlay" hidden>
@@ -194,6 +213,7 @@
         </footer>
 
 
+
         <script>
             const menuBtn = document.getElementById('menuBtn');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -215,9 +235,7 @@
                 });
             });
         </script>
-                                                    
-
-        <script src="scripts/stamp.js"></script>
+        
         <script>
             // ===== カード表示処理 =====
             const stamps = loadStamps();
@@ -250,8 +268,12 @@
                 }
             }
         </script>
+
+        <!-- =====位置モーダル===== -->
+        <script src="scripts/stamprally.js"></script>
+
+        <script src="scripts/stamp.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script src="scripts/h1-slide-anim.js"></script>
-
     </body>
 </html>
