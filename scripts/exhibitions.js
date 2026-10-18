@@ -18,6 +18,8 @@ const DEFAULT_EXHIBITION_IMAGE = "images/food-baby-castella.png";
 
 const exhibitionItems = [
     //1F
+    { name: "総合案内所", course: "", place: "", floor: "1F", number: "K01", category: "info", location: "校内", image: "", pinType: "info", mapX: 54, mapY: 20 },
+    { name: "保健室", course: "", place: "", floor: "1F", number: "K02", category: "info", location: "校内", image: "", pinType: "info", mapX: 62, mapY: 20 },
     { name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "A04", category: "course", location: "校内", image: "images/exhibitions/m.webp", mapX: 27.5, mapY: 55 },
     { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "A03", category: "course", location: "校内", image: "images/exhibitions/z.webp", mapX: 54, mapY: 42 },
     { name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "E01", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 69, mapY: 20 },
@@ -35,7 +37,7 @@ const exhibitionItems = [
     { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "D03", category: "course", location: "校内", image: "images/club/rakugo.webp", mapX: 25, mapY: 76 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "i02", category: "course", location: "校内", image: "images/club/puroguraming.webp", mapX: 84, mapY: 76 },
     //3F
-    { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "", mapX: 38.5, mapY: 25 },
+    { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "images/club/roboken.webp", mapX: 38.5, mapY: 25 },
     { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "G01", category: "course", location: "校内", image: "images/exhibitions/i.webp", mapX: 27.5, mapY: 48.5 },
     { name: "コスプレクローク", course: "", place: "建設製図室", floor: "3F", number: "H02", category: "course", location: "校内", image: "", description: "コスプレクローク", mapX: 34, mapY: 76 },
     { name: "更衣室", course: "", place: "2C", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
@@ -46,8 +48,8 @@ const exhibitionItems = [
     { name: "中学生説明会", course: "", place: "視聴覚室", floor: "1F", number: "J01", category: "course", location: "図書館", image: "", mapX: 78, mapY: 55 },
     { name: "", course: "", place: "多目的室", floor: "1F", number: "J02", category: "course", location: "図書館", image: "", mapX: 33, mapY: 88 },
     // 図書館 2F
-    { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "", mapX: 33, mapY: 35 },
-    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "", mapX: 25, mapY: 85 }
+    { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "images/events/biburio.webp", mapX: 33, mapY: 35 },
+    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", mapX: 25, mapY: 85 }
 ];
 
 // ============================================================
@@ -80,7 +82,8 @@ const pinSeqMap = new Map();
 (function() {
     const floorOrder = ["1F", "2F", "3F"];
     const getType = (item) =>
-        (item.image || '').includes('images/exhibitions/') ? 'exhibition'
+        item.pinType ? item.pinType
+        : (item.image || '').includes('images/exhibitions/') ? 'exhibition'
         : (item.image || '').includes('images/club/') ? 'club' : 'other';
 
     // 吹奏楽部はピン非表示（カウントから除外）
@@ -88,30 +91,54 @@ const pinSeqMap = new Map();
     // 書道部は写真部と同じピン番号を共有
     const sharedPinParent = { "書道部展示": "写真部展示" };
 
-    const types = ['exhibition', 'club', 'other'];
-    types.forEach((type) => {
-        // 非表示・共有子を除いてシーケンス番号を割り当て
+    const locations = ['校内', '図書館'];
+
+    // exhibition・club は独立した連番
+    ['exhibition', 'club'].forEach((type) => {
+        locations.forEach((location) => {
+            const sorted = [...exhibitionItems]
+                .filter((item) => getType(item) === type
+                    && item.location === location
+                    && !hiddenFromSeq.includes(item.name)
+                    && !sharedPinParent[item.name])
+                .sort((a, b) => {
+                    const fa = floorOrder.indexOf(a.floor);
+                    const fb = floorOrder.indexOf(b.floor);
+                    if (fa !== fb) return fa - fb;
+                    const ya = (a.mapX === 0 && a.mapY === 0) ? 999 : a.mapY;
+                    const yb = (b.mapX === 0 && b.mapY === 0) ? 999 : b.mapY;
+                    return ya - yb;
+                });
+            sorted.forEach((item, i) => {
+                pinSeqMap.set(item, { type, seq: String(i + 1).padStart(2, '0') });
+            });
+            Object.entries(sharedPinParent).forEach(([childName, parentName]) => {
+                const childItem = exhibitionItems.find(i => i.name === childName && getType(i) === type && i.location === location);
+                const parentItem = exhibitionItems.find(i => i.name === parentName && getType(i) === type && i.location === location);
+                if (childItem && parentItem && pinSeqMap.has(parentItem)) {
+                    pinSeqMap.set(childItem, { ...pinSeqMap.get(parentItem) });
+                }
+            });
+        });
+    });
+
+    // info・other は両方グレーなのでロケーションごとに通し連番
+    locations.forEach((location) => {
         const sorted = [...exhibitionItems]
-            .filter((item) => getType(item) === type
+            .filter((item) => ['info', 'other'].includes(getType(item))
+                && item.location === location
                 && !hiddenFromSeq.includes(item.name)
                 && !sharedPinParent[item.name])
             .sort((a, b) => {
                 const fa = floorOrder.indexOf(a.floor);
                 const fb = floorOrder.indexOf(b.floor);
                 if (fa !== fb) return fa - fb;
-                return a.mapY - b.mapY;
+                const ya = (a.mapX === 0 && a.mapY === 0) ? 999 : a.mapY;
+                const yb = (b.mapX === 0 && b.mapY === 0) ? 999 : b.mapY;
+                return ya - yb;
             });
         sorted.forEach((item, i) => {
-            pinSeqMap.set(item, { type, seq: String(i + 1).padStart(2, '0') });
-        });
-
-        // 共有ピン：親と同じ番号を設定
-        Object.entries(sharedPinParent).forEach(([childName, parentName]) => {
-            const childItem = exhibitionItems.find(i => i.name === childName && getType(i) === type);
-            const parentItem = exhibitionItems.find(i => i.name === parentName && getType(i) === type);
-            if (childItem && parentItem && pinSeqMap.has(parentItem)) {
-                pinSeqMap.set(childItem, { ...pinSeqMap.get(parentItem) });
-            }
+            pinSeqMap.set(item, { type: getType(item), seq: String(i + 1).padStart(2, '0') });
         });
     });
 })();
@@ -209,6 +236,7 @@ function renderItems() {
 
     //全階から検索する（ロケーションでも絞り込む）
     const matchedItems = exhibitionItems
+        .filter((item) => !MAP_HIDDEN.includes(item.name))
         .filter((item) => item.location === activeLocation)
         .filter((item) =>
             !selected.length || selected.includes(item[filterKey])
@@ -243,7 +271,7 @@ function renderItems() {
 
     // 表示するのは現在の階の展示
     const currentFloorForItems = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
-    const typeOrder = { exhibition: 0, club: 1, other: 2 };
+    const typeOrder = { exhibition: 0, club: 1, info: 2, other: 3 };
     const visible = matchedItems
         .filter((item) => item.floor === currentFloorForItems)
         .sort((a, b) => {
@@ -264,7 +292,7 @@ function renderItems() {
                     <p class="exhibition-name"><span class="card-pin-number">${(pinSeqMap.get(item) || {}).seq || ''}</span>${item.name}</p>
                     <p class="exhibition-club">
                         ${item.course}
-                        <span class="exhibition-badge">${item.place}</span>
+                        ${item.place ? `<span class="exhibition-badge">${item.place}</span>` : ''}
                     </p>
                 </div>
 
@@ -318,6 +346,9 @@ function openPoster(item) {
         // テキストのみ表示モード
         posterImage.style.display = "none";
         if (descEl) { descEl.textContent = item.description; descEl.style.display = ""; }
+    } else if (!item.image) {
+        posterImage.style.display = "none";
+        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
     } else {
         posterImage.style.display = "";
         posterImage.src = resolveImage(item.image);
@@ -333,7 +364,7 @@ function openPoster(item) {
     // 地図ボタン：校内のみ有効化
     const mapLinkBtn = document.getElementById("exhibitionMapLinkBtn");
     if (mapLinkBtn) {
-        const hasMap = item.location === "校内" && item.floor && item.mapX != null && (item.mapX !== 0 || item.mapY !== 0);
+        const hasMap = item.floor && item.mapX != null && (item.mapX !== 0 || item.mapY !== 0);
         mapLinkBtn.style.display = hasMap ? "" : "none";
     }
 }
@@ -413,6 +444,7 @@ function renderPins() {
 
     // 検索・フィルターに一致する展示（ロケーションでも絞り込む）
     const matchedItems = exhibitionItems
+        .filter((item) => !MAP_HIDDEN.includes(item.name))
         .filter((item) => item.location === activeLocation)
         .filter((item) =>
             !selected.length || selected.includes(item[filterKey])
@@ -677,7 +709,7 @@ locationTabs.forEach((tab) => {
     var carouselItems = exhibitionItems.filter(function(item) {
         var img = item.image || '';
         if (!img || seen.has(img)) return false;
-        if (!img.includes('images/club/') && !img.includes('images/club\\')) return false;
+        if (!img.includes('images/club/') && !img.includes('images/club\\') && !img.includes('images/events/') && !img.includes('images/exhibitions/')) return false;
         seen.add(img);
         return true;
     });
@@ -1002,7 +1034,10 @@ if (window.ResizeObserver && _mapSection) {
         if (slide.classList.contains('swiper-slide-active')) {
             var i = Number(slide.dataset.index);
             openPoster(carouselItems[i]);
-        } else {
+        } else if (!item.image) {
+        posterImage.style.display = "none";
+        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
+    } else {
             var i = Number(slide.dataset.index);
             swiper2.slideToLoop(i);
         }
@@ -1110,7 +1145,10 @@ if (window.ResizeObserver && _mapSection) {
         if (slide.classList.contains('swiper-slide-active')) {
             var i = Number(slide.dataset.index);
             openPoster({ name: 'イベント', course: '', place: '', image: eventImages[i], location: '' });
-        } else {
+        } else if (!item.image) {
+        posterImage.style.display = "none";
+        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
+    } else {
             swiper3.slideToLoop(Number(slide.dataset.index));
         }
     });

@@ -262,7 +262,7 @@ body {
     width: 25px;
     height: 25px;
 
-    background: #f05d9d;
+    background: #999;
 
     border-radius: 50% 50% 50% 0;
 
@@ -312,9 +312,10 @@ body {
 /* 数字（下段・新形式） */
 .pin-digits {
     color: #151515;
-    font-size: 7px;
+    font-size: 10px;
     font-weight: bold;
     line-height: 1;
+    letter-spacing: -0.5px;
 }
 
 /* 数字のみ（旧形式との互換） */
