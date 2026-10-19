@@ -1,7 +1,7 @@
 .food-page {
     width: min(100% - 32px, 640px);
     margin: 0 auto;
-    padding: 80px 0 42px;
+    padding: 80px 0 16px;
 }
 
 .food-title {
