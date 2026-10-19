@@ -66,7 +66,6 @@ const exhibitionItems = [
     // 全体
     { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 71, mapY: 56 },
     { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 32, mapY: 29 },
-    { name: "第一体育館", course: "", place: "第一体育館", floor: "全体", number: "gym", pinType: "info", category: "info", location: "全体", image: "", mapX: 63, mapY: 50 }
 ];
 
 // ============================================================
