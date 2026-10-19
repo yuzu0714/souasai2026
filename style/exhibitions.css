@@ -1133,3 +1133,80 @@ body {
     margin-top: 0;
 }
 
+
+/* ============================================================
+   カード番号バッジ：タイプ別色
+   ============================================================ */
+/* 専門展示：赤 */
+.exhibition-card[data-type="exhibition"] .card-pin-number { background: #e03030; }
+/* 部活動：黄 */
+.exhibition-card[data-type="club"] .card-pin-number { background: #f5c400; color: #333; }
+/* その他（info等）：グレー */
+.exhibition-card[data-type="other"] .card-pin-number,
+.exhibition-card[data-type="info"] .card-pin-number { background: #999; }
+
+/* ============================================================
+   マップ凡例
+   ============================================================ */
+.map-legend {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 6px 10px;
+    pointer-events: none;
+}
+
+.map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ピンのしずく形アイコン */
+.map-legend-pin {
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.map-legend-pin::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #999;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+}
+
+.map-legend-pin::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.map-legend-pin[data-type="exhibition"]::before { background: #e03030; }
+.map-legend-pin[data-type="club"]::before       { background: #f5c400; }
+.map-legend-pin[data-type="other"]::before      { background: #999; }
+
+.map-legend-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    white-space: nowrap;
+    line-height: 1;
+}
