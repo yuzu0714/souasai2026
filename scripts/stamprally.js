@@ -4,7 +4,7 @@ const exhibitionItems = [
     { name: "情報コース", place: "5I教室", floor: "3F", number: "G01", mapX: 30.5, mapY: 52.5 },//default 27.5 48.5
     { name: "建設コース", place: "3C教室", floor: "3F", number: "H01", mapX: 36, mapY: 69 }, //default 34 68
     { name: "化学専門展示", place: "化学実験室", floor: "1F", number: "A03", mapX: 53.5, mapY: 47 }, //default 54 42
-    { name: "図書館",     place: "図書館棟",   floor: "全体", number: "J",   mapX: 42, mapY: 62 },
+    { name: "図書館",     place: "図書館棟",   floor: "全体", number: "J",   mapX: 58, mapY: 45 },
     { name: "体育館",     place: "第一体育館", floor: "全体", number: "L",   mapX: 71, mapY: 53 }
 ];
 
