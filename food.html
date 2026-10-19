@@ -35,6 +35,13 @@
                     font-size: 50px; /* スマホ用にフォントサイズを調整 */
                 }
             }
+            .food-image-note {
+                text-align: center;
+                font-size: 0.75rem;
+                color: #888;
+                margin-top: 0.5rem;
+                margin-bottom: 0.25rem;
+            }
         </style>
 
     </head>
@@ -96,6 +103,7 @@
             </section>
             <p class="food-count" id="foodCount"></p>
             <section class="food-list" id="foodList" aria-live="polite"></section>
+            <p class="food-image-note">※画像の一部にOpenAIのChatGPTで<br>生成した画像を使用しています。</p>
 
         <!-- 売店詳細モーダル -->
         <div class="food-modal-overlay" id="foodModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalFoodName">
