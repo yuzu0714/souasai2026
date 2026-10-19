@@ -59,7 +59,7 @@ const exhibitionItems = [
     { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "H05", category: "course", location: "校内", image: "", mapX: 65, mapY: 78 },
     // 図書館 1F
     { name: "中学生説明会", course: "", place: "視聴覚室", floor: "1F", number: "J01", category: "course", location: "図書館", image: "", mapX: 78, mapY: 55 },
-    { name: "", course: "", place: "多目的室", floor: "1F", number: "J02", category: "course", location: "図書館", image: "", mapX: 33, mapY: 88 },
+    { name: "入試に関わる個別相談室", course: "", place: "多目的室", floor: "1F", number: "J02", category: "course", location: "図書館", image: "", mapX: 33, mapY: 88 },
     // 図書館 2F
     { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "images/events/biburio.webp", mapX: 33, mapY: 35 },
     { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", mapX: 25, mapY: 85 },
