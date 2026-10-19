@@ -279,6 +279,11 @@ body {
     background: #f5c400;
 }
 
+
+/* 図書館・体育館：ピンク */
+.exhibition-pin[data-type="library-gym"] .pin-shape {
+    background: #f05d9d;
+}
 /* 白い円＋数字を入れる部分 */
 .pin-inner {
     position: absolute;
