@@ -23,7 +23,7 @@ const exhibitionItems = [
     { name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "E01", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 69, mapY: 20 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "i01", category: "course", location: "校内", image: "images/club/puroguraming.webp", mapX: 84, mapY: 82 },
     //2F
-    { name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "B01", category: "course", location: "校内", image: "images/club/keion.webp", mapX: 39, mapY: 25 },
+    { name: "軽音楽部ライブ", course: "軽音楽部", place: "1-1教室", floor: "2F", number: "B01", category: "course", location: "校内", image: "images/club/keion.webp", mapX: 39, mapY: 25 },
     { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "E02", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
