@@ -16,38 +16,56 @@
 // 画像が未設定 or 読み込み失敗時に表示するデフォルト画像
 const DEFAULT_EXHIBITION_IMAGE = "images/food-baby-castella.png";
 
+/** place フィールド（文字列 or 配列）をバッジ HTML に変換 */
+function renderPlaceBadges(place) {
+    if (!place) return '';
+    const places = Array.isArray(place) ? place : [place];
+    return places.map(p => `<span class="exhibition-badge">${p}</span>`).join('');
+}
+
+/** place フィールドをプレーンテキストに変換（モーダル用） */
+function placeToText(place) {
+    if (!place) return '';
+    return Array.isArray(place) ? place.join(' · ') : place;
+}
+
 const exhibitionItems = [
     //1F
+    { name: "総合案内所", course: "", place: "", floor: "1F", number: "K01", category: "info", location: "校内", image: "", pinType: "info", mapX: 54, mapY: 20 },
+    { name: "保健室", course: "", place: "", floor: "1F", number: "K02", category: "info", location: "校内", image: "", pinType: "info", mapX: 62, mapY: 20 },
+    { name: "機械専門展示", course: "機械コース", place: ["3M教室", "4M教室", "5M教室"], floor: "1F", number: "A04", category: "course", location: "校内", image: "images/exhibitions/m.webp", mapX: 27.5, mapY: 55 },
     { name: "化学専門展示", course: "化学コース", place: "化学実験室", floor: "1F", number: "A03", category: "course", location: "校内", image: "images/exhibitions/z.webp", mapX: 54, mapY: 42 },
-    { name: "機械専門展示", course: "機械コース", place: "4M教室", floor: "1F", number: "A04", category: "course", location: "校内", image: "images/exhibitions/m.webp", mapX: 27.5, mapY: 55 },
     { name: "電気専門展示", course: "電気コース", place: "電気機器Lab", floor: "1F", number: "E01", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 69, mapY: 20 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "メカトロ電子回路実験室", floor: "1F", number: "i01", category: "course", location: "校内", image: "images/club/puroguraming.webp", mapX: 84, mapY: 82 },
     //2F
-    { name: "軽音学部ライブ", course: "軽音学部", place: "1-1教室", floor: "2F", number: "B01", category: "course", location: "校内", image: "images/club/keion.webp", mapX: 39, mapY: 25 },
-    { name: "電気専門展示", course: "電気コース", place: "3E教室", floor: "2F", number: "E02", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
+    { name: "軽音学部ライブ", course: "軽音学部", place:  ["1-1教室", "1-2教室"], floor: "2F", number: "B01", category: "course", location: "校内", image: "images/club/keion.webp", mapX: 39, mapY: 25 },
+    { name: "電気専門展示", course: "電気コース", place: ["2E教室", "3E教室", "4E教室"], floor: "2F", number: "E02", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
-    { name: "吹奏楽部演奏", course: "吹奏楽部", place: "", floor: "2F", number: "C03", category: "course", location: "校内", image: "images/club/suisougaku.webp", mapX: 0, mapY: 0 },
-    { name: "書道部展示", course: "書道部", place: "", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 0, mapY: 0 },
+    { name: "吹奏楽部演奏", course: "吹奏楽部", place: "第一体育館", floor: "全体", number: "C03", category: "course", location: "全体", image: "images/club/suisougaku.webp", mapX: 71, mapY: 50 },
+    { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 17.5, mapY: 50.5 },
     { name: "写真部展示", course: "写真部 書道部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
     { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "images/club/engeki.webp", mapX: 34, mapY: 70 },
     { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "D02", category: "course", location: "校内", image: "images/club/tenmon.webp", mapX: 34, mapY: 76 },
     { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "D03", category: "course", location: "校内", image: "images/club/rakugo.webp", mapX: 25, mapY: 76 },
     { name: "プログラミング研究部試遊会", course: "プログラミング研究部", place: "第3演習室", floor: "2F", number: "i02", category: "course", location: "校内", image: "images/club/puroguraming.webp", mapX: 84, mapY: 76 },
     //3F
-    { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "", mapX: 38.5, mapY: 25 },
-    { name: "情報専門展示", course: "情報コース", place: "5I教室", floor: "3F", number: "G01", category: "course", location: "校内", image: "images/exhibitions/i.webp", mapX: 27.5, mapY: 48.5 },
+    { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "images/club/roboken.webp", mapX: 38.5, mapY: 25 },
+    { name: "情報専門展示", course: "情報コース", place: ["中講義室", "3I教室", "5I教室"], floor: "3F", number: "G01", category: "course", location: "校内", image: "images/exhibitions/i.webp", mapX: 27.5, mapY: 48.5 },
     { name: "コスプレクローク", course: "", place: "建設製図室", floor: "3F", number: "H02", category: "course", location: "校内", image: "", description: "コスプレクローク", mapX: 34, mapY: 76 },
-    { name: "更衣室", course: "", place: "2C", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
-    { name: "更衣室", course: "", place: "4C", floor: "3F", number: "H03", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 68 },
+    { name: "更衣室", course: "", place: "2C教室", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
+    { name: "更衣室", course: "", place: "4C教室", floor: "3F", number: "H03", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 68 },
     { name: "建設専門展示", course: "建設コース", place: "3C教室", floor: "3F", number: "H01", category: "course", location: "校内", image: "images/exhibitions/c.webp", mapX: 34, mapY: 68 },
     { name: "カラオケ大会", course: "イベント班", place: "大講義室", floor: "3F", number: "H05", category: "course", location: "校内", image: "", mapX: 65, mapY: 78 },
     // 図書館 1F
     { name: "中学生説明会", course: "", place: "視聴覚室", floor: "1F", number: "J01", category: "course", location: "図書館", image: "", mapX: 78, mapY: 55 },
     { name: "", course: "", place: "多目的室", floor: "1F", number: "J02", category: "course", location: "図書館", image: "", mapX: 33, mapY: 88 },
     // 図書館 2F
-    { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "", mapX: 33, mapY: 35 },
-    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "", mapX: 25, mapY: 85 }
+    { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "images/events/biburio.webp", mapX: 33, mapY: 35 },
+    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", mapX: 25, mapY: 85 },
+    // 全体
+    { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 71, mapY: 56 },
+    { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 32, mapY: 29 }
 ];
 
 // ============================================================
@@ -71,6 +89,81 @@ const searchIcon = document.querySelector(".search-icon");
 let activeTab = "exhibition";
 let activeFloor = "1F";
 let activeLocation = "校内";
+
+// マップピンを非表示にする展示名
+const MAP_HIDDEN = [];
+
+// アイテムごとの表示番号（タイプ別に全フロア通し連番）
+const pinSeqMap = new Map();
+(function() {
+    const floorOrder = ["1F", "2F", "3F"];
+    const getType = (item) =>
+        item.pinType ? item.pinType
+        : (item.image || '').includes('images/exhibitions/') ? 'exhibition'
+        : (item.image || '').includes('images/club/') ? 'club' : 'other';
+
+    // 吹奏楽部はピン非表示（カウントから除外）
+    const hiddenFromSeq = MAP_HIDDEN;
+    // 書道部は写真部と同じピン番号を共有
+    const sharedPinParent = { "書道部展示": "写真部展示" };
+
+    const locations = ['校内', '図書館', '全体'];
+
+    // exhibition はロケーションごとに独立した連番、club は全ロケーション通し連番
+    ['exhibition', 'club'].forEach((type) => {
+        let seqCounter = 0;
+        locations.forEach((location) => {
+            const sorted = [...exhibitionItems]
+                .filter((item) => getType(item) === type
+                    && item.location === location
+                    && !hiddenFromSeq.includes(item.name)
+                    && !sharedPinParent[item.name])
+                .sort((a, b) => {
+                    const fa = floorOrder.indexOf(a.floor);
+                    const fb = floorOrder.indexOf(b.floor);
+                    if (fa !== fb) return fa - fb;
+                    const ya = (a.mapX === 0 && a.mapY === 0) ? 999 : a.mapY;
+                    const yb = (b.mapX === 0 && b.mapY === 0) ? 999 : b.mapY;
+                    return ya - yb;
+                });
+            sorted.forEach((item) => {
+                seqCounter++;
+                pinSeqMap.set(item, { type, seq: String(seqCounter).padStart(2, '0') });
+            });
+            // exhibition はロケーションごとにリセット、club は通し番号を維持
+            if (type !== 'club') seqCounter = 0;
+            Object.entries(sharedPinParent).forEach(([childName, parentName]) => {
+                const childItem = exhibitionItems.find(i => i.name === childName && getType(i) === type && i.location === location);
+                const parentItem = exhibitionItems.find(i => i.name === parentName && getType(i) === type && i.location === location);
+                if (childItem && parentItem && pinSeqMap.has(parentItem)) {
+                    pinSeqMap.set(childItem, { ...pinSeqMap.get(parentItem) });
+                }
+            });
+        });
+    });
+
+    // info・other は両方グレー：ロケーションをまたいで通し連番（校内→図書館と続く）
+    let graySeq = 0;
+    locations.forEach((location) => {
+        const sorted = [...exhibitionItems]
+            .filter((item) => ['info', 'other'].includes(getType(item))
+                && item.location === location
+                && !hiddenFromSeq.includes(item.name)
+                && !sharedPinParent[item.name])
+            .sort((a, b) => {
+                const fa = floorOrder.indexOf(a.floor);
+                const fb = floorOrder.indexOf(b.floor);
+                if (fa !== fb) return fa - fb;
+                const ya = (a.mapX === 0 && a.mapY === 0) ? 999 : a.mapY;
+                const yb = (b.mapX === 0 && b.mapY === 0) ? 999 : b.mapY;
+                return ya - yb;
+            });
+        sorted.forEach((item) => {
+            graySeq++;
+            pinSeqMap.set(item, { type: getType(item), seq: String(graySeq).padStart(2, '0') });
+        });
+    });
+})();
 
 search.addEventListener("focus", () => {
     tabs.classList.add("is-open");
@@ -165,6 +258,7 @@ function renderItems() {
 
     //全階から検索する（ロケーションでも絞り込む）
     const matchedItems = exhibitionItems
+        .filter((item) => !MAP_HIDDEN.includes(item.name))
         .filter((item) => item.location === activeLocation)
         .filter((item) =>
             !selected.length || selected.includes(item[filterKey])
@@ -198,21 +292,31 @@ function renderItems() {
     });
 
     // 表示するのは現在の階の展示
-    const currentFloorForItems = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
-    const visible = matchedItems.filter(
-        (item) => item.floor === currentFloorForItems
-    );
+    const currentFloorForItems = activeLocation === "図書館" ? activeLibraryFloor
+        : activeLocation === "全体" ? "全体"
+        : activeFloor;
+    const typeOrder = { exhibition: 0, club: 1, info: 2, other: 3 };
+    const visible = matchedItems
+        .filter((item) => item.floor === currentFloorForItems)
+        .sort((a, b) => {
+            const pa = pinSeqMap.get(a) || { type: 'other', seq: '99' };
+            const pb = pinSeqMap.get(b) || { type: 'other', seq: '99' };
+            const ta = typeOrder[pa.type] ?? 2;
+            const tb = typeOrder[pb.type] ?? 2;
+            if (ta !== tb) return ta - tb;
+            return pa.seq.localeCompare(pb.seq);
+        });
 
     count.textContent = `${visible.length}件の展示`;
 
     list.innerHTML = visible.length
         ? visible.map((item) => `
-            <article class="exhibition-card" data-number="${item.number}">
+            <article class="exhibition-card" data-number="${item.number}" data-type="${(pinSeqMap.get(item) || {}).type || 'other'}">
                 <div>
-                    <p class="exhibition-name"><span class="card-pin-number">${item.number}</span>${item.name}</p>
+                    <p class="exhibition-name"><span class="card-pin-number">${(pinSeqMap.get(item) || {}).seq || ''}</span>${item.name}</p>
                     <p class="exhibition-club">
                         ${item.course}
-                        <span class="exhibition-badge">${item.place}</span>
+                        ${renderPlaceBadges(item.place)}
                     </p>
                 </div>
 
@@ -266,6 +370,9 @@ function openPoster(item) {
         // テキストのみ表示モード
         posterImage.style.display = "none";
         if (descEl) { descEl.textContent = item.description; descEl.style.display = ""; }
+    } else if (!item.image) {
+        posterImage.style.display = "none";
+        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
     } else {
         posterImage.style.display = "";
         posterImage.src = resolveImage(item.image);
@@ -275,13 +382,13 @@ function openPoster(item) {
 
     document.getElementById("exhibitionPosterName").textContent = item.name;
     document.getElementById("exhibitionPosterMeta").textContent =
-        [item.course, item.place].filter(Boolean).join("  ·  ");
+        [item.course, placeToText(item.place)].filter(Boolean).join("  ·  ");
     posterModal.hidden = false;
 
     // 地図ボタン：校内のみ有効化
     const mapLinkBtn = document.getElementById("exhibitionMapLinkBtn");
     if (mapLinkBtn) {
-        const hasMap = item.location === "校内" && item.floor && item.mapX != null;
+        const hasMap = item.floor && item.mapX != null && (item.mapX !== 0 || item.mapY !== 0);
         mapLinkBtn.style.display = hasMap ? "" : "none";
     }
 }
@@ -361,6 +468,7 @@ function renderPins() {
 
     // 検索・フィルターに一致する展示（ロケーションでも絞り込む）
     const matchedItems = exhibitionItems
+        .filter((item) => !MAP_HIDDEN.includes(item.name))
         .filter((item) => item.location === activeLocation)
         .filter((item) =>
             !selected.length || selected.includes(item[filterKey])
@@ -372,15 +480,20 @@ function renderPins() {
         );
 
     // 現在の階のピン（ロケーションでも絞り込む）
-    const currentFloor = activeLocation === "図書館" ? activeLibraryFloor : activeFloor;
+    const currentFloor = activeLocation === "図書館" ? activeLibraryFloor
+        : activeLocation === "全体" ? "全体"
+        : activeFloor;
     const visibleItems = exhibitionItems.filter(
         (item) => item.floor === currentFloor && item.location === activeLocation
+            && !MAP_HIDDEN.includes(item.name)
+            && (item.mapX !== 0 || item.mapY !== 0)
     );
 
     pins.innerHTML = visibleItems.map((item, index) => {
         const isMatched =
             (keyword || selected.length) &&
             matchedItems.includes(item);
+        const { type, seq } = pinSeqMap.get(item) || { type: 'other', seq: '??' };
         return `
         <button
             type="button"
@@ -389,10 +502,11 @@ function renderPins() {
             aria-label="${item.name} ${item.place}"
             data-index="${index}"
             data-number="${item.number}"
+            data-type="${type}"
         >
             <span class="pin-shape">
                 <span class="pin-inner">
-                    ${(()=>{const m=item.number.match(/^([A-Za-z]+)(\d+)$/);return m?`<span class="pin-letter">${m[1]}</span><span class="pin-digits">${m[2]}</span>`:`<span class="pin-number">${item.number}</span>`;})()}
+                    <span class="pin-digits">${seq}</span>
                 </span>
             </span>
         </button>
@@ -502,10 +616,8 @@ const locationTabs = document.querySelectorAll(".location-tab");
 const floorTabsWrapper = document.getElementById("exhibitionFloorTabsWrapper");
 const mapEl = document.querySelector(".exhibition-map");
 
-// ロケーションごとの地図画像（校内・図書館はフロア別画像を使用）
-const locationSingleMap = {
-    "全体": "images/maps/kougai.svg",
-};
+// ロケーションごとの地図画像（校内は floorMapImages を使用）
+const locationSingleMap = {};
 
 // 図書館用フロアマップ
 const libraryFloorMaps = {
@@ -526,7 +638,7 @@ function updateLocationView() {
     const pins = document.getElementById("exhibitionPins");
     let placeholder = mapEl ? mapEl.querySelector(".exhibition-map-placeholder") : null;
 
-    // 図書館タブを一度リセット（校内・全体に戻ったとき用）
+    // 図書館タブを一度リセット（校内/校外に戻ったとき用）
     if (floorTabsWrapper) {
         floorTabsWrapper.querySelectorAll(".library-floor-tab").forEach(t => t.style.display = "none");
         floorTabsWrapper.querySelectorAll(".floor-tab:not(.library-floor-tab)").forEach(t => t.style.display = "");
@@ -542,7 +654,7 @@ function updateLocationView() {
         }
         if (pins) pins.style.display = "";
     } else if (singleMap) {
-        // 地図画像が1枚の場合（全体など）
+        // 地図画像がある場合（校外など）
         if (placeholder) placeholder.remove();
         if (exhibitionMapImage) {
             exhibitionMapImage.style.display = "";
@@ -590,6 +702,16 @@ function updateLocationView() {
             floorTabsWrapper.querySelectorAll(".floor-tab:not(.library-floor-tab)").forEach(t => t.style.display = "none");
             floorTabsWrapper.querySelectorAll(".library-floor-tab").forEach(t => t.style.display = "");
         }
+    } else if (activeLocation === "全体") {
+        // 全体：キャンパス全体マップを表示（ピンあり）
+        if (placeholder) placeholder.remove();
+        if (floorTabsWrapper) floorTabsWrapper.classList.add("is-hidden");
+        if (exhibitionMapImage) {
+            exhibitionMapImage.style.display = "";
+            exhibitionMapImage.src = "images/maps/kougai.svg";
+            exhibitionMapImage.alt = "全体マップ";
+        }
+        if (pins) pins.style.display = "";
     } else {
         // 地図画像がない場合：準備中を表示
         if (exhibitionMapImage) exhibitionMapImage.style.display = "none";
@@ -948,7 +1070,10 @@ if (window.ResizeObserver && _mapSection) {
         if (slide.classList.contains('swiper-slide-active')) {
             var i = Number(slide.dataset.index);
             openPoster(carouselItems[i]);
-        } else {
+        } else if (!item.image) {
+        posterImage.style.display = "none";
+        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
+    } else {
             var i = Number(slide.dataset.index);
             swiper2.slideToLoop(i);
         }
@@ -1055,7 +1180,10 @@ if (window.ResizeObserver && _mapSection) {
         if (!slide) return;
         if (slide.classList.contains('swiper-slide-active')) {
             var i = Number(slide.dataset.index);
-            openPoster({ name: 'イベント', course: '', place: '', image: eventImages[i], location: '' });
+            var img = eventImages[i];
+            var item = exhibitionItems.find(function(it) { return it.image === img; })
+                    || { name: 'イベント', course: '', place: '', image: img, location: '' };
+            openPoster(item);
         } else {
             swiper3.slideToLoop(Number(slide.dataset.index));
         }

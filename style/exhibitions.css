@@ -262,13 +262,28 @@ body {
     width: 25px;
     height: 25px;
 
-    background: #f05d9d;
+    background: #999;
 
     border-radius: 50% 50% 50% 0;
 
     transform: rotate(-45deg);
 }
 
+/* 専門展示：赤 */
+.exhibition-pin[data-type="exhibition"] .pin-shape {
+    background: #e03030;
+}
+
+/* 部活動：黄 */
+.exhibition-pin[data-type="club"] .pin-shape {
+    background: #f5c400;
+}
+
+
+/* 図書館・体育館：ピンク */
+.exhibition-pin[data-type="library-gym"] .pin-shape {
+    background: #f05d9d;
+}
 /* 白い円＋数字を入れる部分 */
 .pin-inner {
     position: absolute;
@@ -302,9 +317,10 @@ body {
 /* 数字（下段・新形式） */
 .pin-digits {
     color: #151515;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: bold;
     line-height: 1;
+    letter-spacing: -0.5px;
 }
 
 /* 数字のみ（旧形式との互換） */
@@ -458,17 +474,26 @@ body {
     height: 22px;
     margin-right: 6px;
     border-radius: 50%;
-    background: #f05d9d;
+    background: #aaa;
     color: #fff;
     font-size: .6rem;
     font-weight: 700;
     flex-shrink: 0;
     vertical-align: middle;
 }
+/* カードピン番号：地図ピンと同じ色 */
+.exhibition-card[data-type="exhibition"] .card-pin-number {
+    background: #e03030;
+}
+.exhibition-card[data-type="club"] .card-pin-number {
+    background: #f5c400;
+    color: #333;
+}
 
 .exhibition-poster-info {
     margin-top: 12px;
-    padding: 0 4px 4px;
+    padding: 0 4px 20px;
+    overflow: hidden;
 }
 
 .exhibition-poster-name {
@@ -528,7 +553,7 @@ body {
 }
 
 /* ============================================================
-   ロケーションラッパー＆タブ（校内 / 図書館 / 全体）
+   ロケーションラッパー＆タブ（校内 / 校外 / 図書館）
    タイムスケジュールと同じ：タブが枠線上部にくっつくデザイン
    ============================================================ */
 .exhibition-location-wrapper {
@@ -537,29 +562,20 @@ body {
     border-radius: 16px;
     box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    /* 想定外のサブピクセル隙間からクリーム背景が透けないようにする（見た目の色は同じ） */
-    background: #ffa600;
 }
 
 .exhibition-location-tabs {
-    /* タブ幅を均等に保つ。境目の線はなし、下はオレンジでつなぐ */
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(0, 1fr);
-    border-bottom: none;
-    /* 下地をオレンジにして、スマホの端数ズレでクリームが透けないようにする */
-    background: #ffa600;
-    position: relative;
-    z-index: 1;
-    /* 下のコンテンツにわずか重ねて隙間を潰す */
-    margin-bottom: -3px;
+    display: flex;
+    border-bottom: 3px solid #ffa600;
 }
 
 .location-tab {
+    flex: 1;
     padding: 13px 0;
     font-size: 16px;
     font-weight: 700;
     border: none;
+    border-right: 2px solid rgba(255,255,255,0.3);
     cursor: pointer;
     background: #fff;
     color: #ffa600;
@@ -568,31 +584,27 @@ body {
     font-family: inherit;
 }
 
+.location-tab:last-child {
+    border-right: none;
+}
+
 .location-tab.is-active {
     background: #ffa600;
     color: #fff;
-    /* 選択中タブの下端をオレンジで伸ばして隙間を隠す */
-    box-shadow: 0 3px 0 #ffa600;
 }
 
 /* exhibition-content はラッパー内に入ったので margin-top をリセット */
 .exhibition-location-wrapper > .exhibition-content {
     margin-top: 0;
     border-radius: 0;
-    /* タブ直後の余白を詰め、重ね分も足す */
-    padding-top: 15px;
 }
 
-.exhibition-location-wrapper .exhibition-map-section {
-    margin-top: 0;
-}
-
-/* 全体・図書館では階数タブを非表示（図書館は専用タブを表示） */
+/* 校外・図書館では階数タブを非表示 */
 .exhibition-floor-tabs.is-hidden {
     display: none;
 }
 
-/* マップなし案内 */
+/* 校外・図書館のマップなし案内 */
 .exhibition-map-placeholder {
     display: flex;
     align-items: center;
@@ -1118,3 +1130,89 @@ body {
     margin-top: 0;
 }
 
+/* ===== 校外図セクション ===== */
+.kougai-map-section {
+    max-width: 900px;
+    margin: 48px auto 60px;
+    padding: 0 16px;
+    text-align: center;
+}
+.kougai-map-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 16px;
+}
+.kougai-map-img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   マップ凡例
+   ============================================================ */
+.map-legend {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 6px 10px;
+    pointer-events: none;
+}
+
+.map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ピンのしずく形アイコン */
+.map-legend-pin {
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.map-legend-pin::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #999;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+}
+
+.map-legend-pin::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.map-legend-pin[data-type="exhibition"]::before { background: #e03030; }
+.map-legend-pin[data-type="club"]::before       { background: #f5c400; }
+.map-legend-pin[data-type="other"]::before      { background: #999; }
+
+.map-legend-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #333;
+    white-space: nowrap;
+    line-height: 1;
+}
