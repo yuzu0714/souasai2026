@@ -149,11 +149,13 @@ body {
     margin: 0 0 20px;
 }
 
+/* 中央の読み幅で自然折り返し＋行頭揃え */
 .about-body {
+    max-width: 20em;
+    margin: 0 auto 24px;
     font-size: 14px;
-    line-height: 1.9;
-    text-align: center;
-    margin: 0 0 24px;
+    line-height: 2;
+    text-align: left;
 }
 
 .about-img img {
