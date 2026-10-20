@@ -161,17 +161,22 @@
     </footer>
 
     <script>
-        // リロード時のスクロール位置を手動で保存・復元
+        // リロード時はスクロール位置を復元、リンク遷移時は一番上
         (function() {
             if (history.scrollRestoration) history.scrollRestoration = 'manual';
             window.addEventListener('beforeunload', function() {
                 sessionStorage.setItem('indexScrollY', window.scrollY);
             });
             window.addEventListener('load', function() {
+                var navType = performance.getEntriesByType('navigation')[0]
+                    ? performance.getEntriesByType('navigation')[0].type
+                    : (performance.navigation && performance.navigation.type === 1 ? 'reload' : 'navigate');
                 var savedY = sessionStorage.getItem('indexScrollY');
-                if (savedY !== null) {
+                sessionStorage.removeItem('indexScrollY');
+                if (navType === 'reload' && savedY !== null) {
                     window.scrollTo(0, parseInt(savedY, 10));
-                    sessionStorage.removeItem('indexScrollY');
+                } else {
+                    window.scrollTo(0, 0);
                 }
             });
         })();
