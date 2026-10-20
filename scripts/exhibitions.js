@@ -744,6 +744,7 @@ locationTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
         activeLocation = tab.dataset.location;
         locationTabs.forEach((t) => t.classList.toggle("is-active", t === tab));
+        if (window.resetMapZoom) window.resetMapZoom();
         updateLocationView();
         renderFilters();
         renderItems();
@@ -1006,6 +1007,9 @@ if (window.ResizeObserver && _mapSection) {
     document.querySelectorAll('.floor-tab').forEach(tab =>
         tab.addEventListener('click', () => { scale = 1; ox = 0; oy = 0; applyTransform(true); })
     );
+
+    // ロケーションタブ切り替え時にリセットできるようグローバルに公開
+    window.resetMapZoom = function() { scale = 1; ox = 0; oy = 0; applyTransform(true); };
 
     syncButtons();
 })();
