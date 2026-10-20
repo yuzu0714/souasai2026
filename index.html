@@ -161,6 +161,21 @@
     </footer>
 
     <script>
+        // リロード時のスクロール位置を手動で保存・復元
+        (function() {
+            if (history.scrollRestoration) history.scrollRestoration = 'manual';
+            window.addEventListener('beforeunload', function() {
+                sessionStorage.setItem('indexScrollY', window.scrollY);
+            });
+            window.addEventListener('load', function() {
+                var savedY = sessionStorage.getItem('indexScrollY');
+                if (savedY !== null) {
+                    window.scrollTo(0, parseInt(savedY, 10));
+                    sessionStorage.removeItem('indexScrollY');
+                }
+            });
+        })();
+
         // スクロールアニメーション
 
         // 少し下にスクロールしたら「蒼阿祭について」セクションへ自動スクロール
@@ -168,8 +183,11 @@
             const aboutSection = document.getElementById('about');
             if (!aboutSection) return;
             let triggered = false;
+            // ページ読み込み直後(1秒以内)は自動スクロールしない
+            const readyAt = Date.now();
             window.addEventListener('scroll', function() {
                 if (triggered) return;
+                if (Date.now() - readyAt < 1000) return;
                 if (window.scrollY > 60) {
                     triggered = true;
                     aboutSection.scrollIntoView({ behavior: 'smooth' });
