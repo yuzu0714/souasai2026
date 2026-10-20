@@ -79,7 +79,7 @@
             <p class="info-card-text">
                 阿南高専の各所にスタンプ台が<br>
                 置いてあるので探してね！<br>
-                全部集められたら体育館の受付で<br>
+                全部集められたら総合案内所で<br>
                 お菓子つかみ取りをしよう！
             </p>
         </div>
@@ -177,7 +177,7 @@
                 <div class="stamp-complete-confetti" aria-hidden="true">🎉</div>
                 <p class="stamp-complete-title">コンプリート！</p>
                 <p class="stamp-complete-msg">すべてのスタンプをゲットしました！<br>お菓子つかみ取りに<br>行きましょう！</p>
-                <p class="stamp-complete-hint">体育館付近の受付へ</p>
+                <p class="stamp-complete-hint">正面玄関の総合案内所へ</p>
                 <button class="stamp-complete-close" id="stampCompleteClose">閉じる</button>
             </div>
         </div>
@@ -254,7 +254,7 @@
             const snackSlot = document.querySelector('.stamp-slot--snack');
 
             if (collected >= TOTAL_STATIONS) {
-                progressText.textContent = '全部揃いました！体育館付近の受付へ行こう！';
+                progressText.textContent = '全部揃いました！正面玄関の総合案内所へ行こう！';
                 // コンプリートモーダルを表示（初回のみ）
                 const overlay = document.getElementById('stampCompleteOverlay');
                 if (overlay) overlay.hidden = false;
