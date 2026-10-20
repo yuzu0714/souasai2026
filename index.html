@@ -161,20 +161,33 @@
     </footer>
 
     <script>
-        // リロード時はスクロール位置を復元、リンク遷移時は一番上
+        // リロード時はスクロール位置を復元、リンク遷移時は一番上（スマホ対応）
         (function() {
             if (history.scrollRestoration) history.scrollRestoration = 'manual';
-            window.addEventListener('beforeunload', function() {
+
+            // スクロール位置を保存（beforeunload はモバイルで発火しないため pagehide・visibilitychange も併用）
+            function saveScroll() {
                 sessionStorage.setItem('indexScrollY', window.scrollY);
+            }
+            window.addEventListener('beforeunload', saveScroll);
+            window.addEventListener('pagehide', saveScroll);
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'hidden') saveScroll();
             });
+
+            // ナビゲーション種別を判定して復元
             window.addEventListener('load', function() {
-                var navType = performance.getEntriesByType('navigation')[0]
-                    ? performance.getEntriesByType('navigation')[0].type
-                    : (performance.navigation && performance.navigation.type === 1 ? 'reload' : 'navigate');
+                var navType = (performance.getEntriesByType('navigation')[0] || {}).type
+                    || (performance.navigation && performance.navigation.type === 1 ? 'reload' : 'navigate');
                 var savedY = sessionStorage.getItem('indexScrollY');
                 sessionStorage.removeItem('indexScrollY');
                 if (navType === 'reload' && savedY !== null) {
-                    window.scrollTo(0, parseInt(savedY, 10));
+                    // 描画・アニメーション完了後にスクロール復元
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            window.scrollTo(0, parseInt(savedY, 10));
+                        });
+                    });
                 } else {
                     window.scrollTo(0, 0);
                 }
