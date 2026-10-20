@@ -1,15 +1,13 @@
-const exhibitionItems = [ 
-    { name: "機械コース", place: "4M教室", floor: "1F", number: "A04", seq: "03", mapX: 30.5, mapY: 59 }, //default 27.5 55
-    { name: "電気コース", place: "電気機器Lab", floor: "1F", number: "E01", seq: "01", mapX: 67.5, mapY: 28 }, //default 69 20
-    { name: "情報コース", place: "5I教室", floor: "3F", number: "G01", seq: "05", mapX: 30.5, mapY: 52.5 },//default 27.5 48.5
-    { name: "建設コース", place: "3C教室", floor: "3F", number: "H01", seq: "06", mapX: 36, mapY: 69 }, //default 34 68
-    { name: "化学専門展示", place: "化学実験室", floor: "1F", number: "A03", seq: "02", mapX: 53.5, mapY: 47 } //default 54 42
-];
-
-const floorMapImages = {
-    "1F": "images/maps/floor1-map.svg",
-    "2F": "images/maps/floor2-map.svg",
-    "3F": "images/maps/floor3-map.svg",
+// station 1〜5: 校内展示, station 6: 図書館, station 7: 体育館
+const stationData = {
+    1: { name: "機械コース",   place: "4M教室",          mapImage: "images/maps/floor1-map.svg", seq: "03", pinType: "exhibition", mapX: 30.5, mapY: 59 },
+    2: { name: "電気コース",   place: "電気機器Lab",      mapImage: "images/maps/floor1-map.svg", seq: "01", pinType: "exhibition", mapX: 67.5, mapY: 28 },
+    3: { name: "情報コース",   place: "5I教室",           mapImage: "images/maps/floor3-map.svg", seq: "05", pinType: "exhibition", mapX: 30.5, mapY: 52.5 },
+    4: { name: "建設コース",   place: "3C教室",           mapImage: "images/maps/floor3-map.svg", seq: "06", pinType: "exhibition", mapX: 36,   mapY: 69 },
+    5: { name: "化学専門展示", place: "化学実験室",        mapImage: "images/maps/floor1-map.svg", seq: "02", pinType: "exhibition", mapX: 53.5, mapY: 47 },
+    6: { name: "図書館",       place: "図書館",            mapImage: "images/maps/kougai.svg",     seq: "07", pinType: "library-gym", mapX: 56,   mapY: 47 },
+    7: { name: "体育館",       place: "第一体育館",        mapImage: "images/maps/kougai.svg",     seq: "08", pinType: "library-gym", mapX: 68,   mapY: 47 },
+    snack: { name: "お菓子つかみ取り", place: "体育館付近",       mapImage: "images/maps/kougai.svg",     seq: "01",   pinType: "library-gym", mapX: 36,   mapY: 48 },
 };
 
 const slots = document.querySelectorAll('.stamp-slot');
@@ -20,50 +18,35 @@ const modalImage = document.getElementById('modal-image');
 const modalPins = document.getElementById('modal-pins');
 const closeButton = document.getElementById('modal-close');
 
-const stationInfo = exhibitionItems.reduce((obj, item, index) => {
-    obj[index + 1] = {
-        title: item.name,
-        description: `${item.place} (${item.seq})`,
-        number: item.number
-    };
-    return obj;
-}, {});
-
 slots.forEach(slot => {
     slot.addEventListener('click', () => {
-        const station = slot.dataset.station;
-        const info = stationInfo[station];
+        const station = slot.dataset.station === "snack" ? "snack" : parseInt(slot.dataset.station);
+        const data = stationData[station];
 
-        if (!info || !info.number) return;
+        if (!data) return;
 
-        //exhibitionItems から、number が一致するデータを自動検索
-        const exhibition = exhibitionItems.find(item => item.number === info.number);
-        if (!exhibition) return;
+        modalTitle.textContent = data.name;
+        modalDescription.textContent = `${data.place} (${data.seq})`;
 
-        modalTitle.textContent = info.title;
-        modalDescription.textContent = info.description;
-
-        modalImage.src = floorMapImages[exhibition.floor] || "images/maps/floor1-map.svg";
-        modalImage.alt = exhibition.floor + "のマップ";
+        modalImage.src = data.mapImage;
+        modalImage.alt = data.name + "のマップ";
 
         // モーダルを表示
         modal.classList.add('show');
 
         // ピンを自動生成
-        const seq = exhibition.seq || String(station).padStart(2, '0');
         setTimeout(() => {
             modalPins.innerHTML = `
                 <button
                     type="button"
                     class="exhibition-pin is-blinking"
-                    style="position: absolute; left: ${exhibition.mapX}%; top: ${exhibition.mapY}%; transform: translate(-50%, -100%); pointer-events: auto;"
-                    aria-label="${info.title}"
-                    data-number="${exhibition.number}"
-                    data-type="exhibition"
+                    style="position: absolute; left: ${data.mapX}%; top: ${data.mapY}%; transform: translate(-50%, -100%); pointer-events: auto;"
+                    aria-label="${data.name}"
+                    data-type="${data.pinType}"
                 >
                     <span class="pin-shape">
                         <span class="pin-inner">
-                            <span class="pin-digits">${seq}</span>
+                            <span class="pin-digits">${data.seq}</span>
                         </span>
                     </span>
                 </button>
