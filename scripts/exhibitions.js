@@ -62,7 +62,7 @@ const exhibitionItems = [
     { name: "入試に関わる個別相談室", course: "", place: "多目的室", floor: "1F", number: "J02", category: "course", location: "図書館", image: "", mapX: 33, mapY: 88 },
     // 図書館 2F
     { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "images/events/biburio.webp", mapX: 33, mapY: 35 },
-    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", mapX: 25, mapY: 85 },
+    { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", extraImages: ["images/events/yukyu_2.webp"], mapX: 25, mapY: 85 },
     // 全体
     { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 71, mapY: 56 },
     { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 32, mapY: 29 },
@@ -374,10 +374,25 @@ function openPoster(item) {
         posterImage.style.display = "none";
         if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
     } else {
-        posterImage.style.display = "";
-        posterImage.src = resolveImage(item.image);
-        posterImage.alt = item.name + "のポスター";
-        if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
+        // extraImages がある場合は複数画像を縦並びで表示
+        var allImages = [item.image];
+        if (item.extraImages && item.extraImages.length) {
+            allImages = allImages.concat(item.extraImages);
+        }
+        if (allImages.length > 1) {
+            posterImage.style.display = "none";
+            if (descEl) {
+                descEl.innerHTML = allImages.map(function(src) {
+                    return '<img src="' + resolveImage(src) + '" alt="' + item.name + 'のポスター" style="width:100%;display:block;margin-bottom:12px;border-radius:8px;">';
+                }).join('');
+                descEl.style.display = "";
+            }
+        } else {
+            posterImage.style.display = "";
+            posterImage.src = resolveImage(item.image);
+            posterImage.alt = item.name + "のポスター";
+            if (descEl) { descEl.textContent = ""; descEl.style.display = "none"; }
+        }
     }
 
     document.getElementById("exhibitionPosterName").textContent = item.name;
@@ -1117,6 +1132,7 @@ if (window.ResizeObserver && _mapSection) {
     var eventImages = [
         'images/events/figiku.webp',
         'images/events/yukyu.webp',
+        'images/events/yukyu_2.webp',
         'images/events/biburio.webp',
     ];
 
@@ -1181,7 +1197,7 @@ if (window.ResizeObserver && _mapSection) {
         if (slide.classList.contains('swiper-slide-active')) {
             var i = Number(slide.dataset.index);
             var img = eventImages[i];
-            var item = exhibitionItems.find(function(it) { return it.image === img; })
+            var item = exhibitionItems.find(function(it) { return it.image === img || (it.extraImages && it.extraImages.indexOf(img) !== -1); })
                     || { name: 'イベント', course: '', place: '', image: img, location: '' };
             openPoster(item);
         } else {
