@@ -52,6 +52,7 @@ const exhibitionItems = [
     //3F
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "images/club/roboken.webp", mapX: 38.5, mapY: 25 },
     { name: "情報専門展示", course: "情報コース", place: ["中講義室", "3I教室", "5I教室"], floor: "3F", number: "G01", category: "course", location: "校内", image: "images/exhibitions/i.webp", mapX: 27.5, mapY: 48.5 },
+    { name: "電気専門展示", course: "電気コース", place: "", floor: "3F", number: "E03", category: "course", location: "校内", image: "images/exhibitions/e.webp", mapX: 71.5, mapY: 14 },
     { name: "コスプレクローク", course: "", place: "建設製図室", floor: "3F", number: "H02", category: "course", location: "校内", image: "", description: "コスプレクローク", mapX: 34, mapY: 76 },
     { name: "更衣室", course: "", place: "2C教室", floor: "3F", number: "H04", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 76 },
     { name: "更衣室", course: "", place: "4C教室", floor: "3F", number: "H03", category: "course", location: "校内", image: "", description: "更衣室", mapX: 25, mapY: 68 },
