@@ -66,7 +66,8 @@ const exhibitionItems = [
     { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", extraImages: ["images/events/yukyu_2.webp"], mapX: 25, mapY: 85 },
     // 全体
     { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 71, mapY: 56 },
-    { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 32, mapY: 29 },
+    { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 30, mapY: 29 },
+    { name: "保健所ブース", course: "", place: "高志会館", floor: "全体", number: "L03", category: "info", location: "全体", image: "", pinType: "info", mapX: 34, mapY: 29 },
 ];
 
 // ============================================================
