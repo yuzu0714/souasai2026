@@ -467,12 +467,14 @@ body {
 
 .card-pin-number {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 22px;
     height: 22px;
     margin-right: 6px;
     border-radius: 50%;
+    line-height: 1;
     background: #f05d9d;
     color: #fff;
     font-size: .6rem;
@@ -1225,4 +1227,26 @@ body {
     top: 3.5px;
     width: 18px;
     height: 18px;
+}
+
+/* 展示ページの地図ピン：1行目にアルファベット、2行目に数字 */
+#exhibitionPins .pin-letter {
+    font-size: 8px;
+    line-height: 1;
+    margin-bottom: -2px;   /* 1行目と2行目の間隔を詰める */
+    position: relative;
+    left: -0.5px;   /* 数字と同じ位置補正 */
+    top: 1px;
+}
+
+/* 展示カードの番号バッジ：1行目にアルファベット、2行目に数字 */
+.card-pin-letter {
+    font-size: 6px;
+    line-height: 1;
+    margin-bottom: -1px;
+}
+
+.card-pin-digits {
+    font-size: .6rem;
+    line-height: 1;
 }

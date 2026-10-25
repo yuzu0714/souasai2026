@@ -315,7 +315,7 @@ function renderItems() {
         ? visible.map((item) => `
             <article class="exhibition-card" data-number="${item.number}" data-type="${(pinSeqMap.get(item) || {}).type || 'other'}">
                 <div>
-                    <p class="exhibition-name"><span class="card-pin-number">${(pinSeqMap.get(item) || {}).seq || ''}</span>${item.name}</p>
+                    <p class="exhibition-name"><span class="card-pin-number"><span class="card-pin-letter">${(pinSeqMap.get(item) || {}).seq ? pinLetter((pinSeqMap.get(item) || {}).type) : ''}</span><span class="card-pin-digits">${(pinSeqMap.get(item) || {}).seq || ''}</span></span>${item.name}</p>
                     <p class="exhibition-club">
                         ${item.course}
                         ${renderPlaceBadges(item.place)}
@@ -470,6 +470,11 @@ document.getElementById("exhibitionMapLinkBtn").addEventListener("click", () => 
     }
 });
 
+// ピン・カード番号の先頭記号（専門展示=A、部活=B、その他=C）
+function pinLetter(type) {
+    return { exhibition: 'A', club: 'B' }[type] || 'C';
+}
+
 function renderPins() {
     const pins = document.getElementById("exhibitionPins");
 
@@ -511,6 +516,8 @@ function renderPins() {
             (keyword || selected.length) &&
             matchedItems.includes(item);
         const { type, seq } = pinSeqMap.get(item) || { type: 'other', seq: '??' };
+        // ピンの1行目に種類の記号（専門展示=A、部活=B、その他=C）
+        const letter = pinLetter(type);
         return `
         <button
             type="button"
@@ -523,6 +530,7 @@ function renderPins() {
         >
             <span class="pin-shape">
                 <span class="pin-inner">
+                    <span class="pin-letter">${letter}</span>
                     <span class="pin-digits">${seq}</span>
                 </span>
             </span>
