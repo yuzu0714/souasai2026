@@ -1263,3 +1263,18 @@ body {
 .card-pin-digits {
     font-weight: 500;
 }
+
+/* 凡例：白丸の中にアルファベット（専門展示=A、部活動=B、その他=C） */
+.map-legend-pin::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1;
+    color: #333;
+}
+
+.map-legend-pin[data-type="exhibition"]::after { content: 'A'; }
+.map-legend-pin[data-type="club"]::after       { content: 'B'; }
+.map-legend-pin[data-type="other"]::after      { content: 'C'; }
