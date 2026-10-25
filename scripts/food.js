@@ -19,24 +19,24 @@
 const DEFAULT_FOOD_IMAGE = "images/food-baby-castella.png";
 
 const foodItems = [
-    { club: "弓道",       name: "唐揚げ",         category: "club", image: "images/foods/karaage.webp", price: "", detail: "" },
-    { club: "5I",         name: "フランクフルト",  category: "club", image: "images/foods/furankufuruto.webp", price: "", detail: "" },
-    { club: "5Z",         name: "ベビーカステラ",  category: "club", image: "images/foods/bebikasutera.webp", price: "", detail: "" },
-    { club: "昨年度執行委員", name: "かき氷",      category: "club", image: "images/foods/kakigori.webp", price: "", detail: "" },
-    { club: "書道",       name: "たい焼き",        category: "club", image: "images/foods/taiyaki.webp", price: "", detail: "" },
-    { club: "柔道",       name: "パン",            category: "club", image: "images/foods/pan.webp", price: "", detail: "" },
-    { club: "棋道",       name: "アメリカンドッグ",category: "club", image: "images/foods/amerikandog.webp", price: "", detail: "" },
-    { club: "野球",       name: "餃子",            category: "club", image: "images/foods/gyoza.webp", price: "", detail: "" },
-    { club: "バドミントン",name: "わたあめ",       category: "club", image: "images/foods/wataame.webp", price: "", detail: "" },
-    { club: "陸上",       name: "アイス",          category: "club", image: "images/foods/aisukurimu.webp", price: "", detail: "" },
-    { club: "バレー",     name: "ドーナツ",        category: "club", image: "images/foods/donattsu.webp", price: "", detail: "" },
-    { club: "ロボ研",     name: "ジュース",        category: "club", image: "images/foods/jusu.webp", price: "", detail: "" },
-    { club: "サッカー",   name: "駄菓子",          category: "club", image: "images/foods/dagashi.webp", price: "", detail: "" },
-    { club: "バスケ",     name: "たこ焼き",        category: "club", image: "images/foods/takoyaki.webp", price: "", detail: "" },
-    { club: "3I",         name: "焼き鳥",          category: "club", image: "images/foods/yakitori.webp", price: "", detail: "" },
-    { club: "卓球",       name: "チュロス",        category: "club", image: "images/foods/churosu.webp", price: "", detail: "" },
-    { club: "テニス",     name: "クレープ",        category: "club", image: "images/foods/kurepu.webp", price: "", detail: "" },
-    { club: "ソフトテニス",name: "焼きそば",       category: "club", image: "images/foods/yakisoba.webp", price: "", detail: "" }
+    { club: "弓道",       name: "唐揚げ",         category: "club", image: "images/foods/karaage.webp", price: "小 300円\n大 500円", detail: "" },
+    { club: "5I",         name: "フランクフルト",  category: "club", image: "images/foods/furankufuruto.webp", price: "300円", detail: "" },
+    { club: "5Z",         name: "ベビーカステラ",  category: "club", image: "images/foods/bebikasutera.webp", price: "5個 300円\n10個 600円\n20個 1100円\n追加トッピング +100円", detail: "" },
+    { club: "昨年度執行委員", name: "かき氷",      category: "club", image: "images/foods/kakigori.webp", price: "200円", detail: "" },
+    { club: "書道",       name: "たい焼き",        category: "club", image: "images/foods/taiyaki.webp", price: "250円\nトッピングあり +50円", detail: "" },
+    { club: "柔道",       name: "パン",            category: "club", image: "images/foods/pan.webp", price: "2つ 300円", detail: "" },
+    { club: "棋道",       name: "アメリカンドッグ",category: "club", image: "images/foods/amerikandog.webp", price: "250円\nマスタード +50円", detail: "" },
+    { club: "野球",       name: "餃子",            category: "club", image: "images/foods/gyoza.webp", price: "5個 300円", detail: "" },
+    { club: "バドミントン",name: "わたあめ",       category: "club", image: "images/foods/wataame.webp", price: "150円", detail: "" },
+    { club: "陸上",       name: "アイス",          category: "club", image: "images/foods/aisukurimu.webp", price: "150円", detail: "" },
+    { club: "バレー",     name: "ドーナツ",        category: "club", image: "images/foods/donattsu.webp", price: "300円", detail: "" },
+    { club: "ロボ研",     name: "ジュース",        category: "club", image: "images/foods/jusu.webp", price: "100円\n150円\n200円", detail: "" },
+    { club: "サッカー",   name: "駄菓子",          category: "club", image: "images/foods/dagashi.webp", price: "Aセット 150円\nBセット 300円\nCセット 350円\nDセット 250円", detail: "" },
+    { club: "バスケ",     name: "たこ焼き",        category: "club", image: "images/foods/takoyaki.webp", price: "300円", detail: "" },
+    { club: "3I",         name: "焼き鳥",          category: "club", image: "images/foods/yakitori.webp", price: "100円", detail: "" },
+    { club: "卓球",       name: "チュロス",        category: "club", image: "images/foods/churosu.webp", price: "ロング 400円\nハーフ 200円\nトッピング +50円", detail: "" },
+    { club: "テニス",     name: "クレープ",        category: "club", image: "images/foods/kurepu.webp", price: "1つ 500円\n2つ 900円", detail: "" },
+    { club: "ソフトテニス",name: "焼きそば",       category: "club", image: "images/foods/yakisoba.webp", price: "400円", detail: "" }
 ];
 
 // ============================================================
@@ -119,6 +119,13 @@ function renderFilters() {
     filters.querySelectorAll("input").forEach((input) => input.addEventListener("change", renderItems));
 }
 
+/** カードに表示する値段：1行目の「○円」だけ（個数などの説明は出さない） */
+function cardPrice(price) {
+    const first = (price || "").split("\n")[0];
+    const m = first.match(/\d+円/);
+    return m ? m[0] : "";
+}
+
 function renderItems() {
     const keyword  = search.value.trim().toLowerCase();
     const selected = [...filters.querySelectorAll("input:checked")].map((input) => input.value);
@@ -143,8 +150,10 @@ function renderItems() {
             >
             <div class="food-card-body">
                 <h2 class="food-name">${item.name}</h2>
-                <p class="food-club">${item.club}${item.tag ? `<span class="food-badge">${item.tag}</span>` : ""}</p>
-                ${item.price ? `<p class="food-price">${item.price}</p>` : ""}
+                <div class="food-meta">
+                    ${cardPrice(item.price) ? `<p class="food-price">${cardPrice(item.price)}</p>` : ""}
+                    <p class="food-club food-club-pill">${item.club}${item.tag ? `<span class="food-badge">${item.tag}</span>` : ""}</p>
+                </div>
             </div>
         </article>
     `).join("") + `</div>`;
