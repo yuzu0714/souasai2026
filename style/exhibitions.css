@@ -1218,7 +1218,7 @@ body {
     font-size: 11px;
     position: relative;
     left: -0.5px;   /* 白い円の中心に合わせる微調整 */
-    top: 1px;
+    top: 0px;   /* 少し上へ */
 }
 
 /* 展示ページの地図ピン：白い円を大きく（中心位置は変えない） */
@@ -1236,7 +1236,7 @@ body {
     margin-bottom: -2px;   /* 1行目と2行目の間隔を詰める */
     position: relative;
     left: -0.5px;   /* 数字と同じ位置補正 */
-    top: 1px;
+    top: 0px;       /* 少し上へ */
 }
 
 /* 展示カードの番号バッジ：1行目にアルファベット、2行目に数字 */
@@ -1244,9 +1244,22 @@ body {
     font-size: 6px;
     line-height: 1;
     margin-bottom: -1px;
+    position: relative;
+    top: -1px;      /* 少し上へ */
 }
 
 .card-pin-digits {
     font-size: .6rem;
     line-height: 1;
+    position: relative;
+    top: -1px;      /* 少し上へ */
+}
+
+/* 文字を少し細く（地図ピン・カード番号バッジ） */
+#exhibitionPins .pin-letter,
+#exhibitionPins .pin-digits,
+.card-pin-number,
+.card-pin-letter,
+.card-pin-digits {
+    font-weight: 500;
 }
