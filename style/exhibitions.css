@@ -1210,3 +1210,19 @@ body {
     white-space: nowrap;
     line-height: 1;
 }
+
+/* 展示ページの地図ピン：数字だけ大きく（スタンプラリーのモーダルは stamprally.css 側で指定） */
+#exhibitionPins .pin-digits {
+    font-size: 11px;
+    position: relative;
+    left: -0.5px;   /* 白い円の中心に合わせる微調整 */
+    top: 1px;
+}
+
+/* 展示ページの地図ピン：白い円を大きく（中心位置は変えない） */
+#exhibitionPins .pin-inner {
+    left: 3.5px;
+    top: 3.5px;
+    width: 18px;
+    height: 18px;
+}

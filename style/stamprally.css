@@ -378,3 +378,7 @@
     height: auto;
     margin: 16px auto;
 }
+/* ===== 位置情報モーダルのピン：数字だけ大きく（exhibitions.cssの見た目は変えない） ===== */
+#modal-pins .pin-digits {
+    font-size: 20px;
+}
