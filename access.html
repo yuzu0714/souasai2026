@@ -198,6 +198,38 @@
             .parking-desc-notice {
                 color: #d9506b;
             }
+
+            /* ===== 駐車場マップ（枠内だけで拡大・縮小・移動） ===== */
+            .parking-map {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+                background: #fff;
+                margin-top: 4px;
+                touch-action: pan-y;
+                -webkit-user-select: none;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .parking-map.is-zoomed {
+                touch-action: none;
+                cursor: grab;
+            }
+            .parking-map.is-dragging {
+                cursor: grabbing;
+            }
+            .parking-map-stage {
+                transform-origin: 0 0;
+            }
+            .parking-map-stage img {
+                display: block;
+                width: 100%;
+                height: auto;
+                pointer-events: none;
+                -webkit-user-drag: none;
+            }
         </style>
 
     </head>
@@ -297,8 +329,11 @@
             <div class="access-parking-inner">
                 <h2 class="access-section-title" style="color:#00B6C0; margin-bottom:60px; font-size:2rem; font-weight:800; text-align:center; position:relative; margin-top:-200px;">駐車場</h2>
                 <div class="parking-desc"><p class="parking-desc-lead">車でご来場の方へ</p><p class="parking-desc-body">正門・裏門それぞれの入場方法は、<br>以下の地図をご確認ください。<br><span class="parking-desc-notice">当日は、現地の警備員の指示に従い<br>ご入場ください。</span></p></div>
-                <img src="images/maps/parking.svg" alt="駐車場"
-                     style="width:100%; border-radius:12px; display:block; margin-top:4px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
+                <div class="parking-map" id="parkingMap">
+                    <div class="parking-map-stage" id="parkingMapStage">
+                        <img src="images/maps/parking.svg" alt="駐車場" draggable="false">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -355,6 +390,157 @@
                     if (menuOverlay.classList.contains('is-open')) toggleMenu();
                 });
             });
+        </script>
+        <script>
+            // 駐車場マップ：マップ枠の中だけで拡大・縮小・移動できるようにする
+            (function () {
+                const map = document.getElementById('parkingMap');
+                const stage = document.getElementById('parkingMapStage');
+                if (!map || !stage) return;
+
+                const MIN_SCALE = 1;
+                const MAX_SCALE = 4;
+                let scale = 1;
+                let tx = 0; // 枠内でのずれ（px）
+                let ty = 0;
+
+                const pointers = new Map();
+                let pinch = null; // ピンチ開始時の状態
+                let drag = null;  // 1本指／マウスでのドラッグ開始状態
+                let lastTap = 0;
+
+                // 画像が枠の外に出すぎないように位置を制限
+                function clampPos() {
+                    const w = map.clientWidth;
+                    const h = map.clientHeight;
+                    tx = Math.min(0, Math.max(w - w * scale, tx));
+                    ty = Math.min(0, Math.max(h - h * scale, ty));
+                }
+
+                function render() {
+                    clampPos();
+                    stage.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+                    map.classList.toggle('is-zoomed', scale > MIN_SCALE);
+                }
+
+                // 枠内の座標 (x, y) を中心に倍率を変更
+                function zoomAt(nextScale, x, y) {
+                    nextScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, nextScale));
+                    const cx = (x - tx) / scale; // その位置の画像上の座標
+                    const cy = (y - ty) / scale;
+                    scale = nextScale;
+                    tx = x - cx * scale;
+                    ty = y - cy * scale;
+                    render();
+                }
+
+                function resetView() {
+                    scale = MIN_SCALE;
+                    tx = 0;
+                    ty = 0;
+                    render();
+                }
+
+                function localPoint(clientX, clientY) {
+                    const r = map.getBoundingClientRect();
+                    return { x: clientX - r.left, y: clientY - r.top };
+                }
+
+                function startDrag(p) {
+                    drag = { x: p.clientX, y: p.clientY, tx: tx, ty: ty };
+                }
+
+                function startPinch() {
+                    const pts = Array.from(pointers.values());
+                    const a = pts[0];
+                    const b = pts[1];
+                    const mid = localPoint((a.clientX + b.clientX) / 2, (a.clientY + b.clientY) / 2);
+                    pinch = {
+                        dist: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY),
+                        scale: scale,
+                        cx: (mid.x - tx) / scale,
+                        cy: (mid.y - ty) / scale
+                    };
+                    drag = null;
+                }
+
+                map.addEventListener('pointerdown', function (e) {
+                    pointers.set(e.pointerId, e);
+                    try { map.setPointerCapture(e.pointerId); } catch (_) {}
+
+                    if (pointers.size === 2) {
+                        startPinch();
+                    } else if (pointers.size === 1) {
+                        const now = Date.now();
+                        if (now - lastTap < 300) {
+                            // ダブルタップで拡大／元に戻す
+                            const p = localPoint(e.clientX, e.clientY);
+                            if (scale > MIN_SCALE) resetView();
+                            else zoomAt(2, p.x, p.y);
+                            lastTap = 0;
+                            drag = null;
+                        } else {
+                            lastTap = now;
+                            startDrag(e);
+                        }
+                    }
+                });
+
+                map.addEventListener('pointermove', function (e) {
+                    if (!pointers.has(e.pointerId)) return;
+                    pointers.set(e.pointerId, e);
+
+                    if (pinch && pointers.size >= 2) {
+                        // ピンチで拡大縮小（2本指の中心移動でパンも可能）
+                        const pts = Array.from(pointers.values());
+                        const a = pts[0];
+                        const b = pts[1];
+                        const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+                        const mid = localPoint((a.clientX + b.clientX) / 2, (a.clientY + b.clientY) / 2);
+                        scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, pinch.scale * dist / pinch.dist));
+                        tx = mid.x - pinch.cx * scale;
+                        ty = mid.y - pinch.cy * scale;
+                        render();
+                        e.preventDefault();
+                        return;
+                    }
+
+                    // 拡大中のみ、ドラッグで画像を移動
+                    if (drag && scale > MIN_SCALE) {
+                        tx = drag.tx + (e.clientX - drag.x);
+                        ty = drag.ty + (e.clientY - drag.y);
+                        map.classList.add('is-dragging');
+                        render();
+                        e.preventDefault();
+                    }
+                });
+
+                function endPointer(e) {
+                    if (!pointers.has(e.pointerId)) return;
+                    pointers.delete(e.pointerId);
+                    try { map.releasePointerCapture(e.pointerId); } catch (_) {}
+
+                    if (pointers.size < 2) pinch = null;
+                    if (pointers.size === 1) {
+                        startDrag(pointers.values().next().value);
+                    } else if (pointers.size === 0) {
+                        drag = null;
+                        map.classList.remove('is-dragging');
+                    }
+                }
+                map.addEventListener('pointerup', endPointer);
+                map.addEventListener('pointercancel', endPointer);
+
+                // Ctrl／⌘ + ホイールで拡大縮小（枠の上にあるときだけ）
+                map.addEventListener('wheel', function (e) {
+                    if (!e.ctrlKey && !e.metaKey) return;
+                    e.preventDefault();
+                    const p = localPoint(e.clientX, e.clientY);
+                    zoomAt(scale * (e.deltaY < 0 ? 1.15 : 1 / 1.15), p.x, p.y);
+                }, { passive: false });
+
+                window.addEventListener('resize', render);
+            })();
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script src="scripts/h1-slide-anim.js"></script>
