@@ -45,8 +45,8 @@ const exhibitionItems = [
     { name: "吹奏楽部演奏", course: "吹奏楽部", place: "第一体育館", floor: "全体", number: "C03", category: "course", location: "全体", image: "images/club/suisougaku.webp", mapX: 71, mapY: 50 },
     { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 17.5, mapY: 50.5 },
     { name: "写真部展示", course: "写真部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
-    { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "images/club/engeki.webp", mapX: 34, mapY: 70 },
-    { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "D02", category: "course", location: "校内", image: "images/club/tenmon.webp", mapX: 34, mapY: 76 },
+    { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "images/club/engeki.webp", mapX: 34, mapY: 76 },
+    { name: "天文愛好会展示", course: "天文愛好会", place: "5Z教室", floor: "2F", number: "D02", category: "course", location: "校内", image: "images/club/tenmon.webp", mapX: 34, mapY: 70 },
     { name: "落語研究部寄席", course: "落語研究部", place: "4Z教室", floor: "2F", number: "D03", category: "course", location: "校内", image: "images/club/rakugo.webp", mapX: 25, mapY: 76 },
     //3F
     { name: "ロボット研究部操縦体験", course: "ロボット研究部", place: "1-3教室", floor: "3F", number: "F01", category: "course", location: "校内", image: "images/club/roboken.webp", mapX: 38.5, mapY: 25 },
