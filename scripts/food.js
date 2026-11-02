@@ -28,7 +28,7 @@ const foodItems = [
     { club: "棋道部",       name: "アメリカンドッグ",category: "club", image: "images/foods/amerikandog.webp", price: "250円\nマスタード +50円", detail: "" },
     { club: "野球部",       name: "餃子",            category: "club", image: "images/foods/gyoza.webp", price: "5個 300円", detail: "" },
     { club: "バドミントン部",name: "わたあめ",       category: "club", image: "images/foods/wataame.webp", price: "150円", detail: "" },
-    { club: "陸上部",       name: "アイス",          category: "club", image: "images/foods/aisukurimu.webp", price: "150円", detail: "" },
+    { club: "陸上部",       name: "アイス",          category: "club", image: "images/foods/aisukurimu.webp", price: "200円\nダブル 300円", detail: "" },
     { club: "バレー部",     name: "ドーナツ",        category: "club", image: "images/foods/donattsu.webp", price: "300円", detail: "" },
     { club: "ロボット研究部",     name: "ジュース",        category: "club", image: "images/foods/jusu.webp", price: "100円\n150円\n200円", detail: "" },
     { club: "サッカー部",   name: "駄菓子",          category: "club", image: "images/foods/dagashi.webp", price: "Aセット 150円\nBセット 300円\nCセット 350円\nDセット 250円", detail: "" },
