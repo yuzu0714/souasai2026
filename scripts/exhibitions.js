@@ -43,6 +43,7 @@ const exhibitionItems = [
     { name: "工作・オーディオ同好会DJライブ", course: "工作・オーディオ同好会", place: "物理実験室", floor: "2F", number: "B02", category: "course", location: "校内", image: "images/club/kousaku.webp", mapX: 54, mapY: 38 },
     { name: "美術部展示", course: "美術部", place: "2I教室", floor: "2F", number: "C01", category: "course", location: "校内", image: "images/club/bijutu.webp", mapX: 27.5, mapY: 49 },
     { name: "吹奏楽部演奏", course: "吹奏楽部", place: "第一体育館", floor: "全体", number: "C03", category: "course", location: "全体", image: "images/club/suisougaku.webp", mapX: 71, mapY: 50 },
+    { name: "ダンスパフォーマンス", course: "ダンス部", place: "第一体育館", floor: "全体", number: "C05", category: "course", location: "全体", image: "images/club/dance.webp", mapX: 74, mapY: 56 },
     { name: "書道部展示", course: "書道部", place: "2M教室", floor: "2F", number: "C04", category: "course", location: "校内", image: "images/club/shodo.webp", mapX: 17.5, mapY: 50.5 },
     { name: "写真部展示", course: "写真部", place: "2M教室", floor: "2F", number: "C02", category: "course", location: "校内", image: "images/club/syashin.webp", mapX: 17.5, mapY: 50.5 },
     { name: "ショートムービー展示", course: "演劇部", place: "3Z教室", floor: "2F", number: "D01", category: "course", location: "校内", image: "images/club/engeki.webp", mapX: 34, mapY: 76 },
@@ -64,7 +65,7 @@ const exhibitionItems = [
     { name: "ビブリオバトル", course: "", place: "ラーニングコモンズ", floor: "2F", number: "J03", category: "course", location: "図書館", image: "images/events/biburio.webp", mapX: 33, mapY: 35 },
     { name: "悠久校友会ブース", course: "悠久校友会", place: "アクティブラーニングスタジオサウス", floor: "2F", number: "J04", category: "course", location: "図書館", image: "images/events/yukyu.webp", extraImages: ["images/events/yukyu_2.webp"], mapX: 25, mapY: 85 },
     // 全体
-    { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 71, mapY: 56 },
+    { name: "フィジーク", course: "イベント班", place: "第一体育館", floor: "全体", number: "L01", category: "course", location: "全体", image: "images/events/figiku.webp", mapX: 69, mapY: 56 },
     { name: "茶道部展示", course: "茶道部", place: "高志会館 2F", floor: "全体", number: "L02", category: "course", location: "全体", image: "images/club/sadou.webp", mapX: 30, mapY: 29 },
     { name: "保健所ブース", course: "", place: "高志会館", floor: "全体", number: "L03", category: "info", location: "全体", image: "", pinType: "info", mapX: 34, mapY: 29 },
 ];
