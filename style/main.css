@@ -208,6 +208,35 @@ body {
     }
 }
 
+/* ===== 終了のお知らせボックス ===== */
+.notice-box {
+    width: 480px;
+    max-width: 90%;
+    margin: 28px auto 0;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 3px solid #1B3BCD;
+    border-radius: 12px;
+    box-shadow: 6px 6px 0 #8FA8E8;
+    text-align: center;
+    color: #1B3BCD;
+}
+
+.notice-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 12px;
+}
+
+.notice-text {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.9;
+    margin: 0;
+    color: #333333;
+}
+
 /* ===== ページカード（main2.cssより） ===== */
 .page-cards {
     display: grid;
